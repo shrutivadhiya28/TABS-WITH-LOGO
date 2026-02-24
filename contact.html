@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us &mdash; BlueSky Siding &amp; Cladding Inc.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+:root{--navy:#0B1F3A;--sky:#2C7BE5;--skyL:#4F9EF8;--steel:#4A5D72;--cream:#F5F7FA;--muted:#6B7E92;}
+#loader{position:fixed;inset:0;background:var(--navy);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;}
+.ld-text{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;opacity:0;animation:fadeIn .6s .2s ease forwards;}
+.ld-text span{color:var(--skyL);}
+.ld-track{width:200px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;opacity:0;animation:fadeIn .6s .4s ease forwards;}
+.ld-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--sky),var(--skyL));animation:ldBar 1.6s .5s ease forwards;}
+@keyframes ldBar{to{width:100%;}}
+@keyframes fadeIn{to{opacity:1;}}
+#loader.out{animation:ldOut .7s ease forwards;}
+@keyframes ldOut{to{transform:translateY(-100%);opacity:0;}}
+.navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(11,31,58,.08);box-shadow:0 1px 20px rgba(0,0,0,.06);z-index:500;transform:translateY(-100%);animation:navIn .6s 2.1s ease forwards;}
+@keyframes navIn{to{transform:translateY(0);}}
+.nav-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo img{height:52px;}
+.logo-name{font-weight:700;font-size:1.05rem;color:var(--navy);line-height:1.3;}
+.logo-name span{color:var(--sky);}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--steel);transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--sky);transform:scaleX(0);transform-origin:right;transition:transform .3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--sky);}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left;}
+.nav-cta{background:var(--sky)!important;color:#fff!important;padding:.6rem 1.4rem;border-radius:6px;font-weight:600!important;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:#1a6dd0!important;transform:translateY(-2px)!important;box-shadow:0 6px 20px rgba(44,123,229,.35)!important;}
+.hero{margin-top:80px;min-height:68vh;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:center;}
+.hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 70% at 65% 45%,rgba(44,123,229,.22) 0%,transparent 65%),radial-gradient(ellipse 50% 60% at 5% 85%,rgba(79,158,248,.12) 0%,transparent 55%);animation:meshShift 12s ease-in-out infinite alternate;}
+@keyframes meshShift{0%{filter:hue-rotate(0deg) brightness(1);}100%{filter:hue-rotate(15deg) brightness(1.08);}}
+.hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(44,123,229,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.07) 1px,transparent 1px);background-size:60px 60px;animation:gridDrift 20s linear infinite;}
+@keyframes gridDrift{0%{background-position:0 0;}100%{background-position:60px 60px;}}
+.hero-inner{position:relative;z-index:2;max-width:1320px;margin:0 auto;width:100%;padding:6rem 2rem 5rem;display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--skyL);margin-bottom:1.2rem;opacity:0;transform:translateX(-30px);animation:sRight .7s 2.2s ease forwards;}
+.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--skyL);display:block;}
+@keyframes sRight{to{opacity:1;transform:translateX(0);}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:700;color:#fff;line-height:1.12;margin-bottom:1.4rem;opacity:0;transform:translateY(40px);animation:sUp .8s 2.35s ease forwards;}
+.hero h1 em{font-style:italic;color:var(--skyL);}
+@keyframes sUp{to{opacity:1;transform:translateY(0);}}
+.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.85;max-width:500px;opacity:0;transform:translateY(30px);animation:sUp .8s 2.5s ease forwards;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.5rem;opacity:0;animation:sUp .8s 2.65s ease forwards;}
+.badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:500;padding:.45rem 1rem;border-radius:50px;transition:background-color .3s,border-color .3s;}
+.badge:hover{background:rgba(44,123,229,.2);border-color:rgba(44,123,229,.4);}
+.hero-visual{opacity:0;transform:translateX(50px);animation:sLeft .9s 2.4s ease forwards;}
+@keyframes sLeft{to{opacity:1;transform:translateX(0);}}
+.visual-panel{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2.2rem;position:relative;overflow:hidden;}
+.visual-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sky),var(--skyL),#38b6ff);}
+.vp-title{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1.6rem;}
+.vp-list{display:flex;flex-direction:column;gap:1rem;}
+.vp-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;transition:background-color .3s,border-color .3s;}
+.vp-item:hover{background:rgba(44,123,229,.12);border-color:rgba(44,123,229,.25);}
+.vp-ico{font-size:1.3rem;line-height:1;margin-top:1px;}
+.vp-txt strong{display:block;font-size:.88rem;font-weight:600;color:#fff;margin-bottom:.2rem;}
+.vp-txt span{font-size:.8rem;color:rgba(255,255,255,.5);}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s 3.2s ease forwards;}
+.scroll-hint span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.scroll-mouse{width:22px;height:34px;border:1.5px solid rgba(255,255,255,.25);border-radius:11px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;}
+.scroll-wheel{width:3px;height:8px;background:var(--skyL);border-radius:2px;animation:wheel 1.5s ease-in-out infinite;}
+@keyframes wheel{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(12px);opacity:0;}}
+.marquee{background:var(--sky);padding:.9rem 0;overflow:hidden;}
+.marquee-track{display:flex;gap:3rem;width:max-content;animation:mroll 25s linear infinite;}
+@keyframes mroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.marquee-item{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.9);white-space:nowrap;display:flex;align-items:center;gap:1.5rem;}
+.mdot{width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%;display:inline-block;}
+.info-wrap{background:var(--cream);padding:8rem 2rem;position:relative;overflow:hidden;}
+.info-wrap::before{content:'';position:absolute;bottom:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(44,123,229,.05),transparent 70%);border-radius:50%;animation:driftOrb 18s ease-in-out infinite alternate;}
+@keyframes driftOrb{0%{transform:translate(0,0);}100%{transform:translate(-80px,-60px) scale(1.2);}}
+.info-inner{max-width:1320px;margin:0 auto;position:relative;z-index:1;}
+.sec-label{font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.sec-label::after{content:'';width:40px;height:1px;background:var(--sky);opacity:.4;}
+.sec-heading{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,3rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:1rem;}
+.sec-heading em{font-style:italic;color:var(--sky);}
+.info-header{margin-bottom:4rem;}
+.info-header p{font-size:1.05rem;color:var(--muted);max-width:560px;line-height:1.8;}
+.c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.c-card{background:#fff;border-radius:16px;padding:2rem 1.8rem;border:1px solid rgba(11,31,58,.06);position:relative;overflow:hidden;opacity:0;transform:translateY(36px);transition:opacity .6s ease,transform .6s ease,border-color .3s,box-shadow .3s;}
+.c-card.on{opacity:1;transform:translateY(0);}
+.c-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sky),var(--skyL));transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.c-card:hover{border-color:rgba(44,123,229,.18);box-shadow:0 20px 50px rgba(44,123,229,.1);}
+.c-card:hover::before{transform:scaleX(1);}
+.c-icon{width:54px;height:54px;min-width:54px;border-radius:13px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.55rem;margin-bottom:1.3rem;transition:transform .4s cubic-bezier(.34,1.56,.64,1),background-color .3s;}
+.c-card:hover .c-icon{transform:rotate(-8deg) scale(1.12);background:var(--sky);}
+.c-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.5rem;}
+.c-card p{font-size:.88rem;color:var(--muted);line-height:1.75;margin-bottom:.5rem;}
+.c-detail{font-size:.95rem;font-weight:600;color:var(--navy);}
+.c-detail a{color:var(--sky);text-decoration:none;transition:color .2s;}
+.c-detail a:hover{color:#1a6dd0;}
+.form-wrap{background:#fff;padding:8rem 2rem;position:relative;overflow:hidden;}
+.form-wrap::after{content:'';position:absolute;top:-100px;left:-100px;width:450px;height:450px;background:radial-gradient(circle,rgba(44,123,229,.04),transparent 70%);border-radius:50%;}
+.form-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:7rem;align-items:start;position:relative;z-index:1;}
+.form-side{position:sticky;top:120px;}
+.form-side-desc{font-size:.97rem;color:var(--muted);line-height:1.9;margin-bottom:2rem;}
+.why-list{display:flex;flex-direction:column;gap:1rem;}
+.why-item{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.2rem;background:var(--cream);border-radius:11px;border:1px solid rgba(11,31,58,.06);transition:border-color .2s,background-color .2s;}
+.why-item:hover{border-color:rgba(44,123,229,.2);background:rgba(44,123,229,.03);}
+.wi-ico{font-size:1.2rem;margin-top:1px;}
+.wi-txt strong{display:block;font-size:.85rem;font-weight:600;color:var(--navy);margin-bottom:.1rem;}
+.wi-txt span{font-size:.8rem;color:var(--muted);}
+.form-card{background:#fff;border-radius:20px;padding:2.8rem;box-shadow:0 24px 70px rgba(44,123,229,.09);border:1px solid rgba(11,31,58,.07);position:relative;overflow:hidden;}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1056bb,var(--sky),var(--skyL),#38b6ff);}
+.fc-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:.3rem;}
+.fc-sub{font-size:.84rem;color:var(--muted);margin-bottom:2rem;}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
+.fg{margin-bottom:1.2rem;}
+.fg label{display:block;font-size:.79rem;font-weight:600;color:var(--navy);margin-bottom:.42rem;letter-spacing:.03em;}
+.fg .req{color:#e05252;margin-left:2px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:.78rem 1rem;border:1.5px solid rgba(11,31,58,.1);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:#1A2D42;background:#fafbfc;transition:border-color .25s,box-shadow .25s,background-color .25s;outline:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(44,123,229,.1);background:#fff;}
+.fg textarea{resize:vertical;min-height:110px;}
+.fg input::placeholder,.fg textarea::placeholder{color:#b8c8d8;}
+.file-zone{border:2px dashed rgba(44,123,229,.25);border-radius:11px;background:rgba(44,123,229,.02);padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .3s,background-color .3s;display:block;}
+.file-zone:hover{border-color:var(--sky);background:rgba(44,123,229,.05);}
+.file-zone input{display:none;}
+.fz-ico{font-size:1.7rem;display:block;margin-bottom:.3rem;}
+.fz-lbl{font-size:.84rem;font-weight:600;color:var(--navy);}
+.fz-sub{font-size:.76rem;color:var(--muted);margin-top:.15rem;}
+.fz-name{font-size:.79rem;color:var(--sky);font-weight:600;margin-top:.4rem;display:none;}
+.submit-btn{width:100%;margin-top:1.3rem;padding:1rem;background:linear-gradient(90deg,#1056bb,var(--sky));color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(44,123,229,.35);}
+.success-msg{display:none;padding:1.8rem;background:rgba(44,123,229,.05);border:1px solid rgba(44,123,229,.15);border-radius:11px;text-align:center;margin-top:1rem;}
+.sm-ico{font-size:2rem;display:block;margin-bottom:.5rem;}
+.sm-title{font-weight:700;color:var(--navy);font-size:.95rem;display:block;margin-bottom:.25rem;}
+.sm-sub{font-size:.84rem;color:var(--muted);}
+.privacy-note{font-size:.76rem;color:var(--muted);text-align:center;margin-top:.9rem;padding:.6rem;background:var(--cream);border-radius:7px;line-height:1.6;}
+.map-wrap{background:var(--cream);padding:0 2rem 8rem;}
+.map-inner{max-width:1320px;margin:0 auto;}
+.map-inner h3{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:1.5rem;}
+.map-frame{border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(44,123,229,.1);border:1px solid rgba(11,31,58,.07);height:420px;}
+.map-frame iframe{width:100%;height:100%;border:0;display:block;}
+.cta-section{background:linear-gradient(135deg,#1056bb 0%,var(--sky) 60%,#38b6ff 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px);}
+.corb{position:absolute;border-radius:50%;background:rgba(255,255,255,.06);animation:orbF linear infinite;}
+.corb:nth-child(1){width:320px;height:320px;top:-80px;left:-80px;animation-duration:18s;}
+.corb:nth-child(2){width:220px;height:220px;bottom:-60px;right:-50px;animation-duration:14s;}
+.corb:nth-child(3){width:160px;height:160px;top:40%;right:12%;animation-duration:22s;}
+@keyframes orbF{0%,100%{transform:translateY(0) rotate(0deg);}33%{transform:translateY(-30px) rotate(120deg);}66%{transform:translateY(20px) rotate(240deg);}}
+.cta-inner{position:relative;z-index:2;max-width:720px;margin:0 auto;}
+.cta-inner h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:700;color:#fff;margin-bottom:1.2rem;line-height:1.15;}
+.cta-inner p{font-size:1.05rem;color:rgba(255,255,255,.8);line-height:1.8;margin-bottom:2.8rem;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-solid{display:inline-block;background:#fff;color:var(--sky);padding:.95rem 2.4rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;box-shadow:0 6px 30px rgba(0,0,0,.2);transition:transform .2s,box-shadow .2s;}
+.btn-solid:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,.3);}
+.btn-outline{display:inline-block;background:transparent;color:#fff;padding:.95rem 2.4rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.5);transition:border-color .2s,background-color .2s,transform .2s;}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-3px);}
+.footer{background:var(--cream);border-top:1px solid rgba(0,0,0,.06);padding:4.5rem 2rem 2rem;}
+.footer-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.flogo{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.flogo img{height:50px;}
+.flogo-name{font-weight:700;font-size:.95rem;color:var(--navy);}
+.flogo-name span{color:var(--sky);}
+.fdesc{font-size:.9rem;color:var(--muted);line-height:1.8;}
+.footer h4{font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);margin-bottom:1.4rem;}
+.footer ul{list-style:none;}
+.footer ul li{margin-bottom:.75rem;}
+.footer ul a{font-size:.9rem;color:var(--muted);text-decoration:none;transition:color .2s,padding-left .2s;}
+.footer ul a:hover{color:var(--sky);padding-left:4px;}
+.fcopy{border-top:1px solid rgba(0,0,0,.08);padding-top:1.5rem;font-size:.85rem;color:var(--muted);text-align:center;}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.rv.l{transform:translateX(-40px);}
+.rv.r{transform:translateX(40px);}
+.rv.sc{transform:scale(.92);}
+.rv.on{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+@media(max-width:1024px){.hero-inner,.form-inner{grid-template-columns:1fr;gap:3rem;}.c-grid{grid-template-columns:repeat(2,1fr);}.form-side{position:static;}.hero-visual{display:none;}}
+@media(max-width:768px){.nav-links{display:none;}.c-grid{grid-template-columns:1fr;}.form-row2{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr 1fr;}.cta-btns{flex-direction:column;align-items:center;}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="ld-text">Blue Sky <span>Siding</span></div><div class="ld-track"><div class="ld-bar"></div></div></div>
+
+<nav class="navbar"><div class="nav-inner"><a href="index.html" class="logo"><img src="images/logo.jpg" alt="BlueSky Siding"><span class="logo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html" class="active">Contact</a></li><li><a href="quote.html" class="nav-cta">Get a Quote</a></li></ul></div></nav>
+
+<section class="hero"><div class="hero-mesh"></div><div class="hero-grid"></div><div class="hero-inner"><div><p class="hero-eyebrow">Get In Touch</p><h1>Contact BlueSky<br><em>Siding Today.</em></h1><p class="hero-desc">Have an upcoming cladding or siding project? One of our technical advisors will get back to you shortly to discuss your needs.</p><div class="hero-badges"><span class="badge">Free Consultations</span><span class="badge">Fast Response</span><span class="badge">GTA Coverage</span><span class="badge">Licensed &amp; Insured</span></div></div><div class="hero-visual"><div class="visual-panel"><p class="vp-title">Ways to Reach Us</p><div class="vp-list"><div class="vp-item"><div class="vp-ico">&#128222;</div><div class="vp-txt"><strong>(416) 741-5140</strong><span>Call us directly any time</span></div></div><div class="vp-item"><div class="vp-ico">&#9993;&#65039;</div><div class="vp-txt"><strong>info@bluesky-siding.com</strong><span>Email our team</span></div></div><div class="vp-item"><div class="vp-ico">&#128205;</div><div class="vp-txt"><strong>17, 20 Baywood Rd, Etobicoke</strong><span>ON M9V 4A8 &mdash; by appointment</span></div></div></div></div></div></div><div class="scroll-hint"><span>Scroll</span><div class="scroll-mouse"><div class="scroll-wheel"></div></div></div></section>
+
+<div class="marquee"><div class="marquee-track"><div class="marquee-item">Free Consultation <span class="mdot"></span></div><div class="marquee-item">Fast Response <span class="mdot"></span></div><div class="marquee-item">GTA Coverage <span class="mdot"></span></div><div class="marquee-item">Licensed &amp; Insured <span class="mdot"></span></div><div class="marquee-item">Custom Projects <span class="mdot"></span></div><div class="marquee-item">Residential &amp; Commercial <span class="mdot"></span></div><div class="marquee-item">Expert Advisors <span class="mdot"></span></div><div class="marquee-item">Detailed Quotes <span class="mdot"></span></div><div class="marquee-item">Free Consultation <span class="mdot"></span></div><div class="marquee-item">Fast Response <span class="mdot"></span></div><div class="marquee-item">GTA Coverage <span class="mdot"></span></div><div class="marquee-item">Licensed &amp; Insured <span class="mdot"></span></div><div class="marquee-item">Custom Projects <span class="mdot"></span></div><div class="marquee-item">Residential &amp; Commercial <span class="mdot"></span></div><div class="marquee-item">Expert Advisors <span class="mdot"></span></div><div class="marquee-item">Detailed Quotes <span class="mdot"></span></div></div></div>
+
+<section class="info-wrap"><div class="info-inner"><div class="info-header rv l"><p class="sec-label">Reach Out</p><h2 class="sec-heading">Talk to a<br><em>Specialist.</em></h2><p>Whether you need a quotation, an estimate, or just have questions about our services — our team is ready to help.</p></div><div class="c-grid"><div class="c-card"><div class="c-icon">&#128222;</div><h3>Call Us</h3><p>Speak directly with our technical team — no automated systems.</p><div class="c-detail"><a href="tel:+14167415140">(416) 741-5140</a></div></div><div class="c-card"><div class="c-icon">&#128205;</div><h3>Visit Our Office</h3><p>Come visit us by appointment at our Etobicoke location.</p><div class="c-detail">17, 20 Baywood Road<br>Etobicoke, ON M9V 4A8</div></div><div class="c-card"><div class="c-icon">&#9993;&#65039;</div><h3>Email Us</h3><p>Send us your project details and we'll respond promptly.</p><div class="c-detail"><a href="mailto:info@bluesky-siding.com">info@bluesky-siding.com</a></div></div></div></div></section>
+
+<section class="form-wrap" id="contact"><div class="form-inner"><div class="form-side rv l"><p class="sec-label">Send a Message</p><h2 class="sec-heading">Discuss Your<br><em>Project.</em></h2><p class="form-side-desc">Provide some details about your project and we'll get back to you quickly. You can attach photos, drawings, or PDF files to help us understand your needs.</p><div class="why-list"><div class="why-item"><div class="wi-ico">&#9889;</div><div class="wi-txt"><strong>Fast Response</strong><span>We aim to reply within 1 business day</span></div></div><div class="why-item"><div class="wi-ico">&#128101;</div><div class="wi-txt"><strong>Talk to an Expert</strong><span>Your inquiry goes directly to our technical team</span></div></div><div class="why-item"><div class="wi-ico">&#128274;</div><div class="wi-txt"><strong>100% Private</strong><span>We never share your information with third parties</span></div></div><div class="why-item"><div class="wi-ico">&#128203;</div><div class="wi-txt"><strong>Detailed Quotes</strong><span>Get a transparent, itemized estimate for your project</span></div></div></div></div><div class="form-card rv r d2"><h3 class="fc-title">Project Inquiry</h3><p class="fc-sub">Fields marked <span style="color:#e05252">*</span> are required.</p><form id="contactForm"><div class="form-row2"><div class="fg"><label>Name <span class="req">*</span></label><input type="text" name="name" placeholder="Your full name" required></div><div class="fg"><label>Phone Number <span class="req">*</span></label><input type="tel" name="phone" placeholder="(416) 000-0000" required></div></div><div class="form-row2"><div class="fg"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="your@email.com" required></div><div class="fg"><label>Project Address</label><input type="text" name="address" placeholder="Project location"></div></div><div class="form-row2"><div class="fg"><label>Product <span class="req">*</span></label><select name="product" required><option value="" disabled selected>Select a product...</option><option>Aluminum Composite Panels</option><option>Aluminum Plate Panels</option><option>Cassette Panels (Metal Siding)</option><option>Corrugated Wall System</option><option>High-Pressure Laminate (HPL)</option><option>Phenolic</option><option>Stone &amp; Concrete Wall Panels</option><option>Curtain-Wall / Window-Wall</option><option>Other</option></select></div><div class="fg"><label>Project Type <span class="req">*</span></label><select name="project-type" required><option value="" disabled selected>Select project type...</option><option>Custom House / Townhouse</option><option>Multi-residential / Condominium</option><option>Retail / Restaurant / Auto shop</option><option>Office / Medical / Bank</option><option>Industrial / Warehouse</option><option>Other</option></select></div></div><div class="fg"><label>Your Message <span class="req">*</span></label><textarea name="message" placeholder="Tell us about your project..." required></textarea></div><div class="fg"><label>Upload Project Files (Photos or Drawings)</label><label for="fileUpload" class="file-zone"><span class="fz-ico">&#128193;</span><span class="fz-lbl">Click to upload or drag &amp; drop</span><span class="fz-sub">PDF, JPG, PNG, DWG accepted</span><span class="fz-name" id="fzName"></span><input type="file" id="fileUpload" name="files" multiple accept=".pdf,.jpg,.jpeg,.png,.dwg"></label></div><button type="submit" class="submit-btn">SUBMIT INQUIRY</button><div class="success-msg" id="successMsg"><span class="sm-ico">&#9989;</span><span class="sm-title">Message Sent!</span><span class="sm-sub">Thank you! One of our technical advisors will be in touch with you shortly.</span></div><p class="privacy-note">&#128274; Your information is safe with us. We never share your personal information with any third party.</p></form></div></div></section>
+
+<div class="map-wrap"><div class="map-inner rv"><h3>Find Us</h3><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.8676589799447!2d-79.57267892346195!3d43.71664447110658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b39b5e8a8a8a9%3A0x9e8c8f8e8c8f8e8c!2s20%20Baywood%20Rd%2C%20Etobicoke%2C%20ON%20M9V%204A8%2C%20Canada!5e0!3m2!1sen!2sca!4v1738765432100!5m2!1sen!2sca" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div></div>
+
+<section class="cta-section"><div class="corb"></div><div class="corb"></div><div class="corb"></div><div class="cta-inner rv sc"><h2>Ready to Start Your Project?</h2><p>Contact us today to discuss your siding and cladding needs. We're here to bring your vision to life.</p><div class="cta-btns"><a href="#contact" class="btn-solid">Send a Message</a><a href="tel:+14167415140" class="btn-outline">Call (416) 741-5140</a></div></div></section>
+
+<footer class="footer"><div class="footer-inner"><div><div class="flogo"><img src="images/logo.jpg" alt="BlueSky"><span class="flogo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></div><p class="fdesc">Leading provider of premium metal siding and cladding solutions. Quality materials, expert craftsmanship, outstanding results.</p></div><div><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li></ul></div><div><h4>Services</h4><ul><li><a href="services.html">Siding Installation</a></li><li><a href="services.html">Exterior Cladding</a></li><li><a href="services.html">Repairs &amp; Maintenance</a></li><li><a href="services.html">Custom Metal Work</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="tel:+14167415140">(416) 741-5140</a></li><li><a href="mailto:info@bluesky-siding.com">info@bluesky-siding.com</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact Us</a></li></ul></div></div><div class="fcopy">&copy; 2022 BlueSky Siding &amp; Cladding Inc. All rights reserved.</div></footer>
+
+<script>
+window.addEventListener('load',function(){setTimeout(function(){var l=document.getElementById('loader');l.classList.add('out');setTimeout(function(){l.style.display='none';},700);},2100);});
+var ro=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('on');},i*70);ro.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+var co=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var cards=Array.prototype.slice.call(document.querySelectorAll('.c-card'));var idx=cards.indexOf(entry.target);setTimeout(function(){entry.target.classList.add('on');},idx*90);co.unobserve(entry.target);}});},{threshold:.1});
+document.querySelectorAll('.c-card').forEach(function(c){co.observe(c);});
+document.getElementById('fileUpload').addEventListener('change',function(){var n=document.getElementById('fzName');if(this.files.length){n.textContent='Files: '+Array.prototype.slice.call(this.files).map(function(f){return f.name;}).join(', ');n.style.display='block';}});
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();var btn=this.querySelector('.submit-btn');btn.textContent='Sending...';btn.style.opacity='.6';var self=this;setTimeout(function(){btn.style.display='none';document.getElementById('successMsg').style.display='block';self.querySelectorAll('input,select,textarea').forEach(function(el){el.disabled=true;});},1200);});
+document.querySelectorAll('.btn-solid,.btn-outline,.nav-cta').forEach(function(btn){btn.addEventListener('mousemove',function(e){var r=btn.getBoundingClientRect();btn.style.transform='translate('+(e.clientX-(r.left+r.width/2))*.28+'px,'+(e.clientY-(r.top+r.height/2))*.28+'px)';});btn.addEventListener('mouseleave',function(){btn.style.transform='';});});
+window.addEventListener('scroll',function(){document.querySelector('.navbar').style.boxShadow=window.scrollY>=40?'0 4px 20px rgba(0,0,0,.1)':'0 1px 20px rgba(0,0,0,.06)';});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
+</script>
+</body>
+</html>
