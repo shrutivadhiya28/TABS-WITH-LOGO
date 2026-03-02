@@ -1,446 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - BlueSky Siding &amp; Cladding Inc.</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0A2463;
-            --secondary: #3E92CC;
-            --accent: #1E88E5;
-            --dark: #0D1B2A;
-            --light: #F8F9FA;
-            --gray: #6C757D;
-            --white: #FFFFFF;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Work Sans', sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            background: var(--light);
-            overflow-x: hidden;
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        .nav-container {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.3rem 1rem 0.3rem 0;
-        }
-
-        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; padding-left: 15px; }
-        .logo img { height: 80px; width: auto; }
-        .logo-text { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); white-space: nowrap; }
-        .logo-text span { color: var(--secondary); }
-
-        .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; padding-right: 2rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--secondary); }
-
-        .cta-button { background: var(--secondary); color: white !important; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; }
-
-        .mobile-menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .mobile-menu-toggle span { width: 25px; height: 3px; background: var(--primary); transition: 0.3s; }
-
-        .hero { margin-top: 95px; position: relative; min-height: 520px; display: flex; align-items: center; overflow: hidden; background: var(--dark); }
-        .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10, 36, 99, 0.92) 0%, rgba(13, 27, 42, 0.85) 100%), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80') center/cover no-repeat; }
-        .hero-mesh { position: absolute; inset: 0; opacity: 0.06; background-image: radial-gradient(circle at 20% 50%, var(--secondary) 1px, transparent 1px), radial-gradient(circle at 80% 20%, var(--accent) 1px, transparent 1px), radial-gradient(circle at 60% 80%, var(--secondary) 1px, transparent 1px); background-size: 40px 40px, 60px 60px, 50px 50px; animation: meshDrift 30s linear infinite; }
-
-        @keyframes meshDrift { 0% { transform: translate(0,0); } 100% { transform: translate(40px,40px); } }
-
-        .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 4rem 2rem 4rem 6%; color: white; }
-        .hero-label { display: inline-block; background: rgba(62,146,204,0.2); border: 1px solid rgba(62,146,204,0.4); color: var(--secondary); font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 0.4rem 1.2rem; border-radius: 50px; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.6s 0.1s ease forwards; }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 0.7s 0.25s ease forwards; }
-        .hero h1 .highlight { background: linear-gradient(90deg, var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-desc { font-size: 1.15rem; opacity: 0; line-height: 1.7; color: rgba(255,255,255,0.8); margin-bottom: 2rem; animation: fadeUp 0.7s 0.4s ease forwards; }
-        .hero-stats { display: flex; gap: 3rem; opacity: 0; animation: fadeUp 0.7s 0.55s ease forwards; }
-        .hero-stat h3 { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: var(--secondary); }
-        .hero-stat p { font-size: 0.85rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
-
-        .hero-visual { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: 380px; height: 380px; opacity: 0; animation: fadeScale 1s 0.5s ease forwards; }
-        .hero-ring { position: absolute; border: 2px solid rgba(62,146,204,0.15); border-radius: 50%; }
-        .hero-ring-1 { width: 380px; height: 380px; top: 0; left: 0; animation: rotateRing 25s linear infinite; }
-        .hero-ring-2 { width: 280px; height: 280px; top: 50px; left: 50px; border-color: rgba(30,136,229,0.12); animation: rotateRing 20s linear infinite reverse; }
-        .hero-ring-3 { width: 180px; height: 180px; top: 100px; left: 100px; border-color: rgba(62,146,204,0.1); animation: rotateRing 15s linear infinite; }
-        .hero-ring-dot { position: absolute; width: 10px; height: 10px; background: var(--secondary); border-radius: 50%; top: -5px; left: 50%; box-shadow: 0 0 20px rgba(62,146,204,0.5); }
-
-        @keyframes rotateRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeScale { from { opacity: 0; transform: translateY(-50%) scale(0.8); } to { opacity: 1; transform: translateY(-50%) scale(1); } }
-
-        .products-section { padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; position: relative; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-        .section-header.visible { opacity: 1; transform: translateY(0); }
-        .section-label { display: inline-block; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--secondary); margin-bottom: 0.8rem; }
-        .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem; }
-        .section-header p { font-size: 1.05rem; color: var(--gray); }
-
-        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 6rem; }
-        .product-card { display: grid; grid-template-columns: 220px 1fr; background: var(--white); border-radius: 20px; overflow: hidden; border: 1px solid rgba(10,36,99,0.05); transition: all 0.5s cubic-bezier(0.25,0.46,0.45,0.94); opacity: 0; transform: translateY(40px); }
-        .product-card.visible { opacity: 1; transform: translateY(0); }
-        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(10,36,99,0.1), 0 8px 20px rgba(62,146,204,0.06); border-color: rgba(62,146,204,0.15); }
-
-        .product-img { position: relative; overflow: hidden; min-height: 220px; }
-        .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
-        .product-card:hover .product-img img { transform: scale(1.08); }
-        .product-img-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(10,36,99,0.3) 100%); pointer-events: none; }
-
-        .product-img-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--primary), #1a3a7a); color: rgba(255,255,255,0.5); gap: 0.6rem; position: relative; }
-        .product-img-placeholder svg { width: 36px; height: 36px; stroke: rgba(255,255,255,0.35); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s ease; }
-        .product-card:hover .product-img-placeholder svg { stroke: rgba(255,255,255,0.55); }
-        .product-img-placeholder span { font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
-
-        .product-card:nth-child(1) .product-img-placeholder { background: linear-gradient(135deg, #0A2463, #1a3a7a); }
-        .product-card:nth-child(2) .product-img-placeholder { background: linear-gradient(135deg, #0D4B6E, #1a7aaa); }
-        .product-card:nth-child(3) .product-img-placeholder { background: linear-gradient(135deg, #1B3A5C, #2a5a8c); }
-        .product-card:nth-child(4) .product-img-placeholder { background: linear-gradient(135deg, #14406B, #1E6FA0); }
-        .product-card:nth-child(5) .product-img-placeholder { background: linear-gradient(135deg, #0A3055, #1a5585); }
-        .product-card:nth-child(6) .product-img-placeholder { background: linear-gradient(135deg, #1a3050, #2a5080); }
-        .product-card:nth-child(7) .product-img-placeholder { background: linear-gradient(135deg, #0D3B66, #1a5a8a); }
-        .product-card:nth-child(8) .product-img-placeholder { background: linear-gradient(135deg, #12355B, #1E5F8E); }
-
-        .product-badge { position: absolute; top: 12px; left: 12px; background: rgba(10,36,99,0.85); backdrop-filter: blur(8px); color: white; padding: 0.3rem 0.9rem; border-radius: 50px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; z-index: 3; }
-
-        .product-info { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
-        .product-info h3 { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; line-height: 1.3; }
-        .product-info .desc { color: var(--gray); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1rem; }
-        .product-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
-        .product-tags span { background: rgba(62,146,204,0.08); color: var(--primary); font-size: 0.73rem; font-weight: 500; padding: 0.25rem 0.7rem; border-radius: 50px; border: 1px solid rgba(62,146,204,0.12); transition: all 0.3s ease; }
-        .product-card:hover .product-tags span { background: rgba(62,146,204,0.14); border-color: rgba(62,146,204,0.25); }
-        .product-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--secondary); text-decoration: none; font-weight: 600; font-size: 0.88rem; transition: all 0.3s ease; }
-        .product-link svg { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); width: 16px; height: 16px; }
-        .product-card:hover .product-link svg { transform: translateX(5px); }
-        .product-link:hover { color: var(--accent); }
-
-        .marquee-strip { background: var(--primary); padding: 1rem 0; overflow: hidden; position: relative; margin-bottom: 6rem; }
-        .marquee-track { display: flex; gap: 4rem; animation: marqueeScroll 25s linear infinite; width: max-content; }
-        .marquee-item { font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px; white-space: nowrap; display: flex; align-items: center; gap: 1rem; }
-        .marquee-item .dot { width: 5px; height: 5px; background: var(--secondary); border-radius: 50%; flex-shrink: 0; }
-        @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        .why-section { max-width: 1400px; margin: 0 auto 6rem; padding: 0 2rem; }
-        .why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border-radius: 24px; overflow: hidden; border: 1px solid rgba(10,36,99,0.06); opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
-        .why-grid.visible { opacity: 1; transform: translateY(0); }
-        .why-item { background: var(--white); padding: 2.5rem 2rem; text-align: center; border-right: 1px solid rgba(10,36,99,0.06); transition: all 0.4s ease; position: relative; }
-        .why-item:last-child { border-right: none; }
-        .why-item::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: linear-gradient(90deg, var(--secondary), var(--accent)); transition: width 0.4s ease; }
-        .why-item:hover::after { width: 60%; }
-        .why-item:hover { background: rgba(62,146,204,0.03); }
-        .why-number { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.5rem; line-height: 1; }
-        .why-item h4 { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.4rem; }
-        .why-item p { color: var(--gray); font-size: 0.88rem; }
-
-        .applications { max-width: 1400px; margin: 0 auto 6rem; padding: 0 2rem; }
-        .app-wrapper { background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%); border-radius: 24px; padding: 4rem 3rem; color: white; position: relative; overflow: hidden; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
-        .app-wrapper.visible { opacity: 1; transform: translateY(0); }
-        .app-lines { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .app-line { position: absolute; width: 1px; height: 200%; background: linear-gradient(180deg, transparent, rgba(62,146,204,0.12), transparent); transform: rotate(25deg); transform-origin: top center; animation: lineGlow 6s ease-in-out infinite; }
-        .app-line:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .app-line:nth-child(2) { left: 30%; animation-delay: 1.5s; }
-        .app-line:nth-child(3) { left: 55%; animation-delay: 3s; }
-        .app-line:nth-child(4) { left: 75%; animation-delay: 0.8s; }
-        .app-line:nth-child(5) { left: 92%; animation-delay: 2.2s; }
-        @keyframes lineGlow { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-        .app-wrapper h2 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 0.8rem; text-align: center; position: relative; }
-        .app-wrapper > p { text-align: center; opacity: 0.8; font-size: 1.05rem; margin-bottom: 3rem; position: relative; }
-        .app-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; position: relative; }
-        .app-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 2rem 1.5rem; text-align: center; transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94); }
-        .app-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-8px); border-color: rgba(255,255,255,0.2); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
-        .app-card-icon { width: 56px; height: 56px; background: rgba(62,146,204,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
-        .app-card:hover .app-card-icon { transform: scale(1.12) rotate(-5deg); }
-        .app-card-icon svg { width: 26px; height: 26px; stroke: var(--secondary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-        .app-card h4 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 0.4rem; }
-        .app-card p { font-size: 0.88rem; opacity: 0.7; }
-
-        .cta-wrap { max-width: 1400px; margin: 0 auto; padding: 0 2rem 6rem; }
-        .cta-box { background: linear-gradient(135deg, var(--secondary), var(--accent)); background-size: 200% 200%; animation: ctaGradient 6s ease-in-out infinite; border-radius: 24px; padding: 4rem 3rem; text-align: center; color: white; position: relative; overflow: hidden; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
-        .cta-box.visible { opacity: 1; transform: translateY(0); }
-        @keyframes ctaGradient { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        .cta-box h2 { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; position: relative; }
-        .cta-box p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95; position: relative; }
-        .cta-buttons { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; position: relative; }
-        .btn-cta { padding: 1rem 2.2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.05rem; transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); background: white; color: var(--secondary); border: 2px solid white; }
-        .btn-cta:hover { background: transparent; color: white; transform: translateY(-4px) scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-
-        /* ── FOOTER — WHITE ── */
-        .footer {
-            background: #ffffff;
-            color: var(--dark);
-            padding: 4rem 2rem 2rem;
-        }
-        .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-        .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
-        .footer-logo img { height: 65px; width: auto; }
-        .footer-logo-text { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--primary); }
-        .footer-logo-text span { color: var(--secondary); }
-        .footer p { opacity: 0.7; line-height: 1.7; color: var(--gray); }
-        .footer h4 { font-family: 'Outfit', sans-serif; font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--primary); }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 0.8rem; }
-        .footer-links a { color: var(--gray); text-decoration: none; transition: color 0.3s, padding-left 0.3s; }
-        .footer-links a:hover { color: var(--secondary); padding-left: 5px; }
-        .footer-bottom { border-top: 1px solid rgba(0,0,0,0.1); padding-top: 2rem; text-align: center; opacity: 0.6; color: var(--dark); }
-
-        @media (max-width: 1100px) {
-            .products-grid { grid-template-columns: 1fr; }
-            .product-card { grid-template-columns: 200px 1fr; }
-            .why-grid { grid-template-columns: repeat(2,1fr); }
-            .why-item { border-bottom: 1px solid rgba(10,36,99,0.06); }
-            .app-grid { grid-template-columns: repeat(2,1fr); }
-            .hero-visual { display: none; }
-        }
-        @media (max-width: 768px) {
-            .nav-links { position: fixed; left: -100%; top: 95px; flex-direction: column; background-color: white; width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 27px rgba(0,0,0,0.05); padding: 2rem 0; }
-            .nav-links.active { left: 0; }
-            .mobile-menu-toggle { display: flex; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero-stats { gap: 1.5rem; }
-            .hero-stat h3 { font-size: 1.5rem; }
-            .product-card { grid-template-columns: 1fr; }
-            .product-img { min-height: 200px; }
-            .why-grid { grid-template-columns: 1fr; }
-            .app-grid { grid-template-columns: 1fr; }
-            .footer-container { grid-template-columns: 1fr; }
-            .logo-text { font-size: 1rem; }
-            .logo img { height: 50px; }
-            .cta-box { padding: 3rem 1.5rem; }
-            .cta-box h2 { font-size: 1.8rem; }
-            .cta-buttons { flex-direction: column; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-            .product-card, .section-header, .why-grid, .app-wrapper, .cta-box { opacity: 1 !important; transform: none !important; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products &mdash; BlueSky Siding &amp; Cladding Inc.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+:root{--navy:#0B1F3A;--sky:#2C7BE5;--skyL:#4F9EF8;--steel:#4A5D72;--cream:#F5F7FA;--muted:#6B7E92;}
+#loader{position:fixed;inset:0;background:var(--navy);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;}
+.ld-text{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;opacity:0;animation:fadeIn .6s .2s ease forwards;}
+.ld-text span{color:var(--skyL);}
+.ld-track{width:200px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;opacity:0;animation:fadeIn .6s .4s ease forwards;}
+.ld-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--sky),var(--skyL));animation:ldBar 1.6s .5s ease forwards;}
+@keyframes ldBar{to{width:100%;}}
+@keyframes fadeIn{to{opacity:1;}}
+#loader.out{animation:ldOut .7s ease forwards;}
+@keyframes ldOut{to{transform:translateY(-100%);opacity:0;}}
+.navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(11,31,58,.08);box-shadow:0 1px 20px rgba(0,0,0,.06);z-index:500;transform:translateY(-100%);animation:navIn .6s 2.1s ease forwards;}
+@keyframes navIn{to{transform:translateY(0);}}
+.nav-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo img{height:52px;}
+.logo-name{font-weight:700;font-size:1.05rem;color:var(--navy);line-height:1.3;}
+.logo-name span{color:var(--sky);}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--steel);transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--sky);transform:scaleX(0);transform-origin:right;transition:transform .3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--sky);}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left;}
+.nav-cta{background:var(--sky)!important;color:#fff!important;padding:.6rem 1.4rem;border-radius:6px;font-weight:600!important;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:#1a6dd0!important;transform:translateY(-2px)!important;box-shadow:0 6px 20px rgba(44,123,229,.35)!important;}
+.hero{margin-top:80px;min-height:72vh;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:center;}
+.hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 70% at 65% 45%,rgba(44,123,229,.22) 0%,transparent 65%),radial-gradient(ellipse 50% 60% at 5% 85%,rgba(79,158,248,.12) 0%,transparent 55%);animation:meshShift 12s ease-in-out infinite alternate;}
+@keyframes meshShift{0%{filter:hue-rotate(0deg) brightness(1);}100%{filter:hue-rotate(15deg) brightness(1.08);}}
+.hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(44,123,229,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.07) 1px,transparent 1px);background-size:60px 60px;animation:gridDrift 20s linear infinite;}
+@keyframes gridDrift{0%{background-position:0 0;}100%{background-position:60px 60px;}}
+.hero-rings{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:380px;height:380px;z-index:2;opacity:0;animation:ringsIn 1s 2.5s ease forwards;}
+@keyframes ringsIn{to{opacity:1;}}
+.ring{position:absolute;border-radius:50%;border:2px solid rgba(44,123,229,.18);}
+.ring-1{width:380px;height:380px;top:0;left:0;animation:rotRing 25s linear infinite;}
+.ring-2{width:280px;height:280px;top:50px;left:50px;border-color:rgba(79,158,248,.13);animation:rotRing 20s linear infinite reverse;}
+.ring-3{width:180px;height:180px;top:100px;left:100px;border-color:rgba(44,123,229,.1);animation:rotRing 15s linear infinite;}
+.ring-dot{position:absolute;width:10px;height:10px;background:var(--skyL);border-radius:50%;top:-5px;left:50%;box-shadow:0 0 20px rgba(79,158,248,.5);}
+@keyframes rotRing{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.hero-inner{position:relative;z-index:3;max-width:1320px;margin:0 auto;width:100%;padding:6rem 2rem 5rem;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--skyL);margin-bottom:1.2rem;opacity:0;transform:translateX(-30px);animation:sRight .7s 2.2s ease forwards;}
+.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--skyL);display:block;}
+@keyframes sRight{to{opacity:1;transform:translateX(0);}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:700;color:#fff;line-height:1.12;margin-bottom:1.4rem;opacity:0;transform:translateY(40px);animation:sUp .8s 2.35s ease forwards;max-width:680px;}
+.hero h1 em{font-style:italic;color:var(--skyL);}
+@keyframes sUp{to{opacity:1;transform:translateY(0);}}
+.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.85;max-width:520px;margin-bottom:2.5rem;opacity:0;transform:translateY(30px);animation:sUp .8s 2.5s ease forwards;}
+.hero-stats{display:flex;gap:2.5rem;opacity:0;animation:sUp .8s 2.65s ease forwards;}
+.h-stat h3{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--skyL);line-height:1;}
+.h-stat p{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s 3.2s ease forwards;}
+.scroll-hint span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.scroll-mouse{width:22px;height:34px;border:1.5px solid rgba(255,255,255,.25);border-radius:11px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;}
+.scroll-wheel{width:3px;height:8px;background:var(--skyL);border-radius:2px;animation:wheel 1.5s ease-in-out infinite;}
+@keyframes wheel{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(12px);opacity:0;}}
+.marquee{background:var(--sky);padding:.9rem 0;overflow:hidden;}
+.marquee-track{display:flex;gap:3rem;width:max-content;animation:mroll 25s linear infinite;}
+@keyframes mroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.marquee-item{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.9);white-space:nowrap;display:flex;align-items:center;gap:1.5rem;}
+.mdot{width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%;display:inline-block;}
+.products-wrap{background:var(--cream);padding:8rem 2rem;position:relative;overflow:hidden;}
+.products-wrap::before{content:'';position:absolute;bottom:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(44,123,229,.05),transparent 70%);border-radius:50%;animation:driftOrb 18s ease-in-out infinite alternate;}
+@keyframes driftOrb{0%{transform:translate(0,0);}100%{transform:translate(-80px,-60px) scale(1.2);}}
+.products-inner{max-width:1320px;margin:0 auto;position:relative;z-index:1;}
+.sec-label{font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.sec-label::after{content:'';width:40px;height:1px;background:var(--sky);opacity:.4;}
+.sec-heading{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,3rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:1rem;}
+.sec-heading em{font-style:italic;color:var(--sky);}
+.sec-hdr{margin-bottom:4rem;}
+.sec-hdr p{font-size:1.05rem;color:var(--muted);max-width:560px;line-height:1.8;}
+.p-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.p-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid rgba(11,31,58,.06);display:grid;grid-template-columns:200px 1fr;opacity:0;transform:translateY(36px);transition:opacity .6s ease,transform .6s ease,border-color .3s,box-shadow .3s;}
+.p-card.on{opacity:1;transform:translateY(0);}
+.p-card:hover{border-color:rgba(44,123,229,.18);box-shadow:0 20px 50px rgba(44,123,229,.1);}
+.p-img{position:relative;overflow:hidden;min-height:210px;}
+.p-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.p-card:hover .p-img img{transform:scale(1.08);}
+.p-badge{position:absolute;top:10px;left:10px;background:rgba(11,31,58,.82);backdrop-filter:blur(6px);color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .8rem;border-radius:50px;z-index:2;}
+.p-info{padding:1.8rem;display:flex;flex-direction:column;justify-content:center;position:relative;}
+.p-info::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--sky),var(--skyL));transform:scaleY(0);transform-origin:top;transition:transform .4s ease;}
+.p-card:hover .p-info::before{transform:scaleY(1);}
+.p-info h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.5rem;line-height:1.3;}
+.p-info p{font-size:.88rem;color:var(--muted);line-height:1.75;margin-bottom:1rem;}
+.p-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem;}
+.p-tags span{background:var(--cream);color:var(--navy);font-size:.73rem;font-weight:500;padding:.22rem .65rem;border-radius:50px;border:1px solid rgba(11,31,58,.08);transition:background-color .25s,border-color .25s;}
+.p-card:hover .p-tags span{background:rgba(44,123,229,.08);border-color:rgba(44,123,229,.2);}
+.p-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--sky);text-decoration:none;font-weight:600;font-size:.85rem;transition:gap .3s cubic-bezier(.34,1.56,.64,1),color .2s;margin-top:auto;}
+.p-link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
+.p-card:hover .p-link{gap:.8rem;color:#1a6dd0;}
+.p-card:hover .p-link svg{transform:translateX(4px);}
+.stats-band{background:var(--navy);padding:5rem 2rem;position:relative;overflow:hidden;}
+.stats-band::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(44,123,229,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.06) 1px,transparent 1px);background-size:55px 55px;}
+.stats-band::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(44,123,229,.14) 0%,transparent 60%);}
+.stats-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;z-index:2;}
+.s-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:2rem 1.5rem;text-align:center;transition:background-color .3s,border-color .3s,transform .3s;}
+.s-item:hover{background:rgba(44,123,229,.12);border-color:rgba(44,123,229,.25);transform:translateY(-5px);}
+.s-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:var(--skyL);line-height:1;margin-bottom:.4rem;}
+.s-lbl{font-size:.82rem;color:rgba(255,255,255,.5);font-weight:500;text-transform:uppercase;letter-spacing:.08em;}
+.apps-wrap{background:#fff;padding:8rem 2rem;}
+.apps-inner{max-width:1320px;margin:0 auto;}
+.apps-hdr{margin-bottom:4rem;}
+.app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.app-card{background:var(--navy);border-radius:16px;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:transform .3s,border-color .3s,box-shadow .3s;}
+.app-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(44,123,229,.2),transparent 70%);}
+.app-card:hover{transform:translateY(-6px);border-color:rgba(44,123,229,.3);box-shadow:0 20px 50px rgba(44,123,229,.15);}
+.app-ico{width:52px;height:52px;background:rgba(44,123,229,.2);border-radius:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
+.app-card:hover .app-ico{transform:scale(1.12) rotate(-5deg);}
+.app-ico svg{width:24px;height:24px;stroke:var(--skyL);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.app-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.35rem;position:relative;}
+.app-card p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.65;position:relative;}
+.cta-section{background:linear-gradient(135deg,#1056bb 0%,var(--sky) 60%,#38b6ff 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px);}
+.corb{position:absolute;border-radius:50%;background:rgba(255,255,255,.06);animation:orbF linear infinite;}
+.corb:nth-child(1){width:320px;height:320px;top:-80px;left:-80px;animation-duration:18s;}
+.corb:nth-child(2){width:220px;height:220px;bottom:-60px;right:-50px;animation-duration:14s;}
+.corb:nth-child(3){width:160px;height:160px;top:40%;right:12%;animation-duration:22s;}
+@keyframes orbF{0%,100%{transform:translateY(0) rotate(0deg);}33%{transform:translateY(-30px) rotate(120deg);}66%{transform:translateY(20px) rotate(240deg);}}
+.cta-inner{position:relative;z-index:2;max-width:720px;margin:0 auto;}
+.cta-inner h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:700;color:#fff;margin-bottom:1.2rem;line-height:1.15;}
+.cta-inner p{font-size:1.05rem;color:rgba(255,255,255,.8);line-height:1.8;margin-bottom:2.8rem;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-solid{display:inline-block;background:#fff;color:var(--sky);padding:.95rem 2.4rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;box-shadow:0 6px 30px rgba(0,0,0,.2);transition:transform .2s,box-shadow .2s;}
+.btn-solid:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,.3);}
+.btn-outline{display:inline-block;background:transparent;color:#fff;padding:.95rem 2.4rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.5);transition:border-color .2s,background-color .2s,transform .2s;}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-3px);}
+.footer{background:var(--cream);border-top:1px solid rgba(0,0,0,.06);padding:4.5rem 2rem 2rem;}
+.footer-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.flogo{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.flogo img{height:50px;}
+.flogo-name{font-weight:700;font-size:.95rem;color:var(--navy);}
+.flogo-name span{color:var(--sky);}
+.fdesc{font-size:.9rem;color:var(--muted);line-height:1.8;}
+.footer h4{font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);margin-bottom:1.4rem;}
+.footer ul{list-style:none;}
+.footer ul li{margin-bottom:.75rem;}
+.footer ul a{font-size:.9rem;color:var(--muted);text-decoration:none;transition:color .2s,padding-left .2s;}
+.footer ul a:hover{color:var(--sky);padding-left:4px;}
+.fcopy{border-top:1px solid rgba(0,0,0,.08);padding-top:1.5rem;font-size:.85rem;color:var(--muted);text-align:center;}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.rv.l{transform:translateX(-40px);}
+.rv.sc{transform:scale(.92);}
+.rv.on{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+@media(max-width:1100px){.p-grid{grid-template-columns:1fr;}.app-grid{grid-template-columns:repeat(2,1fr);}.stats-inner{grid-template-columns:repeat(2,1fr);}.hero-rings{display:none;}}
+@media(max-width:768px){.nav-links{display:none;}.p-card{grid-template-columns:1fr;}.p-img{min-height:180px;}.app-grid{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr 1fr;}.cta-btns{flex-direction:column;align-items:center;}}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="images/logo.jpg" alt="BlueSky Siding &amp; Cladding Inc.">
-                <span class="logo-text">Blue Sky Siding <span>&amp; Cladding Inc.</span></span>
-            </a>
-            <div class="mobile-menu-toggle" id="mobileToggle">
-                <span></span><span></span><span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="products.html" class="active">Products</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="careers.html">Careers</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="quote.html" class="cta-button">Quotation Request</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-mesh"></div>
-        <div class="hero-content">
-            <span class="hero-label">Toronto &amp; GTA</span>
-            <h1>Modern Cladding<br>Products <span class="highlight">&amp; Services</span></h1>
-            <p class="hero-desc">We design, supply, and install a wide range of high-quality siding and cladding products from aluminum composite panels to custom copper work.</p>
-            <div class="hero-stats">
-                <div class="hero-stat"><h3>8+</h3><p>Product Lines</p></div>
-                <div class="hero-stat"><h3>500+</h3><p>Projects Done</p></div>
-                <div class="hero-stat"><h3>4+</h3><p>Years Experience</p></div>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="hero-ring hero-ring-1"><div class="hero-ring-dot"></div></div>
-            <div class="hero-ring hero-ring-2"><div class="hero-ring-dot"></div></div>
-            <div class="hero-ring hero-ring-3"><div class="hero-ring-dot"></div></div>
-        </div>
-    </section>
+<div id="loader"><div class="ld-text">Blue Sky <span>Siding</span></div><div class="ld-track"><div class="ld-bar"></div></div></div>
 
-    <div class="marquee-strip">
-        <div class="marquee-track">
-            <span class="marquee-item"><span class="dot"></span>Metal Siding</span>
-            <span class="marquee-item"><span class="dot"></span>Metal Cladding</span>
-            <span class="marquee-item"><span class="dot"></span>ACM Panels</span>
-            <span class="marquee-item"><span class="dot"></span>Counter Coping &amp; Flashing</span>
-            <span class="marquee-item"><span class="dot"></span>Flat Metal Roof</span>
-            <span class="marquee-item"><span class="dot"></span>Custom Copper Work</span>
-            <span class="marquee-item"><span class="dot"></span>Eavestrough &amp; Downspout</span>
-            <span class="marquee-item"><span class="dot"></span>Soffit &amp; Fascia</span>
-            <span class="marquee-item"><span class="dot"></span>Metal Siding</span>
-            <span class="marquee-item"><span class="dot"></span>Metal Cladding</span>
-            <span class="marquee-item"><span class="dot"></span>ACM Panels</span>
-            <span class="marquee-item"><span class="dot"></span>Counter Coping &amp; Flashing</span>
-            <span class="marquee-item"><span class="dot"></span>Flat Metal Roof</span>
-            <span class="marquee-item"><span class="dot"></span>Custom Copper Work</span>
-            <span class="marquee-item"><span class="dot"></span>Eavestrough &amp; Downspout</span>
-            <span class="marquee-item"><span class="dot"></span>Soffit &amp; Fascia</span>
-        </div>
+<nav class="navbar"><div class="nav-inner"><a href="index.html" class="logo"><img src="images/logo.jpg" alt="BlueSky Siding"><span class="logo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html" class="active">Products</a></li><li><a href="services.html">Services</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li><li><a href="quote.html" class="nav-cta">Get a Quote</a></li></ul></div></nav>
+
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-rings">
+    <div class="ring ring-1"><div class="ring-dot"></div></div>
+    <div class="ring ring-2"><div class="ring-dot"></div></div>
+    <div class="ring ring-3"><div class="ring-dot"></div></div>
+  </div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Toronto &amp; GTA</p>
+    <h1>Modern Cladding Products<br>&amp; <em>Services.</em></h1>
+    <p class="hero-desc">We design, supply, and install a wide range of high-quality siding and cladding products — from aluminum composite panels to custom copper work.</p>
+    <div class="hero-stats">
+      <div class="h-stat"><h3>8+</h3><p>Product Lines</p></div>
+      <div class="h-stat"><h3>100+</h3><p>Projects Done</p></div>
+      <div class="h-stat"><h3>4+</h3><p>Years Experience</p></div>
     </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-mouse"><div class="scroll-wheel"></div></div></div>
+</section>
 
-    <section class="products-section">
-        <div class="section-header">
-            <span class="section-label">Our Products</span>
-            <h2>Top Modern Exterior Siding &amp; Cladding Products</h2>
-            <p>Premium materials designed for Toronto's climate — quality, durability, and aesthetics.</p>
-        </div>
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-img"><div class="product-img-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Add Image</span></div><span class="product-badge">Popular</span></div>
-                <div class="product-info"><h3>Metal Siding</h3><p class="desc">Durable and versatile metal siding systems for modern residential and commercial exteriors.</p><div class="product-tags"><span>Steel &amp; Aluminum</span><span>Weather-Resistant</span><span>Low Maintenance</span></div><a href="quote.html" class="product-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-            </div>
-            <div class="product-card">
-                <div class="product-img"><div class="product-img-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Add Image</span></div><span class="product-badge">Premium</span></div>
-                <div class="product-info"><h3>Metal Cladding</h3><p class="desc">High-performance cladding panels combining sleek aesthetics with superior building protection.</p><div class="product-tags"><span>Cassette Panels</span><span>Corrugated</span><span>Custom Profiles</span></div><a href="quote.html" class="product-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-            </div>
-            <div class="product-card">
-                <div class="product-img"><div class="product-img-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Add Image</span></div><span class="product-badge">Best Seller</span></div>
-                <div class="product-info"><h3>ACM Panels</h3><p class="desc">Lightweight aluminum composite panels with exceptional flatness and a wide range of finishes.</p><div class="product-tags"><span>Lightweight</span><span>Multiple Finishes</span><span>Fire-Rated</span></div><a href="quote.html" class="product-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-            </div>
-            <div class="product-card">
-                <div class="product-img"><div class="product-img-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Add Image</span></div></div>
-                <div class="product-info"><h3>Counter Coping &amp; Flashing</h3><p class="desc">Essential protection systems to seal and waterproof your building envelope against the elements.</p><div class="product-tags"><span>Waterproofing</span><span>Custom-Fit</span><span>Aluminum &amp; Copper</span></div><a href="quote.html" class="product-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-            </div>
-            <div class="product-card">
-                <div class="product-img"><div class="product-img-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Add Image</span></div></div>
-                <div class="product-info"><h3>Flat Metal Roof</h3><p class="desc">Durable flat metal roofing systems engineered for long-lasting performance and weather protection.</p><div class="product-tags"><span>Standing Seam</span><span>Leak-Proof</span><span>Energy Efficient</span></div><a href="quote.html" class="product-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-            </div>
-            <div class="product-card">
-                <div class="product-img"><div class="product-img-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Add Image</span></div><span class="product-badge">Specialty</span></div>
-                <div class="product-info"><h3>Custom Copper Work</h3><p class="desc">Handcrafted copper architectural elements that add timeless elegance to any building.</p><div class="product-tags"><span>Handcrafted</span><span>Patina Finish</span><span>Architectural</span></div><a href="quote.html" class="product-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-            </div>
-            <div class="product-card">
-                <div class="product-img"><div class="product-img-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Add Image</span></div></div>
-                <div class="product-info"><h3>Eavestrough &amp; Downspout</h3><p class="desc">Complete gutter and drainage solutions to protect your property from water damage year-round.</p><div class="product-tags"><span>Seamless Gutters</span><span>Drainage</span><span>Custom Sizes</span></div><a href="quote.html" class="product-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-            </div>
-            <div class="product-card">
-                <div class="product-img"><div class="product-img-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Add Image</span></div></div>
-                <div class="product-info"><h3>Soffit &amp; Fascia</h3><p class="desc">Clean, finished soffit and fascia systems for proper attic ventilation and a polished roofline.</p><div class="product-tags"><span>Ventilated</span><span>Aluminum</span><span>Color Matched</span></div><a href="quote.html" class="product-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-            </div>
-        </div>
-    </section>
+<div class="marquee"><div class="marquee-track"><div class="marquee-item">Metal Siding <span class="mdot"></span></div><div class="marquee-item">Metal Cladding <span class="mdot"></span></div><div class="marquee-item">ACM Panels <span class="mdot"></span></div><div class="marquee-item">Counter Coping &amp; Flashing <span class="mdot"></span></div><div class="marquee-item">Flat Metal Roof <span class="mdot"></span></div><div class="marquee-item">Custom Copper Work <span class="mdot"></span></div><div class="marquee-item">Eavestrough &amp; Downspout <span class="mdot"></span></div><div class="marquee-item">Soffit &amp; Fascia <span class="mdot"></span></div><div class="marquee-item">Metal Siding <span class="mdot"></span></div><div class="marquee-item">Metal Cladding <span class="mdot"></span></div><div class="marquee-item">ACM Panels <span class="mdot"></span></div><div class="marquee-item">Counter Coping &amp; Flashing <span class="mdot"></span></div><div class="marquee-item">Flat Metal Roof <span class="mdot"></span></div><div class="marquee-item">Custom Copper Work <span class="mdot"></span></div><div class="marquee-item">Eavestrough &amp; Downspout <span class="mdot"></span></div><div class="marquee-item">Soffit &amp; Fascia <span class="mdot"></span></div></div></div>
 
-    <section class="why-section">
-        <div class="why-grid">
-            <div class="why-item"><div class="why-number">20+</div><h4>Years Experience</h4><p>Trusted expertise in the industry</p></div>
-            <div class="why-item"><div class="why-number">100%</div><h4>Custom Solutions</h4><p>Tailored to every project</p></div>
-            <div class="why-item"><div class="why-number">50+</div><h4>Color Options</h4><p>Premium finishes &amp; coatings</p></div>
-            <div class="why-item"><div class="why-number">24h</div><h4>Fast Quotes</h4><p>Quick turnaround on estimates</p></div>
-        </div>
-    </section>
+<section class="products-wrap">
+  <div class="products-inner">
+    <div class="sec-hdr rv l">
+      <p class="sec-label">Our Products</p>
+      <h2 class="sec-heading">Top Modern Exterior<br><em>Siding &amp; Cladding.</em></h2>
+      <p>Premium materials designed for Toronto's climate — quality, durability, and aesthetics in every product line.</p>
+    </div>
+    <div class="p-grid">
 
-    <section class="applications">
-        <div class="app-wrapper">
-            <div class="app-lines">
-                <div class="app-line"></div><div class="app-line"></div><div class="app-line"></div><div class="app-line"></div><div class="app-line"></div>
-            </div>
-            <h2>Applications</h2>
-            <p>Our products are suitable for a wide range of building types and projects</p>
-            <div class="app-grid">
-                <div class="app-card"><div class="app-card-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h4>Residential</h4><p>Custom homes, townhouses, and multi-family</p></div>
-                <div class="app-card"><div class="app-card-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="6" x2="15" y2="6"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg></div><h4>Commercial</h4><p>Office buildings, retail spaces, restaurants</p></div>
-                <div class="app-card"><div class="app-card-icon"><svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg></div><h4>Industrial</h4><p>Warehouses, manufacturing facilities</p></div>
-                <div class="app-card"><div class="app-card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h4>Institutional</h4><p>Schools, hospitals, government buildings</p></div>
-            </div>
+      <div class="p-card">
+        <div class="p-img">
+          <img src="images/metal-siding.jpg" alt="Metal Siding">
+          <span class="p-badge">Popular</span>
         </div>
-    </section>
+        <div class="p-info">
+          <h3>Metal Siding</h3>
+          <p>Durable and versatile metal siding systems for modern residential and commercial exteriors.</p>
+          <div class="p-tags"><span>Steel &amp; Aluminum</span><span>Weather-Resistant</span><span>Low Maintenance</span></div>
+          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
 
-    <section class="cta-wrap">
-        <div class="cta-box">
-            <h2>Ready to Choose Your Materials?</h2>
-            <p>Contact our team today to discuss your project requirements and get expert product recommendations.</p>
-            <div class="cta-buttons">
-                <a href="quote.html" class="btn-cta">Request a Quote</a>
-                <a href="tel:+14167415140" class="btn-cta">Call (416) 741-5140</a>
-            </div>
+      <div class="p-card">
+        <div class="p-img">
+          <img src="images/metal-cladding.jpg" alt="Metal Cladding">
+          <span class="p-badge">Premium</span>
         </div>
-    </section>
+        <div class="p-info">
+          <h3>Metal Cladding</h3>
+          <p>High-performance cladding panels combining sleek aesthetics with superior building protection.</p>
+          <div class="p-tags"><span>Cassette Panels</span><span>Corrugated</span><span>Custom Profiles</span></div>
+          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div>
-                <div class="footer-logo">
-                    <img src="images/logo.jpg" alt="BlueSky Siding &amp; Cladding Inc.">
-                    <span class="footer-logo-text">Blue Sky Siding <span>&amp; Cladding Inc.</span></span>
-                </div>
-                <p>Leading provider of premium metal siding and cladding solutions. We combine quality materials with expert craftsmanship to deliver outstanding results.</p>
-            </div>
-            <div>
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="services.html">Services</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Services</h4>
-                <ul class="footer-links">
-                    <li><a href="services.html">Metal Cladding</a></li>
-                    <li><a href="services.html">Aluminum Siding</a></li>
-                    <li><a href="services.html">Custom Fabrication</a></li>
-                    <li><a href="services.html">Installation</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Contact</h4>
-                <ul class="footer-links">
-                    <li><a href="tel:+14167415140">(416) 741-5140</a></li>
-                    <li><a href="mailto:info@bluesky-siding.com">info@bluesky-siding.com</a></li>
-                    <li><a href="careers.html">Careers</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </div>
+      <div class="p-card">
+        <div class="p-img">
+          <img src="images/acm-panels.jpg" alt="ACM Panels">
+          <span class="p-badge">Best Seller</span>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 BlueSky Siding &amp; Cladding Inc. All rights reserved.</p>
+        <div class="p-info">
+          <h3>ACM Panels</h3>
+          <p>Lightweight aluminum composite panels with exceptional flatness and a wide range of finishes.</p>
+          <div class="p-tags"><span>Lightweight</span><span>Multiple Finishes</span><span>Fire-Rated</span></div>
+          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-    </footer>
+      </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileToggle = document.getElementById('mobileToggle');
-            const navLinks = document.getElementById('navLinks');
-            if (mobileToggle && navLinks) {
-                mobileToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-                navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('active')));
-            }
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const cards = [...document.querySelectorAll('.product-card')];
-                        const idx = cards.indexOf(entry.target);
-                        setTimeout(() => entry.target.classList.add('visible'), idx * 100);
-                        cardObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-            document.querySelectorAll('.product-card').forEach(c => cardObserver.observe(c));
-            const sectionObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { entry.target.classList.add('visible'); sectionObserver.unobserve(entry.target); }
-                });
-            }, { threshold: 0.15 });
-            document.querySelectorAll('.section-header, .why-grid, .app-wrapper, .cta-box').forEach(el => sectionObserver.observe(el));
-        });
-        window.addEventListener('pageshow', (e) => { if (e.persisted) window.location.reload(); });
-    </script>
+      <div class="p-card">
+        <div class="p-img">
+          <img src="images/counter-coping.jpg" alt="Counter Coping and Flashing">
+        </div>
+        <div class="p-info">
+          <h3>Counter Coping &amp; Flashing</h3>
+          <p>Essential protection systems to seal and waterproof your building envelope against the elements.</p>
+          <div class="p-tags"><span>Waterproofing</span><span>Custom-Fit</span><span>Aluminum &amp; Copper</span></div>
+          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-img">
+          <img src="images/flat-roof.jpg" alt="Flat Metal Roof">
+        </div>
+        <div class="p-info">
+          <h3>Flat Metal Roof</h3>
+          <p>Durable flat metal roofing systems engineered for long-lasting performance and weather protection.</p>
+          <div class="p-tags"><span>Standing Seam</span><span>Leak-Proof</span><span>Energy Efficient</span></div>
+          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-img">
+          <img src="images/copper-work.jpg" alt="Custom Copper Work">
+          <span class="p-badge">Specialty</span>
+        </div>
+        <div class="p-info">
+          <h3>Custom Copper Work</h3>
+          <p>Handcrafted copper architectural elements that add timeless elegance to any building.</p>
+          <div class="p-tags"><span>Handcrafted</span><span>Patina Finish</span><span>Architectural</span></div>
+          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-img">
+          <img src="images/eavestrough.jpg" alt="Eavestrough and Downspout">
+        </div>
+        <div class="p-info">
+          <h3>Eavestrough &amp; Downspout</h3>
+          <p>Complete gutter and drainage solutions to protect your property from water damage year-round.</p>
+          <div class="p-tags"><span>Seamless Gutters</span><span>Drainage</span><span>Custom Sizes</span></div>
+          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-img">
+          <img src="images/soffit-fascia.jpg" alt="Soffit and Fascia">
+        </div>
+        <div class="p-info">
+          <h3>Soffit &amp; Fascia</h3>
+          <p>Clean, finished soffit and fascia systems for proper attic ventilation and a polished roofline.</p>
+          <div class="p-tags"><span>Ventilated</span><span>Aluminum</span><span>Color Matched</span></div>
+          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="stats-band">
+  <div class="stats-inner rv">
+    <div class="s-item"><div class="s-num">8+</div><div class="s-lbl">Product Lines</div></div>
+    <div class="s-item"><div class="s-num">100%</div><div class="s-lbl">Custom Solutions</div></div>
+    <div class="s-item"><div class="s-num">50+</div><div class="s-lbl">Colour Options</div></div>
+    <div class="s-item"><div class="s-num">24h</div><div class="s-lbl">Fast Quotes</div></div>
+  </div>
+</section>
+
+<section class="apps-wrap">
+  <div class="apps-inner">
+    <div class="apps-hdr rv l">
+      <p class="sec-label">Applications</p>
+      <h2 class="sec-heading">Suitable for every<br><em>building type.</em></h2>
+    </div>
+    <div class="app-grid">
+      <div class="app-card rv d1"><div class="app-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h4>Residential</h4><p>Custom homes, townhouses, and multi-family</p></div>
+      <div class="app-card rv d2"><div class="app-ico"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="6" x2="15" y2="6"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg></div><h4>Commercial</h4><p>Office buildings, retail spaces, restaurants</p></div>
+      <div class="app-card rv d3"><div class="app-ico"><svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg></div><h4>Industrial</h4><p>Warehouses, manufacturing facilities</p></div>
+      <div class="app-card rv"><div class="app-ico"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h4>Institutional</h4><p>Schools, hospitals, government buildings</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section"><div class="corb"></div><div class="corb"></div><div class="corb"></div><div class="cta-inner rv sc"><h2>Ready to Choose Your Materials?</h2><p>Contact our team today to discuss your project requirements and get expert product recommendations.</p><div class="cta-btns"><a href="quote.html" class="btn-solid">Request a Quote</a><a href="tel:+14167415140" class="btn-outline">Call (416) 741-5140</a></div></div></section>
+
+<footer class="footer"><div class="footer-inner"><div><div class="flogo"><img src="images/logo.jpg" alt="BlueSky"><span class="flogo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></div><p class="fdesc">Leading provider of premium metal siding and cladding solutions. Quality materials, expert craftsmanship, outstanding results.</p></div><div><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li></ul></div><div><h4>Services</h4><ul><li><a href="services.html">Siding Installation</a></li><li><a href="services.html">Exterior Cladding</a></li><li><a href="services.html">Repairs &amp; Maintenance</a></li><li><a href="services.html">Custom Metal Work</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="tel:+14167415140">(416) 741-5140</a></li><li><a href="mailto:info@bluesky-siding.com">info@bluesky-siding.com</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact Us</a></li></ul></div></div><div class="fcopy">&copy; 2022 BlueSky Siding &amp; Cladding Inc. All rights reserved.</div></footer>
+
+<script>
+window.addEventListener('load',function(){setTimeout(function(){var l=document.getElementById('loader');l.classList.add('out');setTimeout(function(){l.style.display='none';},700);},2100);});
+var ro=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('on');},i*70);ro.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+var po=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var cards=Array.prototype.slice.call(document.querySelectorAll('.p-card'));var idx=cards.indexOf(entry.target);setTimeout(function(){entry.target.classList.add('on');},idx*90);po.unobserve(entry.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.p-card').forEach(function(c){po.observe(c);});
+document.querySelectorAll('.btn-solid,.btn-outline,.nav-cta').forEach(function(btn){btn.addEventListener('mousemove',function(e){var r=btn.getBoundingClientRect();btn.style.transform='translate('+(e.clientX-(r.left+r.width/2))*.28+'px,'+(e.clientY-(r.top+r.height/2))*.28+'px)';});btn.addEventListener('mouseleave',function(){btn.style.transform='';});});
+window.addEventListener('scroll',function(){document.querySelector('.navbar').style.boxShadow=window.scrollY>=40?'0 4px 20px rgba(0,0,0,.1)':'0 1px 20px rgba(0,0,0,.06)';});
+</script>
 </body>
 </html>
