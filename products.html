@@ -10,6 +10,8 @@
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 :root{--navy:#0B1F3A;--sky:#2C7BE5;--skyL:#4F9EF8;--steel:#4A5D72;--cream:#F5F7FA;--muted:#6B7E92;}
+
+/* ── LOADER ── */
 #loader{position:fixed;inset:0;background:var(--navy);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;}
 .ld-text{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;opacity:0;animation:fadeIn .6s .2s ease forwards;}
 .ld-text span{color:var(--skyL);}
@@ -19,6 +21,8 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 @keyframes fadeIn{to{opacity:1;}}
 #loader.out{animation:ldOut .7s ease forwards;}
 @keyframes ldOut{to{transform:translateY(-100%);opacity:0;}}
+
+/* ── NAVBAR ── */
 .navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(11,31,58,.08);box-shadow:0 1px 20px rgba(0,0,0,.06);z-index:500;transform:translateY(-100%);animation:navIn .6s 2.1s ease forwards;}
 @keyframes navIn{to{transform:translateY(0);}}
 .nav-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;}
@@ -34,6 +38,8 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .nav-cta{background:var(--sky)!important;color:#fff!important;padding:.6rem 1.4rem;border-radius:6px;font-weight:600!important;}
 .nav-cta::after{display:none!important;}
 .nav-cta:hover{background:#1a6dd0!important;transform:translateY(-2px)!important;box-shadow:0 6px 20px rgba(44,123,229,.35)!important;}
+
+/* ── HERO ── */
 .hero{margin-top:80px;min-height:72vh;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:center;}
 .hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 70% at 65% 45%,rgba(44,123,229,.22) 0%,transparent 65%),radial-gradient(ellipse 50% 60% at 5% 85%,rgba(79,158,248,.12) 0%,transparent 55%);animation:meshShift 12s ease-in-out infinite alternate;}
 @keyframes meshShift{0%{filter:hue-rotate(0deg) brightness(1);}100%{filter:hue-rotate(15deg) brightness(1.08);}}
@@ -63,41 +69,170 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .scroll-mouse{width:22px;height:34px;border:1.5px solid rgba(255,255,255,.25);border-radius:11px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;}
 .scroll-wheel{width:3px;height:8px;background:var(--skyL);border-radius:2px;animation:wheel 1.5s ease-in-out infinite;}
 @keyframes wheel{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(12px);opacity:0;}}
+
+/* ── MARQUEE ── */
 .marquee{background:var(--sky);padding:.9rem 0;overflow:hidden;}
 .marquee-track{display:flex;gap:3rem;width:max-content;animation:mroll 25s linear infinite;}
 @keyframes mroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .marquee-item{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.9);white-space:nowrap;display:flex;align-items:center;gap:1.5rem;}
 .mdot{width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%;display:inline-block;}
-.products-wrap{background:var(--cream);padding:8rem 2rem;position:relative;overflow:hidden;}
-.products-wrap::before{content:'';position:absolute;bottom:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(44,123,229,.05),transparent 70%);border-radius:50%;animation:driftOrb 18s ease-in-out infinite alternate;}
+
+/* ══════════════════════════════════════════
+   NEW IMAGE-FIRST PRODUCT SECTION
+══════════════════════════════════════════ */
+.products-wrap{background:#0D1E33;padding:8rem 2rem;position:relative;overflow:hidden;}
+
+/* Subtle animated background texture */
+.products-wrap::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(44,123,229,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.04) 1px,transparent 1px);
+  background-size:70px 70px;
+}
+.products-wrap::after{
+  content:'';position:absolute;
+  top:-200px;right:-200px;
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(44,123,229,.12),transparent 65%);
+  border-radius:50%;animation:driftOrb 18s ease-in-out infinite alternate;
+}
 @keyframes driftOrb{0%{transform:translate(0,0);}100%{transform:translate(-80px,-60px) scale(1.2);}}
-.products-inner{max-width:1320px;margin:0 auto;position:relative;z-index:1;}
-.sec-label{font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
-.sec-label::after{content:'';width:40px;height:1px;background:var(--sky);opacity:.4;}
-.sec-heading{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,3rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:1rem;}
-.sec-heading em{font-style:italic;color:var(--sky);}
-.sec-hdr{margin-bottom:4rem;}
-.sec-hdr p{font-size:1.05rem;color:var(--muted);max-width:560px;line-height:1.8;}
-.p-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
-.p-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid rgba(11,31,58,.06);display:grid;grid-template-columns:200px 1fr;opacity:0;transform:translateY(36px);transition:opacity .6s ease,transform .6s ease,border-color .3s,box-shadow .3s;}
+
+.products-inner{max-width:1380px;margin:0 auto;position:relative;z-index:1;}
+
+/* Section header */
+.sec-hdr{margin-bottom:3.5rem;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem;}
+
+.sec-label{font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--skyL);margin-bottom:.8rem;display:flex;align-items:center;gap:8px;}
+.sec-label::after{content:'';width:40px;height:1px;background:var(--skyL);opacity:.5;}
+.sec-heading{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,3rem);font-weight:700;color:#fff;line-height:1.15;}
+.sec-heading em{font-style:italic;color:var(--skyL);}
+/* Override heading color on light backgrounds */
+.apps-wrap .sec-heading{color:var(--navy);}
+.apps-wrap .sec-heading em{color:var(--sky);}
+.apps-wrap .sec-label{color:var(--sky);}
+.apps-wrap .sec-label::after{background:var(--sky);}
+.sec-hdr p{font-size:1rem;color:rgba(255,255,255,.45);max-width:400px;line-height:1.8;align-self:flex-end;}
+
+/* Filter tabs */
+.filter-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:3rem;}
+.filter-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.05em;padding:.5rem 1.2rem;border-radius:50px;cursor:pointer;transition:all .25s;}
+.filter-btn:hover{background:rgba(44,123,229,.2);border-color:rgba(44,123,229,.4);color:#fff;}
+.filter-btn.active{background:var(--sky);border-color:var(--sky);color:#fff;}
+
+/* ── THE GRID ── */
+.p-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:auto;
+  gap:16px;
+}
+
+/* Featured spans */
+.p-card[data-feat="1"]{grid-column:span 2;grid-row:span 2;}
+.p-card[data-feat="2"]{grid-column:span 2;}
+
+/* Card base */
+.p-card{
+  position:relative;overflow:hidden;border-radius:14px;
+  cursor:pointer;
+  opacity:0;transform:translateY(36px);
+  transition:opacity .55s ease,transform .55s ease;
+  aspect-ratio:4/3;
+}
+.p-card[data-feat="1"]{aspect-ratio:auto;}
 .p-card.on{opacity:1;transform:translateY(0);}
-.p-card:hover{border-color:rgba(44,123,229,.18);box-shadow:0 20px 50px rgba(44,123,229,.1);}
-.p-img{position:relative;overflow:hidden;min-height:210px;}
-.p-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
-.p-card:hover .p-img img{transform:scale(1.08);}
-.p-badge{position:absolute;top:10px;left:10px;background:rgba(11,31,58,.82);backdrop-filter:blur(6px);color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .8rem;border-radius:50px;z-index:2;}
-.p-info{padding:1.8rem;display:flex;flex-direction:column;justify-content:center;position:relative;}
-.p-info::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--sky),var(--skyL));transform:scaleY(0);transform-origin:top;transition:transform .4s ease;}
-.p-card:hover .p-info::before{transform:scaleY(1);}
-.p-info h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.5rem;line-height:1.3;}
-.p-info p{font-size:.88rem;color:var(--muted);line-height:1.75;margin-bottom:1rem;}
-.p-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem;}
-.p-tags span{background:var(--cream);color:var(--navy);font-size:.73rem;font-weight:500;padding:.22rem .65rem;border-radius:50px;border:1px solid rgba(11,31,58,.08);transition:background-color .25s,border-color .25s;}
-.p-card:hover .p-tags span{background:rgba(44,123,229,.08);border-color:rgba(44,123,229,.2);}
-.p-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--sky);text-decoration:none;font-weight:600;font-size:.85rem;transition:gap .3s cubic-bezier(.34,1.56,.64,1),color .2s;margin-top:auto;}
-.p-link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
-.p-card:hover .p-link{gap:.8rem;color:#1a6dd0;}
-.p-card:hover .p-link svg{transform:translateX(4px);}
+
+/* Image */
+.p-img{position:absolute;inset:0;z-index:1;}
+.p-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .7s cubic-bezier(.25,.46,.45,.94),filter .5s ease;
+  filter:brightness(.75) saturate(1.1);
+}
+.p-card:hover .p-img img{transform:scale(1.08);filter:brightness(.55) saturate(1.2);}
+
+/* Gradient overlay always present */
+.p-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 30%,rgba(5,15,30,.82) 100%);
+  transition:opacity .4s;
+  z-index:2;
+}
+
+/* Badge */
+.p-badge{
+  position:absolute;top:14px;left:14px;z-index:10;
+  background:var(--sky);color:#fff;
+  font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.28rem .85rem;border-radius:50px;
+  box-shadow:0 4px 12px rgba(44,123,229,.4);
+}
+
+/* Bottom info — always visible */
+.p-info{
+  position:absolute;bottom:0;left:0;right:0;z-index:10;
+  padding:1.4rem 1.6rem 1.6rem;
+}
+.p-card[data-feat="1"] .p-info{padding:2rem 2.2rem 2.2rem;}
+
+.p-info-top{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;}
+
+
+.p-cat{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--skyL);margin-bottom:.4rem;}
+.p-info h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:700;color:#fff;
+  line-height:1.25;
+  transition:color .3s;
+}
+.p-card[data-feat="1"] .p-info h3{font-size:1.5rem;}
+
+/* Tags */
+.p-tags{
+  display:flex;flex-wrap:wrap;gap:.35rem;
+  margin-top:.7rem;
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease, opacity .3s ease,margin .3s;
+  opacity:0;
+}
+.p-card:hover .p-tags{max-height:60px;opacity:1;margin-top:.7rem;}
+.p-tags span{
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.75);
+  backdrop-filter:blur(6px);
+  font-size:.68rem;font-weight:500;padding:.2rem .65rem;border-radius:50px;
+  border:1px solid rgba(255,255,255,.15);
+}
+
+/* Quote button — slides in on hover */
+.p-quote-btn{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  background:var(--sky);color:#fff;
+  border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:.65rem 1.3rem;border-radius:8px;
+  white-space:nowrap;flex-shrink:0;
+  transform:translateY(12px) scale(.95);opacity:0;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s,background .2s,box-shadow .2s;
+  text-decoration:none;
+}
+.p-quote-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s;}
+.p-quote-btn svg line, .p-quote-btn svg polyline{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.p-card:hover .p-quote-btn{transform:translateY(0) scale(1);opacity:1;}
+.p-quote-btn:hover{background:#1a6dd0;box-shadow:0 8px 24px rgba(44,123,229,.5);}
+.p-quote-btn:hover svg{transform:translateX(3px);}
+
+/* Description — only on featured */
+.p-desc{
+  font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.7;
+  margin-top:.7rem;
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .4s ease,opacity .3s ease;
+}
+.p-card[data-feat="1"] .p-desc{display:block;}
+.p-card[data-feat="1"]:hover .p-desc{max-height:80px;opacity:1;}
+
+/* ── STATS BAND ── */
 .stats-band{background:var(--navy);padding:5rem 2rem;position:relative;overflow:hidden;}
 .stats-band::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(44,123,229,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.06) 1px,transparent 1px);background-size:55px 55px;}
 .stats-band::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(44,123,229,.14) 0%,transparent 60%);}
@@ -106,6 +241,8 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .s-item:hover{background:rgba(44,123,229,.12);border-color:rgba(44,123,229,.25);transform:translateY(-5px);}
 .s-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:var(--skyL);line-height:1;margin-bottom:.4rem;}
 .s-lbl{font-size:.82rem;color:rgba(255,255,255,.5);font-weight:500;text-transform:uppercase;letter-spacing:.08em;}
+
+/* ── APPLICATIONS ── */
 .apps-wrap{background:#fff;padding:8rem 2rem;}
 .apps-inner{max-width:1320px;margin:0 auto;}
 .apps-hdr{margin-bottom:4rem;}
@@ -118,6 +255,8 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .app-ico svg{width:24px;height:24px;stroke:var(--skyL);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .app-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.35rem;position:relative;}
 .app-card p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.65;position:relative;}
+
+/* ── CTA ── */
 .cta-section{background:linear-gradient(135deg,#1056bb 0%,var(--sky) 60%,#38b6ff 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;}
 .cta-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px);}
 .corb{position:absolute;border-radius:50%;background:rgba(255,255,255,.06);animation:orbF linear infinite;}
@@ -133,6 +272,8 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .btn-solid:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,.3);}
 .btn-outline{display:inline-block;background:transparent;color:#fff;padding:.95rem 2.4rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.5);transition:border-color .2s,background-color .2s,transform .2s;}
 .btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-3px);}
+
+/* ── FOOTER ── */
 .footer{background:var(--cream);border-top:1px solid rgba(0,0,0,.06);padding:4.5rem 2rem 2rem;}
 .footer-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
 .flogo{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
@@ -146,21 +287,65 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .footer ul a{font-size:.9rem;color:var(--muted);text-decoration:none;transition:color .2s,padding-left .2s;}
 .footer ul a:hover{color:var(--sky);padding-left:4px;}
 .fcopy{border-top:1px solid rgba(0,0,0,.08);padding-top:1.5rem;font-size:.85rem;color:var(--muted);text-align:center;}
+
+/* ── REVEAL ── */
 .rv{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
 .rv.l{transform:translateX(-40px);}
 .rv.sc{transform:scale(.92);}
 .rv.on{opacity:1;transform:none;}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
-@media(max-width:1100px){.p-grid{grid-template-columns:1fr;}.app-grid{grid-template-columns:repeat(2,1fr);}.stats-inner{grid-template-columns:repeat(2,1fr);}.hero-rings{display:none;}}
-@media(max-width:768px){.nav-links{display:none;}.p-card{grid-template-columns:1fr;}.p-img{min-height:180px;}.app-grid{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr 1fr;}.cta-btns{flex-direction:column;align-items:center;}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1200px){
+  .p-grid{grid-template-columns:repeat(3,1fr);}
+  .p-card[data-feat="1"]{grid-column:span 2;}
+  .p-card[data-feat="2"]{grid-column:span 2;}
+}
+@media(max-width:900px){
+  .p-grid{grid-template-columns:repeat(2,1fr);}
+  .p-card[data-feat="1"],.p-card[data-feat="2"]{grid-column:span 2;}
+  .app-grid{grid-template-columns:repeat(2,1fr);}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .hero-rings{display:none;}
+}
+@media(max-width:600px){
+  .nav-links{display:none;}
+  .p-grid{grid-template-columns:1fr;}
+  .p-card[data-feat="1"],.p-card[data-feat="2"]{grid-column:span 1;}
+  .p-card{aspect-ratio:4/3!important;}
+  .app-grid{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+  .cta-btns{flex-direction:column;align-items:center;}
+  .sec-hdr{flex-direction:column;}
+}
 </style>
 </head>
 <body>
 
-<div id="loader"><div class="ld-text">Blue Sky <span>Siding</span></div><div class="ld-track"><div class="ld-bar"></div></div></div>
+<div id="loader">
+  <div class="ld-text">Blue Sky <span>Siding</span></div>
+  <div class="ld-track"><div class="ld-bar"></div></div>
+</div>
 
-<nav class="navbar"><div class="nav-inner"><a href="index.html" class="logo"><img src="images/logo.jpg" alt="BlueSky Siding"><span class="logo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html" class="active">Products</a></li><li><a href="services.html">Services</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li><li><a href="quote.html" class="nav-cta">Get a Quote</a></li></ul></div></nav>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.jpg" alt="BlueSky Siding">
+      <span class="logo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="quote.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </div>
+</nav>
 
+<!-- HERO (unchanged) -->
 <section class="hero">
   <div class="hero-mesh"></div>
   <div class="hero-grid"></div>
@@ -182,121 +367,233 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-mouse"><div class="scroll-wheel"></div></div></div>
 </section>
 
+<!-- MARQUEE (unchanged) -->
 <div class="marquee"><div class="marquee-track"><div class="marquee-item">Metal Siding <span class="mdot"></span></div><div class="marquee-item">Metal Cladding <span class="mdot"></span></div><div class="marquee-item">ACM Panels <span class="mdot"></span></div><div class="marquee-item">Counter Coping &amp; Flashing <span class="mdot"></span></div><div class="marquee-item">Flat Metal Roof <span class="mdot"></span></div><div class="marquee-item">Custom Copper Work <span class="mdot"></span></div><div class="marquee-item">Eavestrough &amp; Downspout <span class="mdot"></span></div><div class="marquee-item">Soffit &amp; Fascia <span class="mdot"></span></div><div class="marquee-item">Metal Siding <span class="mdot"></span></div><div class="marquee-item">Metal Cladding <span class="mdot"></span></div><div class="marquee-item">ACM Panels <span class="mdot"></span></div><div class="marquee-item">Counter Coping &amp; Flashing <span class="mdot"></span></div><div class="marquee-item">Flat Metal Roof <span class="mdot"></span></div><div class="marquee-item">Custom Copper Work <span class="mdot"></span></div><div class="marquee-item">Eavestrough &amp; Downspout <span class="mdot"></span></div><div class="marquee-item">Soffit &amp; Fascia <span class="mdot"></span></div></div></div>
 
+<!-- ════════════════════════════════════
+     NEW IMAGE-FIRST PRODUCT SECTION
+════════════════════════════════════ -->
 <section class="products-wrap">
   <div class="products-inner">
+
+    <!-- Header -->
     <div class="sec-hdr rv l">
-      <p class="sec-label">Our Products</p>
-      <h2 class="sec-heading">Top Modern Exterior<br><em>Siding &amp; Cladding.</em></h2>
+      <div class="sec-hdr-left">
+        <p class="sec-label">Our Products</p>
+        <h2 class="sec-heading">Top Modern Exterior<br><em>Siding &amp; Cladding.</em></h2>
+      </div>
       <p>Premium materials designed for Toronto's climate — quality, durability, and aesthetics in every product line.</p>
     </div>
+
+    <!-- Filter tabs -->
+    <div class="filter-row rv">
+      <button class="filter-btn active" data-filter="all">All Products</button>
+      <button class="filter-btn" data-filter="siding">Siding</button>
+      <button class="filter-btn" data-filter="roofing">Roofing</button>
+      <button class="filter-btn" data-filter="trim">Trim &amp; Details</button>
+      <button class="filter-btn" data-filter="specialty">Specialty</button>
+    </div>
+
+    <!-- IMAGE-FIRST GRID -->
     <div class="p-grid">
 
-      <div class="p-card">
+      <!-- 1. Metal Siding — FEATURED large card -->
+      <div class="p-card" data-feat="1" data-category="siding">
         <div class="p-img">
           <img src="images/metal-siding.jpg" alt="Metal Siding">
-          <span class="p-badge">Popular</span>
         </div>
+        <span class="p-badge">Popular</span>
         <div class="p-info">
-          <h3>Metal Siding</h3>
-          <p>Durable and versatile metal siding systems for modern residential and commercial exteriors.</p>
-          <div class="p-tags"><span>Steel &amp; Aluminum</span><span>Weather-Resistant</span><span>Low Maintenance</span></div>
-          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <div class="p-info-top">
+            <div class="p-title-block">
+              <p class="p-cat">Siding</p>
+              <h3>Metal Siding</h3>
+              <div class="p-desc">Durable and versatile metal siding systems for modern residential and commercial exteriors. Built to handle Toronto winters.</div>
+              <div class="p-tags">
+                <span>Steel &amp; Aluminum</span>
+                <span>Weather-Resistant</span>
+                <span>Low Maintenance</span>
+              </div>
+            </div>
+            <a href="quote.html" class="p-quote-btn">
+              Get a Quote
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="p-card">
+      <!-- 2. Metal Cladding -->
+      <div class="p-card" data-category="siding">
         <div class="p-img">
           <img src="images/metal-cladding.jpg" alt="Metal Cladding">
-          <span class="p-badge">Premium</span>
         </div>
+        <span class="p-badge">Premium</span>
         <div class="p-info">
-          <h3>Metal Cladding</h3>
-          <p>High-performance cladding panels combining sleek aesthetics with superior building protection.</p>
-          <div class="p-tags"><span>Cassette Panels</span><span>Corrugated</span><span>Custom Profiles</span></div>
-          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <div class="p-info-top">
+            <div class="p-title-block">
+              <p class="p-cat">Cladding</p>
+              <h3>Metal Cladding</h3>
+              <div class="p-tags">
+                <span>Cassette Panels</span>
+                <span>Corrugated</span>
+                <span>Custom Profiles</span>
+              </div>
+            </div>
+            <a href="quote.html" class="p-quote-btn">
+              Quote
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="p-card">
+      <!-- 3. ACM Panels — wide card -->
+      <div class="p-card" data-feat="2" data-category="siding">
         <div class="p-img">
           <img src="images/acm-panels.jpg" alt="ACM Panels">
-          <span class="p-badge">Best Seller</span>
         </div>
+        <span class="p-badge">Best Seller</span>
         <div class="p-info">
-          <h3>ACM Panels</h3>
-          <p>Lightweight aluminum composite panels with exceptional flatness and a wide range of finishes.</p>
-          <div class="p-tags"><span>Lightweight</span><span>Multiple Finishes</span><span>Fire-Rated</span></div>
-          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <div class="p-info-top">
+            <div class="p-title-block">
+              <p class="p-cat">Panels</p>
+              <h3>ACM Panels</h3>
+              <div class="p-tags">
+                <span>Lightweight</span>
+                <span>Multiple Finishes</span>
+                <span>Fire-Rated</span>
+              </div>
+            </div>
+            <a href="quote.html" class="p-quote-btn">
+              Get a Quote
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="p-card">
+      <!-- 4. Counter Coping -->
+      <div class="p-card" data-category="trim">
         <div class="p-img">
           <img src="images/counter-coping.jpg" alt="Counter Coping and Flashing">
         </div>
         <div class="p-info">
-          <h3>Counter Coping &amp; Flashing</h3>
-          <p>Essential protection systems to seal and waterproof your building envelope against the elements.</p>
-          <div class="p-tags"><span>Waterproofing</span><span>Custom-Fit</span><span>Aluminum &amp; Copper</span></div>
-          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <div class="p-info-top">
+            <div class="p-title-block">
+              <p class="p-cat">Trim</p>
+              <h3>Counter Coping &amp; Flashing</h3>
+              <div class="p-tags">
+                <span>Waterproofing</span>
+                <span>Custom-Fit</span>
+              </div>
+            </div>
+            <a href="quote.html" class="p-quote-btn">
+              Quote
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="p-card">
+      <!-- 5. Flat Metal Roof -->
+      <div class="p-card" data-category="roofing">
         <div class="p-img">
           <img src="images/flat-roof.jpg" alt="Flat Metal Roof">
         </div>
         <div class="p-info">
-          <h3>Flat Metal Roof</h3>
-          <p>Durable flat metal roofing systems engineered for long-lasting performance and weather protection.</p>
-          <div class="p-tags"><span>Standing Seam</span><span>Leak-Proof</span><span>Energy Efficient</span></div>
-          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <div class="p-info-top">
+            <div class="p-title-block">
+              <p class="p-cat">Roofing</p>
+              <h3>Flat Metal Roof</h3>
+              <div class="p-tags">
+                <span>Standing Seam</span>
+                <span>Leak-Proof</span>
+              </div>
+            </div>
+            <a href="quote.html" class="p-quote-btn">
+              Quote
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="p-card">
+      <!-- 6. Custom Copper Work -->
+      <div class="p-card" data-category="specialty">
         <div class="p-img">
           <img src="images/copper-work.jpg" alt="Custom Copper Work">
-          <span class="p-badge">Specialty</span>
         </div>
+        <span class="p-badge">Specialty</span>
         <div class="p-info">
-          <h3>Custom Copper Work</h3>
-          <p>Handcrafted copper architectural elements that add timeless elegance to any building.</p>
-          <div class="p-tags"><span>Handcrafted</span><span>Patina Finish</span><span>Architectural</span></div>
-          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <div class="p-info-top">
+            <div class="p-title-block">
+              <p class="p-cat">Specialty</p>
+              <h3>Custom Copper Work</h3>
+              <div class="p-tags">
+                <span>Handcrafted</span>
+                <span>Architectural</span>
+              </div>
+            </div>
+            <a href="quote.html" class="p-quote-btn">
+              Quote
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="p-card">
+      <!-- 7. Eavestrough -->
+      <div class="p-card" data-category="trim">
         <div class="p-img">
           <img src="images/eavestrough.jpg" alt="Eavestrough and Downspout">
         </div>
         <div class="p-info">
-          <h3>Eavestrough &amp; Downspout</h3>
-          <p>Complete gutter and drainage solutions to protect your property from water damage year-round.</p>
-          <div class="p-tags"><span>Seamless Gutters</span><span>Drainage</span><span>Custom Sizes</span></div>
-          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <div class="p-info-top">
+            <div class="p-title-block">
+              <p class="p-cat">Drainage</p>
+              <h3>Eavestrough &amp; Downspout</h3>
+              <div class="p-tags">
+                <span>Seamless Gutters</span>
+                <span>Custom Sizes</span>
+              </div>
+            </div>
+            <a href="quote.html" class="p-quote-btn">
+              Quote
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="p-card">
+      <!-- 8. Soffit & Fascia -->
+      <div class="p-card" data-category="trim">
         <div class="p-img">
           <img src="images/soffit-fascia.jpg" alt="Soffit and Fascia">
         </div>
         <div class="p-info">
-          <h3>Soffit &amp; Fascia</h3>
-          <p>Clean, finished soffit and fascia systems for proper attic ventilation and a polished roofline.</p>
-          <div class="p-tags"><span>Ventilated</span><span>Aluminum</span><span>Color Matched</span></div>
-          <a href="quote.html" class="p-link">Get a Quote <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <div class="p-info-top">
+            <div class="p-title-block">
+              <p class="p-cat">Trim</p>
+              <h3>Soffit &amp; Fascia</h3>
+              <div class="p-tags">
+                <span>Ventilated</span>
+                <span>Color Matched</span>
+              </div>
+            </div>
+            <a href="quote.html" class="p-quote-btn">
+              Quote
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-    </div>
+    </div><!-- /p-grid -->
   </div>
 </section>
 
+<!-- STATS BAND (unchanged) -->
 <section class="stats-band">
   <div class="stats-inner rv">
     <div class="s-item"><div class="s-num">8+</div><div class="s-lbl">Product Lines</div></div>
@@ -306,6 +603,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
   </div>
 </section>
 
+<!-- APPLICATIONS (unchanged) -->
 <section class="apps-wrap">
   <div class="apps-inner">
     <div class="apps-hdr rv l">
@@ -321,18 +619,109 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
   </div>
 </section>
 
-<section class="cta-section"><div class="corb"></div><div class="corb"></div><div class="corb"></div><div class="cta-inner rv sc"><h2>Ready to Choose Your Materials?</h2><p>Contact our team today to discuss your project requirements and get expert product recommendations.</p><div class="cta-btns"><a href="quote.html" class="btn-solid">Request a Quote</a><a href="tel:+14167415140" class="btn-outline">Call (416) 741-5140</a></div></div></section>
+<!-- CTA (unchanged) -->
+<section class="cta-section">
+  <div class="corb"></div><div class="corb"></div><div class="corb"></div>
+  <div class="cta-inner rv sc">
+    <h2>Ready to Choose Your Materials?</h2>
+    <p>Contact our team today to discuss your project requirements and get expert product recommendations.</p>
+    <div class="cta-btns">
+      <a href="quote.html" class="btn-solid">Request a Quote</a>
+      <a href="tel:+14167415140" class="btn-outline">Call (416) 741-5140</a>
+    </div>
+  </div>
+</section>
 
-<footer class="footer"><div class="footer-inner"><div><div class="flogo"><img src="images/logo.jpg" alt="BlueSky"><span class="flogo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></div><p class="fdesc">Leading provider of premium metal siding and cladding solutions. Quality materials, expert craftsmanship, outstanding results.</p></div><div><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li></ul></div><div><h4>Services</h4><ul><li><a href="services.html">Siding Installation</a></li><li><a href="services.html">Exterior Cladding</a></li><li><a href="services.html">Repairs &amp; Maintenance</a></li><li><a href="services.html">Custom Metal Work</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="tel:+14167415140">(416) 741-5140</a></li><li><a href="mailto:info@bluesky-siding.com">info@bluesky-siding.com</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact Us</a></li></ul></div></div><div class="fcopy">&copy; 2022 BlueSky Siding &amp; Cladding Inc. All rights reserved.</div></footer>
+<!-- FOOTER (unchanged) -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="flogo"><img src="images/logo.jpg" alt="BlueSky"><span class="flogo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></div>
+      <p class="fdesc">Leading provider of premium metal siding and cladding solutions. Quality materials, expert craftsmanship, outstanding results.</p>
+    </div>
+    <div><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li></ul></div>
+    <div><h4>Services</h4><ul><li><a href="services.html">Siding Installation</a></li><li><a href="services.html">Exterior Cladding</a></li><li><a href="services.html">Repairs &amp; Maintenance</a></li><li><a href="services.html">Custom Metal Work</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="tel:+14167415140">(416) 741-5140</a></li><li><a href="mailto:info@bluesky-siding.com">info@bluesky-siding.com</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+  </div>
+  <div class="fcopy">&copy; 2022 BlueSky Siding &amp; Cladding Inc. All rights reserved.</div>
+</footer>
 
 <script>
-window.addEventListener('load',function(){setTimeout(function(){var l=document.getElementById('loader');l.classList.add('out');setTimeout(function(){l.style.display='none';},700);},2100);});
-var ro=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('on');},i*70);ro.unobserve(e.target);}});},{threshold:.1});
-document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
-var po=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var cards=Array.prototype.slice.call(document.querySelectorAll('.p-card'));var idx=cards.indexOf(entry.target);setTimeout(function(){entry.target.classList.add('on');},idx*90);po.unobserve(entry.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.p-card').forEach(function(c){po.observe(c);});
-document.querySelectorAll('.btn-solid,.btn-outline,.nav-cta').forEach(function(btn){btn.addEventListener('mousemove',function(e){var r=btn.getBoundingClientRect();btn.style.transform='translate('+(e.clientX-(r.left+r.width/2))*.28+'px,'+(e.clientY-(r.top+r.height/2))*.28+'px)';});btn.addEventListener('mouseleave',function(){btn.style.transform='';});});
-window.addEventListener('scroll',function(){document.querySelector('.navbar').style.boxShadow=window.scrollY>=40?'0 4px 20px rgba(0,0,0,.1)':'0 1px 20px rgba(0,0,0,.06)';});
+// Loader
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var l = document.getElementById('loader');
+    l.classList.add('out');
+    setTimeout(function() { l.style.display = 'none'; }, 700);
+  }, 2100);
+});
+
+// Scroll reveals
+var ro = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e, i) {
+    if (e.isIntersecting) {
+      setTimeout(function() { e.target.classList.add('on'); }, i * 70);
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: .1 });
+document.querySelectorAll('.rv').forEach(function(el) { ro.observe(el); });
+
+// Product card stagger
+var po = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.p-card'));
+      var idx = cards.indexOf(entry.target);
+      setTimeout(function() { entry.target.classList.add('on'); }, idx * 90);
+      po.unobserve(entry.target);
+    }
+  });
+}, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.p-card').forEach(function(c) { po.observe(c); });
+
+// Filter tabs
+var filterBtns = document.querySelectorAll('.filter-btn');
+var cards = document.querySelectorAll('.p-card');
+
+filterBtns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    filterBtns.forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var filter = btn.dataset.filter;
+    cards.forEach(function(card) {
+      var cat = card.dataset.category;
+      if (filter === 'all' || cat === filter) {
+        card.style.display = '';
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(function() {
+          card.style.transition = 'opacity .4s ease, transform .4s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 30);
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(10px)';
+        setTimeout(function() { card.style.display = 'none'; }, 350);
+      }
+    });
+  });
+});
+
+// Magnetic buttons
+document.querySelectorAll('.btn-solid, .btn-outline, .nav-cta').forEach(function(btn) {
+  btn.addEventListener('mousemove', function(e) {
+    var r = btn.getBoundingClientRect();
+    btn.style.transform = 'translate(' + (e.clientX - (r.left + r.width / 2)) * .28 + 'px,' + (e.clientY - (r.top + r.height / 2)) * .28 + 'px)';
+  });
+  btn.addEventListener('mouseleave', function() { btn.style.transform = ''; });
+});
+
+// Navbar shadow on scroll
+window.addEventListener('scroll', function() {
+  document.querySelector('.navbar').style.boxShadow = window.scrollY >= 40 ? '0 4px 20px rgba(0,0,0,.1)' : '0 1px 20px rgba(0,0,0,.06)';
+});
 </script>
 </body>
 </html>
