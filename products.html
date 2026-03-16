@@ -451,7 +451,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
       <!-- 3. ACM Panels — wide card -->
       <div class="p-card" data-feat="2" data-category="siding">
         <div class="p-img">
-          <img src="images/acm-panels.jpg" alt="ACM Panels">
+          <img src="/images/acm-panels.jpg" alt="ACM Panels">
         </div>
         <span class="p-badge">Best Seller</span>
         <div class="p-info">
@@ -681,30 +681,39 @@ var po = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.p-card').forEach(function(c) { po.observe(c); });
 
 // Filter tabs
+// Filter tabs — fixed
 var filterBtns = document.querySelectorAll('.filter-btn');
-var cards = document.querySelectorAll('.p-card');
+var allCards = document.querySelectorAll('.p-card');
 
 filterBtns.forEach(function(btn) {
   btn.addEventListener('click', function() {
     filterBtns.forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     var filter = btn.dataset.filter;
-    cards.forEach(function(card) {
-      var cat = card.dataset.category;
-      if (filter === 'all' || cat === filter) {
-        card.style.display = '';
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        setTimeout(function() {
-          card.style.transition = 'opacity .4s ease, transform .4s ease';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, 30);
-      } else {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(10px)';
-        setTimeout(function() { card.style.display = 'none'; }, 350);
+    var visible = [];
+
+    allCards.forEach(function(card) {
+      if (filter === 'all' || card.dataset.category === filter) {
+        visible.push(card);
       }
+    });
+
+    allCards.forEach(function(card) {
+      card.style.display = 'none';
+      card.removeAttribute('data-feat');
+    });
+
+    visible.forEach(function(card, i) {
+      card.style.display = '';
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      if (i === 0) card.setAttribute('data-feat', '1');
+      else if (i === 1) card.setAttribute('data-feat', '2');
+      setTimeout(function() {
+        card.style.transition = 'opacity .45s ease, transform .45s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, i * 80 + 30);
     });
   });
 });
