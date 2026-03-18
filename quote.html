@@ -3,13 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request a Quote &mdash; BlueSky Siding &amp; Cladding Inc.</title>
+<title>Get a Quote &mdash; BlueSky Siding &amp; Cladding Inc.</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 :root{--navy:#0B1F3A;--sky:#2C7BE5;--skyL:#4F9EF8;--steel:#4A5D72;--cream:#F5F7FA;--muted:#6B7E92;}
+
+/* ── LOADER ── */
 #loader{position:fixed;inset:0;background:var(--navy);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;}
 .ld-text{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;opacity:0;animation:fadeIn .6s .2s ease forwards;}
 .ld-text span{color:var(--skyL);}
@@ -19,6 +22,8 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 @keyframes fadeIn{to{opacity:1;}}
 #loader.out{animation:ldOut .7s ease forwards;}
 @keyframes ldOut{to{transform:translateY(-100%);opacity:0;}}
+
+/* ── NAVBAR ── */
 .navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(11,31,58,.08);box-shadow:0 1px 20px rgba(0,0,0,.06);z-index:500;transform:translateY(-100%);animation:navIn .6s 2.1s ease forwards;}
 @keyframes navIn{to{transform:translateY(0);}}
 .nav-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;}
@@ -34,7 +39,9 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .nav-cta{background:var(--sky)!important;color:#fff!important;padding:.6rem 1.4rem;border-radius:6px;font-weight:600!important;}
 .nav-cta::after{display:none!important;}
 .nav-cta:hover{background:#1a6dd0!important;transform:translateY(-2px)!important;box-shadow:0 6px 20px rgba(44,123,229,.35)!important;}
-.hero{margin-top:80px;min-height:68vh;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:center;}
+
+/* ── HERO ── */
+.hero{margin-top:80px;min-height:72vh;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:center;}
 .hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 70% at 65% 45%,rgba(44,123,229,.22) 0%,transparent 65%),radial-gradient(ellipse 50% 60% at 5% 85%,rgba(79,158,248,.12) 0%,transparent 55%);animation:meshShift 12s ease-in-out infinite alternate;}
 @keyframes meshShift{0%{filter:hue-rotate(0deg) brightness(1);}100%{filter:hue-rotate(15deg) brightness(1.08);}}
 .hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(44,123,229,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.07) 1px,transparent 1px);background-size:60px 60px;animation:gridDrift 20s linear infinite;}
@@ -50,74 +57,180 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .hero-badges{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.5rem;opacity:0;animation:sUp .8s 2.65s ease forwards;}
 .badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:.8rem;font-weight:500;padding:.45rem 1rem;border-radius:50px;transition:background-color .3s,border-color .3s;}
 .badge:hover{background:rgba(44,123,229,.2);border-color:rgba(44,123,229,.4);}
+
+/* Hero right panel */
 .hero-visual{opacity:0;transform:translateX(50px);animation:sLeft .9s 2.4s ease forwards;}
 @keyframes sLeft{to{opacity:1;transform:translateX(0);}}
 .visual-panel{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2.2rem;position:relative;overflow:hidden;}
 .visual-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sky),var(--skyL),#38b6ff);}
 .vp-title{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1.6rem;}
-.vp-steps{display:flex;flex-direction:column;gap:.9rem;}
-.vp-step{display:flex;align-items:center;gap:1rem;padding:.9rem 1.1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;transition:background-color .3s,border-color .3s;}
-.vp-step:hover{background:rgba(44,123,229,.12);border-color:rgba(44,123,229,.25);}
-.vp-num{width:30px;height:30px;min-width:30px;background:var(--sky);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#fff;}
-.vp-txt strong{display:block;font-size:.88rem;font-weight:600;color:#fff;margin-bottom:.1rem;}
-.vp-txt span{font-size:.78rem;color:rgba(255,255,255,.5);}
+.vp-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.6rem;}
+.vp-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.1rem 1rem;text-align:center;transition:background-color .3s,border-color .3s;}
+.vp-stat:hover{background:rgba(44,123,229,.12);border-color:rgba(44,123,229,.25);}
+.vp-stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--skyL);line-height:1;}
+.vp-stat-lbl{font-size:.76rem;color:rgba(255,255,255,.45);margin-top:.3rem;font-weight:500;}
+.vp-divider{height:1px;background:rgba(255,255,255,.08);margin:0 0 1.4rem;}
+.vp-list{display:flex;flex-direction:column;gap:.7rem;}
+.vp-item{display:flex;align-items:center;gap:.9rem;font-size:.88rem;color:rgba(255,255,255,.7);font-weight:500;}
+.vp-dot{width:7px;height:7px;min-width:7px;background:var(--skyL);border-radius:50%;box-shadow:0 0 8px rgba(79,158,248,.5);}
+
+/* Scroll hint */
 .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s 3.2s ease forwards;}
 .scroll-hint span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);}
 .scroll-mouse{width:22px;height:34px;border:1.5px solid rgba(255,255,255,.25);border-radius:11px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;}
 .scroll-wheel{width:3px;height:8px;background:var(--skyL);border-radius:2px;animation:wheel 1.5s ease-in-out infinite;}
 @keyframes wheel{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(12px);opacity:0;}}
+
+/* ── MARQUEE ── */
 .marquee{background:var(--sky);padding:.9rem 0;overflow:hidden;}
 .marquee-track{display:flex;gap:3rem;width:max-content;animation:mroll 25s linear infinite;}
 @keyframes mroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .marquee-item{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.9);white-space:nowrap;display:flex;align-items:center;gap:1.5rem;}
 .mdot{width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%;display:inline-block;}
-.quote-wrap{background:#fff;padding:8rem 2rem;position:relative;overflow:hidden;}
-.quote-wrap::after{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(44,123,229,.04),transparent 70%);border-radius:50%;}
-.quote-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:7rem;align-items:start;position:relative;z-index:1;}
+
+/* ── PROGRESS BAR (multi-step) ── */
+.progress-wrap{background:#fff;padding:3rem 2rem 0;border-bottom:1px solid rgba(11,31,58,.06);}
+.progress-inner{max-width:900px;margin:0 auto;}
+.steps-progress{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:2rem;}
+.sp-step{display:flex;flex-direction:column;align-items:center;position:relative;flex:1;}
+.sp-step:not(:last-child)::after{content:'';position:absolute;top:18px;left:calc(50% + 20px);right:calc(-50% + 20px);height:2px;background:rgba(11,31,58,.1);z-index:0;transition:background .4s;}
+.sp-step.done:not(:last-child)::after{background:var(--sky);}
+.sp-dot{width:36px;height:36px;border-radius:50%;border:2px solid rgba(11,31,58,.12);background:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:var(--muted);position:relative;z-index:1;transition:all .35s cubic-bezier(.34,1.56,.64,1);}
+.sp-step.active .sp-dot{border-color:var(--sky);background:var(--sky);color:#fff;box-shadow:0 0 0 5px rgba(44,123,229,.15),0 6px 18px rgba(44,123,229,.3);transform:scale(1.12);}
+.sp-step.done .sp-dot{border-color:var(--sky);background:var(--sky);color:#fff;}
+.sp-lbl{font-size:.72rem;font-weight:600;color:var(--muted);margin-top:.55rem;letter-spacing:.04em;text-align:center;transition:color .3s;}
+.sp-step.active .sp-lbl{color:var(--sky);}
+.sp-step.done .sp-lbl{color:var(--navy);}
+
+/* ── QUOTE SECTION ── */
+.quote-wrap{background:#fff;padding:5rem 2rem 8rem;position:relative;overflow:hidden;}
+.quote-wrap::after{content:'';position:absolute;top:-100px;right:-100px;width:450px;height:450px;background:radial-gradient(circle,rgba(44,123,229,.04),transparent 70%);border-radius:50%;}
+.quote-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1.55fr;gap:6rem;align-items:start;position:relative;z-index:1;}
+
+/* Side info */
 .q-side{position:sticky;top:120px;}
 .sec-label{font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
 .sec-label::after{content:'';width:40px;height:1px;background:var(--sky);opacity:.4;}
-.sec-heading{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,3rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:1rem;}
-.sec-heading em{font-style:italic;color:var(--sky);}
+.q-side h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,2.5vw,2.6rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:1rem;}
+.q-side h2 em{font-style:italic;color:var(--sky);}
 .q-side-desc{font-size:.97rem;color:var(--muted);line-height:1.9;margin-bottom:2rem;}
-.promise-list{display:flex;flex-direction:column;gap:1rem;}
-.promise-item{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.2rem;background:var(--cream);border-radius:11px;border:1px solid rgba(11,31,58,.06);transition:border-color .2s,background-color .2s;}
-.promise-item:hover{border-color:rgba(44,123,229,.2);background:rgba(44,123,229,.03);}
-.pi-ico{font-size:1.2rem;margin-top:1px;}
-.pi-txt strong{display:block;font-size:.85rem;font-weight:600;color:var(--navy);margin-bottom:.1rem;}
-.pi-txt span{font-size:.8rem;color:var(--muted);}
+
+/* Why choose us items */
+.why-list{display:flex;flex-direction:column;gap:.9rem;margin-bottom:2rem;}
+.why-item{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.2rem;background:var(--cream);border-radius:11px;border:1px solid rgba(11,31,58,.06);transition:border-color .2s,background-color .2s,transform .2s;}
+.why-item:hover{border-color:rgba(44,123,229,.2);background:rgba(44,123,229,.03);transform:translateX(4px);}
+.wi-ico{font-size:1.3rem;margin-top:1px;min-width:24px;}
+.wi-txt strong{display:block;font-size:.85rem;font-weight:600;color:var(--navy);margin-bottom:.15rem;}
+.wi-txt span{font-size:.8rem;color:var(--muted);line-height:1.6;}
+
+/* Contact quick */
+.q-contact-strip{background:var(--navy);border-radius:14px;padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1.2rem;}
+.qcs-ico{font-size:1.4rem;}
+.qcs-txt strong{display:block;font-size:.88rem;font-weight:600;color:#fff;margin-bottom:.1rem;}
+.qcs-txt a{font-size:.82rem;color:var(--skyL);text-decoration:none;transition:color .2s;}
+.qcs-txt a:hover{color:#fff;}
+
+/* ── MULTI-STEP FORM CARD ── */
 .form-card{background:#fff;border-radius:20px;padding:2.8rem;box-shadow:0 24px 70px rgba(44,123,229,.09);border:1px solid rgba(11,31,58,.07);position:relative;overflow:hidden;}
 .form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1056bb,var(--sky),var(--skyL),#38b6ff);}
-.fc-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:.3rem;}
-.fc-sub{font-size:.84rem;color:var(--muted);margin-bottom:2rem;}
-.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
-.form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.1rem;}
+
+/* Step panels */
+.step-panel{display:none;}
+.step-panel.active{display:block;animation:panelIn .4s ease;}
+@keyframes panelIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
+
+.step-header{margin-bottom:2rem;}
+.step-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);margin-bottom:.4rem;}
+.step-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--navy);line-height:1.2;}
+.step-sub{font-size:.84rem;color:var(--muted);margin-top:.35rem;}
+
+/* Form fields */
 .fg{margin-bottom:1.2rem;}
 .fg label{display:block;font-size:.79rem;font-weight:600;color:var(--navy);margin-bottom:.42rem;letter-spacing:.03em;}
 .fg .req{color:#e05252;margin-left:2px;}
-.fg input,.fg select,.fg textarea{width:100%;padding:.78rem 1rem;border:1.5px solid rgba(11,31,58,.1);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:#1A2D42;background:#fafbfc;transition:border-color .25s,box-shadow .25s,background-color .25s;outline:none;}
+.fg input,.fg select,.fg textarea{width:100%;padding:.78rem 1rem;border:1.5px solid rgba(11,31,58,.1);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:#1A2D42;background:#fafbfc;transition:border-color .25s,box-shadow .25s,background-color .25s;outline:none;-webkit-appearance:none;}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(44,123,229,.1);background:#fff;}
 .fg textarea{resize:vertical;min-height:110px;}
 .fg input::placeholder,.fg textarea::placeholder{color:#b8c8d8;}
-.radio-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.2rem;}
-.radio-opt{display:flex;align-items:center;gap:.6rem;padding:.7rem .9rem;background:#fafbfc;border:1.5px solid rgba(11,31,58,.1);border-radius:9px;cursor:pointer;transition:border-color .2s,background-color .2s;}
-.radio-opt:hover{border-color:var(--sky);background:rgba(44,123,229,.04);}
-.radio-opt input{width:14px;height:14px;accent-color:var(--sky);cursor:pointer;}
-.radio-opt span{font-size:.82rem;color:var(--navy);font-weight:500;}
-.file-zone{border:2px dashed rgba(44,123,229,.25);border-radius:11px;background:rgba(44,123,229,.02);padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .3s,background-color .3s;display:block;}
-.file-zone:hover{border-color:var(--sky);background:rgba(44,123,229,.05);}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
+.form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+
+/* Select tiles (for project type) */
+.tile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:1.2rem;}
+.tile-grid.three-col{grid-template-columns:repeat(3,1fr);}
+.tile{border:1.5px solid rgba(11,31,58,.1);border-radius:11px;padding:1rem .9rem;cursor:pointer;transition:border-color .25s,background-color .25s,transform .2s;background:#fafbfc;position:relative;overflow:hidden;text-align:center;}
+.tile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sky),var(--skyL));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.tile:hover{border-color:rgba(44,123,229,.3);background:rgba(44,123,229,.03);transform:translateY(-2px);}
+.tile.selected{border-color:var(--sky);background:rgba(44,123,229,.06);}
+.tile.selected::before{transform:scaleX(1);}
+.tile-ico{font-size:1.5rem;display:block;margin-bottom:.4rem;}
+.tile-lbl{font-size:.82rem;font-weight:600;color:var(--navy);}
+.tile-sub{font-size:.72rem;color:var(--muted);margin-top:.15rem;line-height:1.4;}
+input[type="radio"].tile-input{display:none;}
+
+/* File upload */
+.file-zone{border:2px dashed rgba(44,123,229,.25);border-radius:11px;background:rgba(44,123,229,.02);padding:1.8rem;text-align:center;cursor:pointer;transition:border-color .3s,background-color .3s;display:block;}
+.file-zone:hover,.file-zone.drag{border-color:var(--sky);background:rgba(44,123,229,.05);}
 .file-zone input{display:none;}
-.fz-ico{font-size:1.7rem;display:block;margin-bottom:.3rem;}
-.fz-lbl{font-size:.84rem;font-weight:600;color:var(--navy);}
-.fz-sub{font-size:.76rem;color:var(--muted);margin-top:.15rem;}
-.fz-name{font-size:.79rem;color:var(--sky);font-weight:600;margin-top:.4rem;display:none;}
-.submit-btn{width:100%;margin-top:1.3rem;padding:1rem;background:linear-gradient(90deg,#1056bb,var(--sky));color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:transform .2s,box-shadow .2s;}
-.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(44,123,229,.35);}
-.success-msg{display:none;padding:1.8rem;background:rgba(44,123,229,.05);border:1px solid rgba(44,123,229,.15);border-radius:11px;text-align:center;margin-top:1rem;}
-.sm-ico{font-size:2rem;display:block;margin-bottom:.5rem;}
-.sm-title{font-weight:700;color:var(--navy);font-size:.95rem;display:block;margin-bottom:.25rem;}
-.sm-sub{font-size:.84rem;color:var(--muted);}
+.fz-ico{font-size:2rem;display:block;margin-bottom:.4rem;}
+.fz-lbl{font-size:.88rem;font-weight:600;color:var(--navy);}
+.fz-sub{font-size:.76rem;color:var(--muted);margin-top:.2rem;}
+.fz-files{margin-top:.8rem;display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;}
+.fz-chip{background:rgba(44,123,229,.1);border:1px solid rgba(44,123,229,.2);color:var(--sky);font-size:.74rem;font-weight:600;padding:.2rem .65rem;border-radius:50px;}
+
+/* Range slider */
+.slider-wrap{padding:.5rem 0;}
+.budget-slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--sky) 0%,var(--sky) var(--pct,30%),rgba(11,31,58,.1) var(--pct,30%));outline:none;cursor:pointer;}
+.budget-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--sky);box-shadow:0 4px 12px rgba(44,123,229,.35);cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.budget-slider::-webkit-slider-thumb:hover{transform:scale(1.2);box-shadow:0 6px 18px rgba(44,123,229,.45);}
+.budget-labels{display:flex;justify-content:space-between;font-size:.74rem;color:var(--muted);margin-top:.5rem;}
+.budget-val{text-align:center;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--sky);margin-bottom:.5rem;}
+
+/* Review summary */
+.review-card{background:var(--cream);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:1rem;border:1px solid rgba(11,31,58,.06);}
+.review-card h4{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:.9rem;}
+.review-row{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:.45rem 0;border-bottom:1px solid rgba(11,31,58,.06);}
+.review-row:last-child{border-bottom:none;}
+.rr-key{font-size:.82rem;color:var(--muted);font-weight:500;}
+.rr-val{font-size:.84rem;color:var(--navy);font-weight:600;text-align:right;}
+
+/* Nav buttons */
+.form-nav{display:flex;gap:1rem;margin-top:1.8rem;align-items:center;}
+.btn-prev{background:transparent;border:1.5px solid rgba(11,31,58,.14);color:var(--steel);padding:.85rem 1.6rem;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s,background-color .2s;}
+.btn-prev:hover{border-color:var(--sky);color:var(--sky);background:rgba(44,123,229,.04);}
+.btn-next,.btn-submit{flex:1;padding:1rem;background:linear-gradient(90deg,#1056bb,var(--sky));color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:transform .2s,box-shadow .2s,opacity .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;}
+.btn-next:hover,.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(44,123,229,.35);}
+.btn-next:disabled,.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-arrow{font-size:1rem;transition:transform .3s;}
+.btn-next:hover .btn-arrow{transform:translateX(4px);}
+.skip-note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.7rem;}
+
+/* Privacy / disclaimer */
 .privacy-note{font-size:.76rem;color:var(--muted);text-align:center;margin-top:.9rem;padding:.6rem;background:var(--cream);border-radius:7px;line-height:1.6;}
+
+/* Success screen */
+.success-screen{display:none;text-align:center;padding:2rem 1rem;}
+.ss-badge{width:72px;height:72px;background:linear-gradient(135deg,var(--sky),var(--skyL));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2rem;box-shadow:0 12px 35px rgba(44,123,229,.35);animation:popIn .6s cubic-bezier(.34,1.56,.64,1) forwards;}
+@keyframes popIn{from{transform:scale(0);}to{transform:scale(1);}}
+.ss-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:.6rem;}
+.ss-sub{font-size:.95rem;color:var(--muted);line-height:1.8;max-width:380px;margin:0 auto 1.6rem;}
+.ss-steps{background:var(--cream);border-radius:12px;padding:1.4rem;text-align:left;margin-bottom:1.5rem;}
+.ss-step{display:flex;align-items:center;gap:.8rem;padding:.5rem 0;font-size:.85rem;color:var(--navy);}
+.ss-step-num{width:24px;height:24px;border-radius:50%;background:var(--sky);color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ss-home{display:inline-block;background:var(--sky);color:#fff;padding:.85rem 2rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.9rem;transition:transform .2s,box-shadow .2s;}
+.ss-home:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(44,123,229,.35);}
+
+/* ── STATS BAND ── */
+.stats-band{background:var(--navy);padding:5rem 2rem;position:relative;overflow:hidden;}
+.stats-band::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(44,123,229,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.06) 1px,transparent 1px);background-size:55px 55px;}
+.stats-band::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(44,123,229,.14) 0%,transparent 60%);}
+.stats-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;z-index:2;}
+.s-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:2rem 1.5rem;text-align:center;transition:background-color .3s,border-color .3s,transform .3s;}
+.s-item:hover{background:rgba(44,123,229,.12);border-color:rgba(44,123,229,.25);transform:translateY(-5px);}
+.s-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:var(--skyL);line-height:1;margin-bottom:.4rem;}
+.s-lbl{font-size:.82rem;color:rgba(255,255,255,.5);font-weight:500;text-transform:uppercase;letter-spacing:.08em;}
+
+/* ── CTA ── */
 .cta-section{background:linear-gradient(135deg,#1056bb 0%,var(--sky) 60%,#38b6ff 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;}
 .cta-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px);}
 .corb{position:absolute;border-radius:50%;background:rgba(255,255,255,.06);animation:orbF linear infinite;}
@@ -133,6 +246,8 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .btn-solid:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,.3);}
 .btn-outline{display:inline-block;background:transparent;color:#fff;padding:.95rem 2.4rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.5);transition:border-color .2s,background-color .2s,transform .2s;}
 .btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-3px);}
+
+/* ── FOOTER ── */
 .footer{background:var(--cream);border-top:1px solid rgba(0,0,0,.06);padding:4.5rem 2rem 2rem;}
 .footer-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
 .flogo{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
@@ -146,40 +261,817 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .footer ul a{font-size:.9rem;color:var(--muted);text-decoration:none;transition:color .2s,padding-left .2s;}
 .footer ul a:hover{color:var(--sky);padding-left:4px;}
 .fcopy{border-top:1px solid rgba(0,0,0,.08);padding-top:1.5rem;font-size:.85rem;color:var(--muted);text-align:center;}
+
+/* ── REVEAL ── */
 .rv{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
 .rv.l{transform:translateX(-40px);}
 .rv.r{transform:translateX(40px);}
 .rv.sc{transform:scale(.92);}
 .rv.on{opacity:1;transform:none;}
-.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}
-@media(max-width:1024px){.hero-inner,.quote-inner{grid-template-columns:1fr;gap:3rem;}.hero-visual{display:none;}.q-side{position:static;}.form-row3{grid-template-columns:1fr 1fr;}}
-@media(max-width:768px){.nav-links{display:none;}.form-row2,.form-row3{grid-template-columns:1fr;}.radio-grid{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr 1fr;}.cta-btns{flex-direction:column;align-items:center;}}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .quote-inner{grid-template-columns:1fr;gap:3rem;}
+  .q-side{position:static;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-visual{display:none;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .form-row2,.form-row3{grid-template-columns:1fr;}
+  .tile-grid{grid-template-columns:1fr 1fr;}
+  .tile-grid.three-col{grid-template-columns:1fr 1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+  .cta-btns{flex-direction:column;align-items:center;}
+}
+@media(max-width:480px){
+  .tile-grid,.tile-grid.three-col{grid-template-columns:1fr;}
+  .steps-progress .sp-lbl{display:none;}
+  .form-card{padding:1.8rem;}
+}
 </style>
 </head>
 <body>
-<div id="loader"><div class="ld-text">Blue Sky <span>Siding</span></div><div class="ld-track"><div class="ld-bar"></div></div></div>
 
-<nav class="navbar"><div class="nav-inner"><a href="index.html" class="logo"><img src="images/logo.jpg" alt="BlueSky Siding"><span class="logo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li><li><a href="quote.html" class="nav-cta active">Get a Quote</a></li></ul></div></nav>
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-text">Blue Sky <span>Siding</span></div>
+  <div class="ld-track"><div class="ld-bar"></div></div>
+</div>
 
-<section class="hero"><div class="hero-mesh"></div><div class="hero-grid"></div><div class="hero-inner"><div><p class="hero-eyebrow">Free Quotation</p><h1>Request a<br><em>Detailed Quote.</em></h1><p class="hero-desc">Get a transparent, detailed quote for your siding or cladding project — residential or commercial, any scale across the GTA.</p><div class="hero-badges"><span class="badge">Free Estimate</span><span class="badge">Fast Turnaround</span><span class="badge">Residential &amp; Commercial</span><span class="badge">GTA Coverage</span></div></div><div class="hero-visual"><div class="visual-panel"><p class="vp-title">How It Works</p><div class="vp-steps"><div class="vp-step"><div class="vp-num">1</div><div class="vp-txt"><strong>Submit Your Request</strong><span>Fill out the form with project details</span></div></div><div class="vp-step"><div class="vp-num">2</div><div class="vp-txt"><strong>We Review &amp; Prepare</strong><span>Our team reviews and prepares your estimate</span></div></div><div class="vp-step"><div class="vp-num">3</div><div class="vp-txt"><strong>Receive Your Quote</strong><span>Get a detailed, transparent quote within 1–2 days</span></div></div><div class="vp-step"><div class="vp-num">4</div><div class="vp-txt"><strong>Let's Get Started</strong><span>Approve and we schedule your project</span></div></div></div></div></div></div><div class="scroll-hint"><span>Scroll</span><div class="scroll-mouse"><div class="scroll-wheel"></div></div></div></section>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.jpg" alt="BlueSky Siding">
+      <span class="logo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="quote.html" class="nav-cta active">Get a Quote</a></li>
+    </ul>
+  </div>
+</nav>
 
-<div class="marquee"><div class="marquee-track"><div class="marquee-item">Free Consultation <span class="mdot"></span></div><div class="marquee-item">Aluminum Composite Panels <span class="mdot"></span></div><div class="marquee-item">Metal Siding <span class="mdot"></span></div><div class="marquee-item">Custom Fabrication <span class="mdot"></span></div><div class="marquee-item">Residential Projects <span class="mdot"></span></div><div class="marquee-item">Commercial Projects <span class="mdot"></span></div><div class="marquee-item">Curtain Wall Systems <span class="mdot"></span></div><div class="marquee-item">Fast Turnaround <span class="mdot"></span></div><div class="marquee-item">Free Consultation <span class="mdot"></span></div><div class="marquee-item">Aluminum Composite Panels <span class="mdot"></span></div><div class="marquee-item">Metal Siding <span class="mdot"></span></div><div class="marquee-item">Custom Fabrication <span class="mdot"></span></div><div class="marquee-item">Residential Projects <span class="mdot"></span></div><div class="marquee-item">Commercial Projects <span class="mdot"></span></div><div class="marquee-item">Curtain Wall Systems <span class="mdot"></span></div><div class="marquee-item">Fast Turnaround <span class="mdot"></span></div></div></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Free Estimate</p>
+      <h1>Request Your<br><em>Project Quote.</em></h1>
+      <p class="hero-desc">Tell us about your siding or cladding project and we'll get back to you with a detailed, transparent estimate — no obligations, no hidden fees.</p>
+      <div class="hero-badges">
+        <span class="badge">No Obligation</span>
+        <span class="badge">Response Within 24 Hours</span>
+        <span class="badge">Detailed Breakdown</span>
+        <span class="badge">GTA Coverage</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-panel">
+        <p class="vp-title">Why Request a Quote</p>
+        <div class="vp-stats">
+          <div class="vp-stat">
+            <div class="vp-stat-num">24h</div>
+            <div class="vp-stat-lbl">Response Time</div>
+          </div>
+          <div class="vp-stat">
+            <div class="vp-stat-num">100%</div>
+            <div class="vp-stat-lbl">Free &amp; No Obligation</div>
+          </div>
+          <div class="vp-stat">
+            <div class="vp-stat-num">4+</div>
+            <div class="vp-stat-lbl">Years Experience</div>
+          </div>
+          <div class="vp-stat">
+            <div class="vp-stat-num">100+</div>
+            <div class="vp-stat-lbl">Projects Completed</div>
+          </div>
+        </div>
+        <div class="vp-divider"></div>
+        <div class="vp-list">
+          <div class="vp-item"><span class="vp-dot"></span><span>Itemized, Transparent Pricing</span></div>
+          <div class="vp-item"><span class="vp-dot"></span><span>Licensed &amp; Fully Insured</span></div>
+          <div class="vp-item"><span class="vp-dot"></span><span>Expert Material Recommendations</span></div>
+          <div class="vp-item"><span class="vp-dot"></span><span>Full Project Management A–Z</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+  </div>
+</section>
 
-<section class="quote-wrap" id="quote"><div class="quote-inner"><div class="q-side rv l"><p class="sec-label">Get a Quote</p><h2 class="sec-heading">Tell Us About<br><em>Your Project.</em></h2><p class="q-side-desc">From design ideas to project delivery — count on our team to guide you every step of the way. Fill in the form and we'll get back to you within 1–2 business days.</p><div class="promise-list"><div class="promise-item"><div class="pi-ico">&#9889;</div><div class="pi-txt"><strong>Fast Response</strong><span>We reply within 1–2 business days</span></div></div><div class="promise-item"><div class="pi-ico">&#128203;</div><div class="pi-txt"><strong>Detailed Estimate</strong><span>Transparent, itemized breakdown — no surprises</span></div></div><div class="promise-item"><div class="pi-ico">&#128101;</div><div class="pi-txt"><strong>Expert Advice</strong><span>Talk directly with our technical advisors</span></div></div><div class="promise-item"><div class="pi-ico">&#128274;</div><div class="pi-txt"><strong>100% Private</strong><span>Your info is never shared with third parties</span></div></div></div></div><div class="form-card rv r d2"><h3 class="fc-title">Quotation Request</h3><p class="fc-sub">Fields marked <span style="color:#e05252">*</span> are required.</p><form id="quoteForm"><div class="form-row3"><div class="fg"><label>Name <span class="req">*</span></label><input type="text" name="name" placeholder="Your full name" required></div><div class="fg"><label>Phone <span class="req">*</span></label><input type="tel" name="phone" placeholder="(416) 000-0000" required></div><div class="fg"><label>Email <span class="req">*</span></label><input type="email" name="email" placeholder="your@email.com" required></div></div><div class="form-row2"><div class="fg"><label>Project Address</label><input type="text" name="address" placeholder="Project location (optional)"></div><div class="fg"><label>Product of Interest <span class="req">*</span></label><select name="product" required><option value="" disabled selected>Select a product...</option><option>Aluminum Composite Panels</option><option>Aluminum Plate Panels</option><option>Cassette Panels (Metal Siding)</option><option>Corrugated Wall System</option><option>High-Pressure Laminate (HPL)</option><option>Phenolic</option><option>Stone &amp; Concrete Wall Panels</option><option>Curtain-Wall / Window-Wall</option><option>Other</option></select></div></div><div class="fg"><label>Project Type <span class="req">*</span></label><div class="radio-grid"><label class="radio-opt"><input type="radio" name="project-type" value="custom-house" required><span>Custom House / Townhouse</span></label><label class="radio-opt"><input type="radio" name="project-type" value="multi-residential"><span>Multi-residential / Condo</span></label><label class="radio-opt"><input type="radio" name="project-type" value="retail"><span>Retail / Restaurant / Auto</span></label><label class="radio-opt"><input type="radio" name="project-type" value="office"><span>Office / Medical / Bank</span></label><label class="radio-opt"><input type="radio" name="project-type" value="industrial"><span>Industrial / Warehouse</span></label><label class="radio-opt"><input type="radio" name="project-type" value="other"><span>Other</span></label></div></div><div class="fg"><label>Additional Notes</label><textarea name="message" placeholder="Tell us more about your project — scope, timeline, materials, or any special requirements..."></textarea></div><div class="fg"><label>Upload Project Files (Photos or Drawings)</label><label for="fileUpload" class="file-zone"><span class="fz-ico">&#128193;</span><span class="fz-lbl">Click to upload or drag &amp; drop</span><span class="fz-sub">PDF, JPG, PNG, DWG accepted</span><span class="fz-name" id="fzName"></span><input type="file" id="fileUpload" name="files" multiple accept=".pdf,.jpg,.jpeg,.png,.dwg"></label></div><button type="submit" class="submit-btn">SUBMIT REQUEST</button><div class="success-msg" id="successMsg"><span class="sm-ico">&#9989;</span><span class="sm-title">Request Received!</span><span class="sm-sub">Thank you! One of our technical advisors will prepare your quote and be in touch within 1–2 business days.</span></div><p class="privacy-note">&#128274; Your information is safe with us. We never share your details with any third party.</p></form></div></div></section>
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">Free Estimate <span class="mdot"></span></div>
+    <div class="marquee-item">No Obligation <span class="mdot"></span></div>
+    <div class="marquee-item">Transparent Pricing <span class="mdot"></span></div>
+    <div class="marquee-item">Metal Cladding <span class="mdot"></span></div>
+    <div class="marquee-item">Aluminum Siding <span class="mdot"></span></div>
+    <div class="marquee-item">ACM Panels <span class="mdot"></span></div>
+    <div class="marquee-item">Custom Fabrication <span class="mdot"></span></div>
+    <div class="marquee-item">GTA Coverage <span class="mdot"></span></div>
+    <div class="marquee-item">Free Estimate <span class="mdot"></span></div>
+    <div class="marquee-item">No Obligation <span class="mdot"></span></div>
+    <div class="marquee-item">Transparent Pricing <span class="mdot"></span></div>
+    <div class="marquee-item">Metal Cladding <span class="mdot"></span></div>
+    <div class="marquee-item">Aluminum Siding <span class="mdot"></span></div>
+    <div class="marquee-item">ACM Panels <span class="mdot"></span></div>
+    <div class="marquee-item">Custom Fabrication <span class="mdot"></span></div>
+    <div class="marquee-item">GTA Coverage <span class="mdot"></span></div>
+  </div>
+</div>
 
-<section class="cta-section"><div class="corb"></div><div class="corb"></div><div class="corb"></div><div class="cta-inner rv sc"><h2>Prefer to Talk Directly?</h2><p>Our technical advisors are ready to discuss your project and help you find the right solution.</p><div class="cta-btns"><a href="#quote" class="btn-solid">Submit a Request</a><a href="tel:+14167415140" class="btn-outline">Call (416) 741-5140</a></div></div></section>
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="steps-progress" id="stepsProgress">
+      <div class="sp-step active" data-step="1">
+        <div class="sp-dot">1</div>
+        <span class="sp-lbl">Project Type</span>
+      </div>
+      <div class="sp-step" data-step="2">
+        <div class="sp-dot">2</div>
+        <span class="sp-lbl">Product &amp; Scope</span>
+      </div>
+      <div class="sp-step" data-step="3">
+        <div class="sp-dot">3</div>
+        <span class="sp-lbl">Details</span>
+      </div>
+      <div class="sp-step" data-step="4">
+        <div class="sp-dot">4</div>
+        <span class="sp-lbl">Your Info</span>
+      </div>
+      <div class="sp-step" data-step="5">
+        <div class="sp-dot">5</div>
+        <span class="sp-lbl">Review</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-<footer class="footer"><div class="footer-inner"><div><div class="flogo"><img src="images/logo.jpg" alt="BlueSky"><span class="flogo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></div><p class="fdesc">Leading provider of premium metal siding and cladding solutions. Quality materials, expert craftsmanship, outstanding results.</p></div><div><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li></ul></div><div><h4>Services</h4><ul><li><a href="services.html">Siding Installation</a></li><li><a href="services.html">Exterior Cladding</a></li><li><a href="services.html">Repairs &amp; Maintenance</a></li><li><a href="services.html">Custom Metal Work</a></li></ul></div><div><h4>Contact</h4><ul><li><a href="tel:+14167415140">(416) 741-5140</a></li><li><a href="mailto:info@bluesky-siding.com">info@bluesky-siding.com</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact Us</a></li></ul></div></div><div class="fcopy">&copy; 2022 BlueSky Siding &amp; Cladding Inc. All rights reserved.</div></footer>
+<!-- QUOTE SECTION -->
+<section class="quote-wrap">
+  <div class="quote-inner">
+
+    <!-- Left sidebar -->
+    <div class="q-side rv l">
+      <p class="sec-label">Get a Quote</p>
+      <h2>Tell us about<br><em>your project.</em></h2>
+      <p class="q-side-desc">Complete the short form and one of our technical advisors will prepare a detailed, itemized quote for your review — usually within 24 hours.</p>
+
+      <div class="why-list">
+        <div class="why-item">
+          <div class="wi-ico">⚡</div>
+          <div class="wi-txt">
+            <strong>Fast Turnaround</strong>
+            <span>Quotes prepared and delivered within 1 business day</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="wi-ico">📋</div>
+          <div class="wi-txt">
+            <strong>Itemized Breakdown</strong>
+            <span>Clear line-by-line pricing with no surprises</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="wi-ico">👷</div>
+          <div class="wi-txt">
+            <strong>Expert Review</strong>
+            <span>Your request is reviewed by a certified installer</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="wi-ico">🔒</div>
+          <div class="wi-txt">
+            <strong>No Obligation</strong>
+            <span>Completely free — accept only if you're happy</span>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="wi-ico">📸</div>
+          <div class="wi-txt">
+            <strong>Share Plans or Photos</strong>
+            <span>Upload drawings or site photos for a more accurate quote</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-contact-strip">
+        <div class="qcs-ico">📞</div>
+        <div class="qcs-txt">
+          <strong>Prefer to talk?</strong>
+          <a href="tel:+14167415140">(416) 741-5140</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="form-card rv r d2">
+
+      <!-- ── STEP 1: Project Type ── -->
+      <div class="step-panel active" id="step1">
+        <div class="step-header">
+          <p class="step-eyebrow">Step 1 of 5</p>
+          <h3 class="step-title">What type of project is this?</h3>
+          <p class="step-sub">Select the option that best describes your building type.</p>
+        </div>
+        <div class="tile-grid">
+          <label class="tile" data-val="Custom House / Townhouse">
+            <input type="radio" name="projectType" value="Custom House / Townhouse" class="tile-input">
+            <span class="tile-ico">🏠</span>
+            <span class="tile-lbl">Custom House / Townhouse</span>
+            <span class="tile-sub">Residential single or semi-detached</span>
+          </label>
+          <label class="tile" data-val="Multi-Residential / Condo">
+            <input type="radio" name="projectType" value="Multi-Residential / Condo" class="tile-input">
+            <span class="tile-ico">🏢</span>
+            <span class="tile-lbl">Multi-Residential / Condo</span>
+            <span class="tile-sub">Apartments, stacked units</span>
+          </label>
+          <label class="tile" data-val="Retail / Restaurant / Commercial">
+            <input type="radio" name="projectType" value="Retail / Restaurant / Commercial" class="tile-input">
+            <span class="tile-ico">🏪</span>
+            <span class="tile-lbl">Retail / Restaurant / Commercial</span>
+            <span class="tile-sub">Storefronts &amp; service businesses</span>
+          </label>
+          <label class="tile" data-val="Office / Medical / Institutional">
+            <input type="radio" name="projectType" value="Office / Medical / Institutional" class="tile-input">
+            <span class="tile-ico">🏦</span>
+            <span class="tile-lbl">Office / Medical / Institutional</span>
+            <span class="tile-sub">Professional buildings</span>
+          </label>
+          <label class="tile" data-val="Industrial / Warehouse">
+            <input type="radio" name="projectType" value="Industrial / Warehouse" class="tile-input">
+            <span class="tile-ico">🏭</span>
+            <span class="tile-lbl">Industrial / Warehouse</span>
+            <span class="tile-sub">Manufacturing &amp; storage facilities</span>
+          </label>
+          <label class="tile" data-val="Other / Not Sure">
+            <input type="radio" name="projectType" value="Other / Not Sure" class="tile-input">
+            <span class="tile-ico">❓</span>
+            <span class="tile-lbl">Other / Not Sure</span>
+            <span class="tile-sub">Tell us more in the next steps</span>
+          </label>
+        </div>
+        <div class="form-nav">
+          <button class="btn-next" id="next1" onclick="goNext(1)" disabled>
+            Continue <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 2: Product & Scope ── -->
+      <div class="step-panel" id="step2">
+        <div class="step-header">
+          <p class="step-eyebrow">Step 2 of 5</p>
+          <h3 class="step-title">What product are you interested in?</h3>
+          <p class="step-sub">Select one or more products. You can pick multiple.</p>
+        </div>
+        <div class="tile-grid three-col" id="productTiles">
+          <label class="tile" data-val="Metal Siding">
+            <input type="checkbox" name="products" value="Metal Siding" class="tile-input">
+            <span class="tile-ico">🔩</span>
+            <span class="tile-lbl">Metal Siding</span>
+          </label>
+          <label class="tile" data-val="Metal Cladding">
+            <input type="checkbox" name="products" value="Metal Cladding" class="tile-input">
+            <span class="tile-ico">🏗️</span>
+            <span class="tile-lbl">Metal Cladding</span>
+          </label>
+          <label class="tile" data-val="ACM Panels">
+            <input type="checkbox" name="products" value="ACM Panels" class="tile-input">
+            <span class="tile-ico">⬜</span>
+            <span class="tile-lbl">ACM Panels</span>
+          </label>
+          <label class="tile" data-val="Counter Coping & Flashing">
+            <input type="checkbox" name="products" value="Counter Coping & Flashing" class="tile-input">
+            <span class="tile-ico">🛡️</span>
+            <span class="tile-lbl">Coping &amp; Flashing</span>
+          </label>
+          <label class="tile" data-val="Flat Metal Roof">
+            <input type="checkbox" name="products" value="Flat Metal Roof" class="tile-input">
+            <span class="tile-ico">🏠</span>
+            <span class="tile-lbl">Flat Metal Roof</span>
+          </label>
+          <label class="tile" data-val="Custom Copper Work">
+            <input type="checkbox" name="products" value="Custom Copper Work" class="tile-input">
+            <span class="tile-ico">✨</span>
+            <span class="tile-lbl">Custom Copper Work</span>
+          </label>
+          <label class="tile" data-val="Eavestrough & Downspout">
+            <input type="checkbox" name="products" value="Eavestrough & Downspout" class="tile-input">
+            <span class="tile-ico">💧</span>
+            <span class="tile-lbl">Eavestrough &amp; Downspout</span>
+          </label>
+          <label class="tile" data-val="Soffit & Fascia">
+            <input type="checkbox" name="products" value="Soffit & Fascia" class="tile-input">
+            <span class="tile-ico">🔲</span>
+            <span class="tile-lbl">Soffit &amp; Fascia</span>
+          </label>
+          <label class="tile" data-val="Other / Not Sure">
+            <input type="checkbox" name="products" value="Other / Not Sure" class="tile-input">
+            <span class="tile-ico">❓</span>
+            <span class="tile-lbl">Not Sure</span>
+          </label>
+        </div>
+        <div class="form-nav">
+          <button class="btn-prev" onclick="goPrev(2)">← Back</button>
+          <button class="btn-next" id="next2" onclick="goNext(2)" disabled>
+            Continue <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 3: Project Details ── -->
+      <div class="step-panel" id="step3">
+        <div class="step-header">
+          <p class="step-eyebrow">Step 3 of 5</p>
+          <h3 class="step-title">Project details &amp; scope</h3>
+          <p class="step-sub">Help us understand the size and timeline of your project.</p>
+        </div>
+
+        <!-- Service type -->
+        <p class="fg" style="margin-bottom:.5rem"><label style="display:block;font-size:.79rem;font-weight:600;color:var(--navy);margin-bottom:.7rem;letter-spacing:.03em;">Service Required <span style="color:#e05252">*</span></label></p>
+        <div class="tile-grid" style="margin-bottom:1.4rem;">
+          <label class="tile" data-val="New Installation" data-group="service">
+            <input type="radio" name="serviceType" value="New Installation" class="tile-input">
+            <span class="tile-ico">🆕</span>
+            <span class="tile-lbl">New Installation</span>
+          </label>
+          <label class="tile" data-val="Replacement" data-group="service">
+            <input type="radio" name="serviceType" value="Replacement" class="tile-input">
+            <span class="tile-ico">🔄</span>
+            <span class="tile-lbl">Replacement</span>
+          </label>
+          <label class="tile" data-val="Repair / Maintenance" data-group="service">
+            <input type="radio" name="serviceType" value="Repair / Maintenance" class="tile-input">
+            <span class="tile-ico">🔧</span>
+            <span class="tile-lbl">Repair / Maintenance</span>
+          </label>
+          <label class="tile" data-val="Not Sure" data-group="service">
+            <input type="radio" name="serviceType" value="Not Sure" class="tile-input">
+            <span class="tile-ico">💬</span>
+            <span class="tile-lbl">Consulting / Not Sure</span>
+          </label>
+        </div>
+
+        <!-- Approx sq ft + timeline -->
+        <div class="form-row2">
+          <div class="fg">
+            <label>Approximate Square Footage</label>
+            <select name="sqft">
+              <option value="" disabled selected>Select range...</option>
+              <option>Under 500 sq ft</option>
+              <option>500 – 1,000 sq ft</option>
+              <option>1,000 – 2,500 sq ft</option>
+              <option>2,500 – 5,000 sq ft</option>
+              <option>5,000 – 10,000 sq ft</option>
+              <option>10,000+ sq ft</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Desired Timeline</label>
+            <select name="timeline">
+              <option value="" disabled selected>Select timeline...</option>
+              <option>ASAP / Urgent</option>
+              <option>Within 1 month</option>
+              <option>1 – 3 months</option>
+              <option>3 – 6 months</option>
+              <option>6+ months / Planning stage</option>
+              <option>No fixed timeline</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Budget slider -->
+        <div class="fg">
+          <label>Approximate Budget</label>
+          <div class="slider-wrap">
+            <div class="budget-val" id="budgetVal">$25,000</div>
+            <input type="range" class="budget-slider" id="budgetSlider" min="5000" max="500000" step="5000" value="25000">
+            <div class="budget-labels"><span>$5K</span><span>$250K</span><span>$500K+</span></div>
+          </div>
+        </div>
+
+        <!-- Files -->
+        <div class="fg">
+          <label>Upload Plans, Drawings, or Photos <span style="color:var(--muted);font-weight:400;">(Optional)</span></label>
+          <label for="projectFiles" class="file-zone" id="fileZone">
+            <span class="fz-ico">📁</span>
+            <span class="fz-lbl">Click to upload or drag &amp; drop</span>
+            <span class="fz-sub">PDF, JPG, PNG, DWG — max 20 MB</span>
+            <div class="fz-files" id="fzFiles"></div>
+            <input type="file" id="projectFiles" name="files" multiple accept=".pdf,.jpg,.jpeg,.png,.dwg">
+          </label>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn-prev" onclick="goPrev(3)">← Back</button>
+          <button class="btn-next" onclick="goNext(3)">
+            Continue <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 4: Contact Info ── -->
+      <div class="step-panel" id="step4">
+        <div class="step-header">
+          <p class="step-eyebrow">Step 4 of 5</p>
+          <h3 class="step-title">Your contact information</h3>
+          <p class="step-sub">We'll use these details to send your quote and follow up with you.</p>
+        </div>
+        <div class="form-row2">
+          <div class="fg">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" id="f-name" placeholder="John Smith" required>
+          </div>
+          <div class="fg">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" id="f-phone" placeholder="(416) 000-0000" required>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" id="f-email" placeholder="your@email.com" required>
+        </div>
+        <div class="fg">
+          <label>Company Name <span style="color:var(--muted);font-weight:400;">(Optional)</span></label>
+          <input type="text" id="f-company" placeholder="Your company or organization">
+        </div>
+        <div class="fg">
+          <label>Project Address / Location</label>
+          <input type="text" id="f-address" placeholder="Street address, city, or general area">
+        </div>
+        <div class="fg">
+          <label>Additional Notes or Requests</label>
+          <textarea id="f-notes" placeholder="Any other details, special requirements, or questions for our team..."></textarea>
+        </div>
+        <div class="fg">
+          <label style="display:flex;align-items:flex-start;gap:.6rem;cursor:pointer;font-size:.82rem;font-weight:500;color:var(--steel);">
+            <input type="checkbox" id="f-consent" style="width:16px;height:16px;min-width:16px;margin-top:1px;accent-color:var(--sky);">
+            I agree to be contacted by BlueSky Siding &amp; Cladding Inc. regarding my quote request. My information will not be shared with third parties.
+          </label>
+        </div>
+        <div class="form-nav">
+          <button class="btn-prev" onclick="goPrev(4)">← Back</button>
+          <button class="btn-next" id="next4" onclick="goNext(4)" disabled>
+            Review Quote <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 5: Review ── -->
+      <div class="step-panel" id="step5">
+        <div class="step-header">
+          <p class="step-eyebrow">Step 5 of 5</p>
+          <h3 class="step-title">Review your request</h3>
+          <p class="step-sub">Please confirm the details before submitting your quote request.</p>
+        </div>
+
+        <div class="review-card">
+          <h4>Project Info</h4>
+          <div class="review-row"><span class="rr-key">Project Type</span><span class="rr-val" id="rv-type">—</span></div>
+          <div class="review-row"><span class="rr-key">Products</span><span class="rr-val" id="rv-products">—</span></div>
+          <div class="review-row"><span class="rr-key">Service</span><span class="rr-val" id="rv-service">—</span></div>
+          <div class="review-row"><span class="rr-key">Square Footage</span><span class="rr-val" id="rv-sqft">—</span></div>
+          <div class="review-row"><span class="rr-key">Timeline</span><span class="rr-val" id="rv-timeline">—</span></div>
+          <div class="review-row"><span class="rr-key">Budget</span><span class="rr-val" id="rv-budget">—</span></div>
+        </div>
+
+        <div class="review-card">
+          <h4>Your Contact Details</h4>
+          <div class="review-row"><span class="rr-key">Name</span><span class="rr-val" id="rv-name">—</span></div>
+          <div class="review-row"><span class="rr-key">Phone</span><span class="rr-val" id="rv-phone">—</span></div>
+          <div class="review-row"><span class="rr-key">Email</span><span class="rr-val" id="rv-email">—</span></div>
+          <div class="review-row"><span class="rr-key">Address</span><span class="rr-val" id="rv-address">—</span></div>
+        </div>
+
+        <p class="privacy-note">🔒 Your information is private and used only for preparing your quote. We never share it with third parties.</p>
+
+        <div class="form-nav">
+          <button class="btn-prev" onclick="goPrev(5)">← Back</button>
+          <button class="btn-submit" onclick="submitForm()">
+            Submit Quote Request ✓
+          </button>
+        </div>
+        <p class="skip-note">By submitting, you agree to be contacted by our team regarding this estimate.</p>
+      </div>
+
+      <!-- ── SUCCESS ── -->
+      <div class="success-screen" id="successScreen">
+        <div class="ss-badge">✓</div>
+        <h3 class="ss-title">Quote Request Sent!</h3>
+        <p class="ss-sub">Thank you! Our team has received your request and will prepare a detailed estimate for you — typically within 1 business day.</p>
+        <div class="ss-steps">
+          <div class="ss-step"><div class="ss-step-num">1</div> We review your project details &amp; requirements</div>
+          <div class="ss-step"><div class="ss-step-num">2</div> Our estimator prepares a detailed, itemized quote</div>
+          <div class="ss-step"><div class="ss-step-num">3</div> We contact you to walk through the estimate</div>
+        </div>
+        <a href="index.html" class="ss-home">Back to Home</a>
+      </div>
+
+    </div><!-- /form-card -->
+  </div><!-- /quote-inner -->
+</section>
+
+<!-- STATS BAND -->
+<section class="stats-band">
+  <div class="stats-inner rv">
+    <div class="s-item"><div class="s-num">24h</div><div class="s-lbl">Average Quote Time</div></div>
+    <div class="s-item"><div class="s-num">100+</div><div class="s-lbl">Projects Quoted</div></div>
+    <div class="s-item"><div class="s-num">100%</div><div class="s-lbl">Free &amp; No Obligation</div></div>
+    <div class="s-item"><div class="s-num">GTA</div><div class="s-lbl">Regional Coverage</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="corb"></div><div class="corb"></div><div class="corb"></div>
+  <div class="cta-inner rv sc">
+    <h2>Prefer to Talk Directly?</h2>
+    <p>Our team is happy to discuss your project over the phone. Give us a call and we'll answer any questions you have.</p>
+    <div class="cta-btns">
+      <a href="contact.html" class="btn-solid">Contact Us</a>
+      <a href="tel:+14167415140" class="btn-outline">Call (416) 741-5140</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="flogo">
+        <img src="images/logo.jpg" alt="BlueSky">
+        <span class="flogo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span>
+      </div>
+      <p class="fdesc">Leading provider of premium metal siding and cladding solutions. Quality materials, expert craftsmanship, outstanding results.</p>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="services.html">Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Siding Installation</a></li>
+        <li><a href="services.html">Exterior Cladding</a></li>
+        <li><a href="services.html">Repairs &amp; Maintenance</a></li>
+        <li><a href="services.html">Custom Metal Work</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+14167415140">(416) 741-5140</a></li>
+        <li><a href="mailto:info@bluesky-siding.com">info@bluesky-siding.com</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fcopy">&copy; 2022 BlueSky Siding &amp; Cladding Inc. All rights reserved.</div>
+</footer>
 
 <script>
-window.addEventListener('load',function(){setTimeout(function(){var l=document.getElementById('loader');l.classList.add('out');setTimeout(function(){l.style.display='none';},700);},2100);});
-var ro=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('on');},i*70);ro.unobserve(e.target);}});},{threshold:.1});
-document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
-document.getElementById('fileUpload').addEventListener('change',function(){var n=document.getElementById('fzName');if(this.files.length){n.textContent='Files: '+Array.prototype.slice.call(this.files).map(function(f){return f.name;}).join(', ');n.style.display='block';}});
-document.getElementById('quoteForm').addEventListener('submit',function(e){e.preventDefault();var btn=this.querySelector('.submit-btn');btn.textContent='Sending...';btn.style.opacity='.6';var self=this;setTimeout(function(){btn.style.display='none';document.getElementById('successMsg').style.display='block';self.querySelectorAll('input,select,textarea').forEach(function(el){el.disabled=true;});},1200);});
-document.querySelectorAll('.btn-solid,.btn-outline,.nav-cta').forEach(function(btn){btn.addEventListener('mousemove',function(e){var r=btn.getBoundingClientRect();btn.style.transform='translate('+(e.clientX-(r.left+r.width/2))*.28+'px,'+(e.clientY-(r.top+r.height/2))*.28+'px)';});btn.addEventListener('mouseleave',function(){btn.style.transform='';});});
-window.addEventListener('scroll',function(){document.querySelector('.navbar').style.boxShadow=window.scrollY>=40?'0 4px 20px rgba(0,0,0,.1)':'0 1px 20px rgba(0,0,0,.06)';});
-document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
+/* ── LOADER ── */
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var l = document.getElementById('loader');
+    l.classList.add('out');
+    setTimeout(function() { l.style.display = 'none'; }, 700);
+  }, 2100);
+});
+
+/* ── SCROLL REVEAL ── */
+var ro = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e, i) {
+    if (e.isIntersecting) {
+      setTimeout(function() { e.target.classList.add('on'); }, i * 70);
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: .1 });
+document.querySelectorAll('.rv').forEach(function(el) { ro.observe(el); });
+
+/* ── NAVBAR SCROLL ── */
+window.addEventListener('scroll', function() {
+  document.querySelector('.navbar').style.boxShadow =
+    window.scrollY >= 40 ? '0 4px 20px rgba(0,0,0,.1)' : '0 1px 20px rgba(0,0,0,.06)';
+});
+
+/* ── MAGNETIC BUTTONS ── */
+document.querySelectorAll('.btn-solid, .btn-outline, .nav-cta').forEach(function(btn) {
+  btn.addEventListener('mousemove', function(e) {
+    var r = btn.getBoundingClientRect();
+    btn.style.transform = 'translate(' + (e.clientX - (r.left + r.width / 2)) * .28 + 'px,' + (e.clientY - (r.top + r.height / 2)) * .28 + 'px)';
+  });
+  btn.addEventListener('mouseleave', function() { btn.style.transform = ''; });
+});
+
+/* ── STATE ── */
+var state = {
+  projectType: '',
+  products: [],
+  serviceType: '',
+  sqft: '',
+  timeline: '',
+  budget: '$25,000',
+  files: [],
+  name: '',
+  phone: '',
+  email: '',
+  company: '',
+  address: '',
+  notes: ''
+};
+
+/* ── STEP NAVIGATION ── */
+var currentStep = 1;
+
+function goNext(from) {
+  if (from === 1) {
+    state.projectType = document.querySelector('input[name="projectType"]:checked')?.value || '';
+  }
+  if (from === 2) {
+    state.products = Array.from(document.querySelectorAll('input[name="products"]:checked')).map(function(el) { return el.value; });
+  }
+  if (from === 3) {
+    state.sqft = document.querySelector('select[name="sqft"]')?.value || '';
+    state.timeline = document.querySelector('select[name="timeline"]')?.value || '';
+    state.serviceType = document.querySelector('input[name="serviceType"]:checked')?.value || '';
+  }
+  if (from === 4) {
+    state.name = document.getElementById('f-name').value;
+    state.phone = document.getElementById('f-phone').value;
+    state.email = document.getElementById('f-email').value;
+    state.company = document.getElementById('f-company').value;
+    state.address = document.getElementById('f-address').value;
+    state.notes = document.getElementById('f-notes').value;
+    buildReview();
+  }
+  showStep(from + 1);
+}
+
+function goPrev(from) {
+  showStep(from - 1);
+}
+
+function showStep(n) {
+  currentStep = n;
+  document.querySelectorAll('.step-panel').forEach(function(p) { p.classList.remove('active'); });
+  var panel = document.getElementById('step' + n);
+  if (panel) panel.classList.add('active');
+  updateProgress(n);
+  window.scrollTo({ top: document.querySelector('.progress-wrap').offsetTop - 90, behavior: 'smooth' });
+}
+
+function updateProgress(n) {
+  document.querySelectorAll('.sp-step').forEach(function(s) {
+    var sn = parseInt(s.dataset.step);
+    s.classList.remove('active', 'done');
+    if (sn === n) s.classList.add('active');
+    else if (sn < n) s.classList.add('done');
+  });
+}
+
+/* ── TILE SELECTION ── */
+// Radio tiles (single select)
+document.querySelectorAll('.tile input[type="radio"]').forEach(function(radio) {
+  radio.addEventListener('change', function() {
+    var name = this.name;
+    document.querySelectorAll('input[name="' + name + '"]').forEach(function(r) {
+      r.closest('.tile').classList.remove('selected');
+    });
+    this.closest('.tile').classList.add('selected');
+
+    // Enable next buttons
+    if (name === 'projectType') {
+      document.getElementById('next1').disabled = false;
+      state.projectType = this.value;
+    }
+    if (name === 'serviceType') {
+      state.serviceType = this.value;
+    }
+  });
+});
+
+// Checkbox tiles (multi-select)
+document.querySelectorAll('.tile input[type="checkbox"]').forEach(function(cb) {
+  cb.addEventListener('change', function() {
+    var tile = this.closest('.tile');
+    if (this.checked) tile.classList.add('selected');
+    else tile.classList.remove('selected');
+    // Enable next if at least one checked
+    var anyChecked = document.querySelectorAll('input[name="products"]:checked').length > 0;
+    document.getElementById('next2').disabled = !anyChecked;
+  });
+});
+
+/* ── STEP 4 VALIDATION ── */
+function validateStep4() {
+  var name = document.getElementById('f-name').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var consent = document.getElementById('f-consent').checked;
+  var ok = name.length > 1 && phone.length > 6 && email.includes('@') && consent;
+  document.getElementById('next4').disabled = !ok;
+}
+['f-name', 'f-phone', 'f-email'].forEach(function(id) {
+  document.getElementById(id).addEventListener('input', validateStep4);
+});
+document.getElementById('f-consent').addEventListener('change', validateStep4);
+
+/* ── BUDGET SLIDER ── */
+var slider = document.getElementById('budgetSlider');
+var budgetVal = document.getElementById('budgetVal');
+
+function updateSlider() {
+  var v = parseInt(slider.value);
+  var pct = ((v - 5000) / (500000 - 5000)) * 100;
+  slider.style.setProperty('--pct', pct + '%');
+  var label = v >= 500000 ? '$500,000+' : '$' + v.toLocaleString();
+  budgetVal.textContent = label;
+  state.budget = label;
+}
+slider.addEventListener('input', updateSlider);
+updateSlider();
+
+/* ── FILE UPLOAD ── */
+var fileInput = document.getElementById('projectFiles');
+var fileZone = document.getElementById('fileZone');
+var fzFiles = document.getElementById('fzFiles');
+
+fileInput.addEventListener('change', function() {
+  fzFiles.innerHTML = '';
+  Array.from(this.files).forEach(function(f) {
+    var chip = document.createElement('span');
+    chip.className = 'fz-chip';
+    chip.textContent = f.name;
+    fzFiles.appendChild(chip);
+  });
+  state.files = Array.from(fileInput.files).map(function(f) { return f.name; });
+});
+
+// Drag and drop
+fileZone.addEventListener('dragover', function(e) { e.preventDefault(); fileZone.classList.add('drag'); });
+fileZone.addEventListener('dragleave', function() { fileZone.classList.remove('drag'); });
+fileZone.addEventListener('drop', function(e) {
+  e.preventDefault();
+  fileZone.classList.remove('drag');
+  fileInput.files = e.dataTransfer.files;
+  fileInput.dispatchEvent(new Event('change'));
+});
+
+/* ── BUILD REVIEW ── */
+function buildReview() {
+  document.getElementById('rv-type').textContent = state.projectType || '—';
+  document.getElementById('rv-products').textContent = state.products.length ? state.products.join(', ') : '—';
+  document.getElementById('rv-service').textContent = state.serviceType || '—';
+  var sqftEl = document.querySelector('select[name="sqft"]');
+  document.getElementById('rv-sqft').textContent = sqftEl && sqftEl.value ? sqftEl.value : '—';
+  var tlEl = document.querySelector('select[name="timeline"]');
+  document.getElementById('rv-timeline').textContent = tlEl && tlEl.value ? tlEl.value : '—';
+  document.getElementById('rv-budget').textContent = state.budget;
+  document.getElementById('rv-name').textContent = state.name || '—';
+  document.getElementById('rv-phone').textContent = state.phone || '—';
+  document.getElementById('rv-email').textContent = state.email || '—';
+  document.getElementById('rv-address').textContent = state.address || '—';
+}
+
+/* ── SUBMIT ── */
+function submitForm() {
+  var btn = document.querySelector('.btn-submit');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+  setTimeout(function() {
+    document.getElementById('step5').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    updateProgress(6);
+    window.scrollTo({ top: document.querySelector('.form-card').offsetTop - 100, behavior: 'smooth' });
+  }, 1400);
+}
 </script>
 </body>
 </html>
