@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Gallery — BlueSky Siding &amp; Cladding Inc.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+:root{--navy:#0B1F3A;--sky:#2C7BE5;--skyL:#4F9EF8;--steel:#4A5D72;--cream:#F5F7FA;--muted:#6B7E92;}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;background:var(--navy);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;}
+.ld-text{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;opacity:0;animation:fadeIn .6s .2s ease forwards;}
+.ld-text span{color:var(--skyL);}
+.ld-track{width:200px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;opacity:0;animation:fadeIn .6s .4s ease forwards;}
+.ld-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--sky),var(--skyL));animation:ldBar 1.6s .5s ease forwards;}
+@keyframes ldBar{to{width:100%;}}
+@keyframes fadeIn{to{opacity:1;}}
+#loader.out{animation:ldOut .7s ease forwards;}
+@keyframes ldOut{to{transform:translateY(-100%);opacity:0;}}
+
+/* ── NAVBAR ── */
+.navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(11,31,58,.08);box-shadow:0 1px 20px rgba(0,0,0,.06);z-index:500;transform:translateY(-100%);animation:navIn .6s 2.1s ease forwards;}
+@keyframes navIn{to{transform:translateY(0);}}
+.nav-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo img{height:52px;}
+.logo-name{font-weight:700;font-size:1.05rem;color:var(--navy);line-height:1.3;}
+.logo-name span{color:var(--sky);}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--steel);transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--sky);transform:scaleX(0);transform-origin:right;transition:transform .3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--sky);}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left;}
+.nav-cta{background:var(--sky)!important;color:#fff!important;padding:.6rem 1.4rem;border-radius:6px;font-weight:600!important;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:#1a6dd0!important;transform:translateY(-2px)!important;box-shadow:0 6px 20px rgba(44,123,229,.35)!important;}
+
+/* ── HERO ── */
+.hero{margin-top:80px;min-height:72vh;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:center;}
+.hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 70% at 65% 45%,rgba(44,123,229,.22) 0%,transparent 65%),radial-gradient(ellipse 50% 60% at 5% 85%,rgba(79,158,248,.12) 0%,transparent 55%);animation:meshShift 12s ease-in-out infinite alternate;}
+@keyframes meshShift{0%{filter:hue-rotate(0deg) brightness(1);}100%{filter:hue-rotate(15deg) brightness(1.08);}}
+.hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(44,123,229,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.07) 1px,transparent 1px);background-size:60px 60px;animation:gridDrift 20s linear infinite;}
+@keyframes gridDrift{0%{background-position:0 0;}100%{background-position:60px 60px;}}
+
+/* Decorative photo strips in hero background */
+.hero-strip-wrap{position:absolute;right:0;top:0;bottom:0;width:44%;z-index:2;overflow:hidden;opacity:0;animation:sLeft .9s 2.4s ease forwards;}
+@keyframes sLeft{to{opacity:1;transform:translateX(0);}}
+.hero-strip-wrap::before{content:'';position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(90deg,var(--navy),transparent);z-index:10;}
+.hero-strip-wrap::after{content:'';position:absolute;inset:0;background:rgba(11,31,58,.45);z-index:9;}
+.strip-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;height:100%;padding:6px;}
+.strip-img{background:#1a3050;border-radius:6px;overflow:hidden;position:relative;}
+.strip-img img{width:100%;height:100%;object-fit:cover;opacity:.7;filter:saturate(1.2);}
+.strip-img:nth-child(even){margin-top:24px;}
+
+.hero-inner{position:relative;z-index:3;max-width:1320px;margin:0 auto;width:100%;padding:6rem 2rem 5rem;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--skyL);margin-bottom:1.2rem;opacity:0;transform:translateX(-30px);animation:sRight .7s 2.2s ease forwards;}
+.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--skyL);display:block;}
+@keyframes sRight{to{opacity:1;transform:translateX(0);}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:700;color:#fff;line-height:1.12;margin-bottom:1.4rem;opacity:0;transform:translateY(40px);animation:sUp .8s 2.35s ease forwards;max-width:580px;}
+.hero h1 em{font-style:italic;color:var(--skyL);}
+@keyframes sUp{to{opacity:1;transform:translateY(0);}}
+.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.85;max-width:500px;margin-bottom:2.5rem;opacity:0;transform:translateY(30px);animation:sUp .8s 2.5s ease forwards;}
+.hero-stats{display:flex;gap:2.5rem;opacity:0;animation:sUp .8s 2.65s ease forwards;}
+.h-stat h3{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--skyL);line-height:1;}
+.h-stat p{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s 3.2s ease forwards;}
+.scroll-hint span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.scroll-mouse{width:22px;height:34px;border:1.5px solid rgba(255,255,255,.25);border-radius:11px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;}
+.scroll-wheel{width:3px;height:8px;background:var(--skyL);border-radius:2px;animation:wheel 1.5s ease-in-out infinite;}
+@keyframes wheel{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(12px);opacity:0;}}
+
+/* ── MARQUEE ── */
+.marquee{background:var(--sky);padding:.9rem 0;overflow:hidden;}
+.marquee-track{display:flex;gap:3rem;width:max-content;animation:mroll 25s linear infinite;}
+@keyframes mroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.marquee-item{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.9);white-space:nowrap;display:flex;align-items:center;gap:1.5rem;}
+.mdot{width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%;display:inline-block;}
+
+/* ── GALLERY SECTION ── */
+.gallery-wrap{background:#0D1E33;padding:7rem 2rem;position:relative;overflow:hidden;}
+.gallery-wrap::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(44,123,229,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.04) 1px,transparent 1px);background-size:70px 70px;}
+.gallery-wrap::after{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(44,123,229,.1),transparent 65%);border-radius:50%;animation:driftOrb 18s ease-in-out infinite alternate;pointer-events:none;}
+@keyframes driftOrb{0%{transform:translate(0,0);}100%{transform:translate(-80px,-60px) scale(1.2);}}
+
+.gallery-inner{max-width:1380px;margin:0 auto;position:relative;z-index:1;}
+
+/* Section header */
+.sec-hdr{margin-bottom:3rem;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem;}
+.sec-label{font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--skyL);margin-bottom:.8rem;display:flex;align-items:center;gap:8px;}
+.sec-label::after{content:'';width:40px;height:1px;background:var(--skyL);opacity:.5;}
+.sec-heading{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,3rem);font-weight:700;color:#fff;line-height:1.15;}
+.sec-heading em{font-style:italic;color:var(--skyL);}
+.sec-hdr-right p{font-size:1rem;color:rgba(255,255,255,.45);max-width:380px;line-height:1.8;}
+
+/* Filter row */
+.filter-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:3rem;}
+.filter-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.05em;padding:.5rem 1.2rem;border-radius:50px;cursor:pointer;transition:all .25s;}
+.filter-btn:hover{background:rgba(44,123,229,.2);border-color:rgba(44,123,229,.4);color:#fff;}
+.filter-btn.active{background:var(--sky);border-color:var(--sky);color:#fff;}
+
+/* ── MASONRY GALLERY GRID ── */
+.gallery-grid{
+  columns: 4;
+  column-gap: 14px;
+}
+.g-item{
+  break-inside: avoid;
+  margin-bottom: 14px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(28px) scale(.97);
+  transition: opacity .55s ease, transform .55s ease;
+  display: block;
+}
+.g-item.on{opacity:1;transform:translateY(0) scale(1);}
+
+/* Placeholder images (colored panels with overlaid text) */
+.g-img{
+  width:100%;display:block;
+  aspect-ratio: var(--ar, 4/3);
+  background: var(--bg, #1a3050);
+  position: relative;
+  overflow: hidden;
+}
+.g-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition: transform .7s cubic-bezier(.25,.46,.45,.94), filter .5s;
+  filter: brightness(.8) saturate(1.1);
+}
+.g-item:hover .g-img img{transform:scale(1.08);filter:brightness(.55) saturate(1.25);}
+
+/* Placeholder for missing images */
+.g-placeholder{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.5rem;
+  background: linear-gradient(135deg, var(--c1, #1a3050), var(--c2, #0b1f3a));
+  transition: filter .4s;
+}
+.g-item:hover .g-placeholder{filter:brightness(.7);}
+.g-placeholder-ico{font-size:2.2rem;opacity:.35;}
+.g-placeholder-lbl{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);}
+
+/* Category badge */
+.g-badge{
+  position:absolute;top:12px;left:12px;z-index:5;
+  background:rgba(11,31,58,.82);backdrop-filter:blur(10px);
+  border:1px solid rgba(79,158,248,.35);
+  color:var(--skyL);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.25rem .8rem;border-radius:50px;
+  transition: background .3s, border-color .3s;
+}
+.g-item:hover .g-badge{background:var(--sky);border-color:var(--sky);color:#fff;}
+
+/* Overlay info */
+.g-overlay{
+  position:absolute;inset:0;z-index:4;
+  background:linear-gradient(180deg,transparent 45%,rgba(5,15,30,.88) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:1.2rem 1.4rem;
+  opacity:0;transition:opacity .35s;
+}
+.g-item:hover .g-overlay{opacity:1;}
+.g-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.25rem;}
+.g-meta{font-size:.74rem;color:rgba(255,255,255,.6);font-weight:500;}
+.g-zoom{
+  position:absolute;top:12px;right:12px;z-index:10;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.9rem;
+  opacity:0;transform:scale(.7);
+  transition:opacity .3s,transform .3s cubic-bezier(.34,1.56,.64,1),background .2s;
+}
+.g-item:hover .g-zoom{opacity:1;transform:scale(1);}
+.g-zoom:hover{background:var(--sky);border-color:var(--sky);}
+
+/* ── LIGHTBOX ── */
+.lightbox{
+  position:fixed;inset:0;z-index:8000;
+  background:rgba(5,10,20,.94);backdrop-filter:blur(20px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s;
+}
+.lightbox.open{opacity:1;pointer-events:all;}
+.lb-inner{
+  max-width:1000px;width:92%;
+  background:#0d1e33;border-radius:18px;overflow:hidden;
+  border:1px solid rgba(79,158,248,.2);
+  box-shadow:0 60px 120px rgba(0,0,0,.6);
+  transform:scale(.9) translateY(30px);
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.lightbox.open .lb-inner{transform:scale(1) translateY(0);}
+.lb-img-wrap{position:relative;background:#0b1f3a;}
+.lb-img{width:100%;max-height:62vh;object-fit:contain;display:block;}
+.lb-placeholder{width:100%;height:380px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.8rem;background:linear-gradient(135deg,#1a3050,#0b1f3a);}
+.lb-placeholder-ico{font-size:3.5rem;opacity:.3;}
+.lb-placeholder-txt{font-size:.8rem;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;}
+.lb-info{padding:1.6rem 2rem 2rem;}
+.lb-cat{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--skyL);margin-bottom:.4rem;}
+.lb-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.lb-desc{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.75;}
+.lb-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .2s;z-index:10;}
+.lb-close:hover{background:rgba(224,82,82,.7);transform:scale(1.08);}
+.lb-nav{display:flex;gap:.6rem;margin-top:1.2rem;}
+.lb-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);padding:.5rem 1.2rem;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.4rem;}
+.lb-btn:hover{background:var(--sky);border-color:var(--sky);color:#fff;}
+.lb-cta{margin-left:auto;background:var(--sky);border-color:var(--sky);color:#fff;}
+.lb-cta:hover{background:#1a6dd0;}
+
+/* ── STATS BAND ── */
+.stats-band{background:var(--navy);padding:5rem 2rem;position:relative;overflow:hidden;}
+.stats-band::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(44,123,229,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.06) 1px,transparent 1px);background-size:55px 55px;}
+.stats-band::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(44,123,229,.14) 0%,transparent 60%);}
+.stats-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;z-index:2;}
+.s-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:2rem 1.5rem;text-align:center;transition:background-color .3s,border-color .3s,transform .3s;}
+.s-item:hover{background:rgba(44,123,229,.12);border-color:rgba(44,123,229,.25);transform:translateY(-5px);}
+.s-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:var(--skyL);line-height:1;margin-bottom:.4rem;}
+.s-lbl{font-size:.82rem;color:rgba(255,255,255,.5);font-weight:500;text-transform:uppercase;letter-spacing:.08em;}
+
+/* ── UPLOAD CTA BAND ── */
+.upload-band{background:var(--cream);padding:6rem 2rem;position:relative;overflow:hidden;}
+.upload-band::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(44,123,229,.06),transparent 70%);border-radius:50%;}
+.upload-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1;}
+.upload-text .sec-label{color:var(--sky);}
+.upload-text .sec-label::after{background:var(--sky);}
+.upload-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,2.5vw,2.6rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:1rem;}
+.upload-text h2 em{font-style:italic;color:var(--sky);}
+.upload-text p{font-size:1rem;color:var(--muted);line-height:1.9;margin-bottom:2rem;}
+.upload-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.uc{background:#fff;border-radius:12px;padding:1.4rem 1.2rem;border:1px solid rgba(11,31,58,.07);display:flex;gap:.9rem;align-items:flex-start;transition:border-color .25s,box-shadow .25s,transform .25s;}
+.uc:hover{border-color:rgba(44,123,229,.2);box-shadow:0 12px 35px rgba(44,123,229,.08);transform:translateY(-3px);}
+.uc-ico{font-size:1.4rem;min-width:28px;}
+.uc-txt strong{display:block;font-size:.85rem;font-weight:600;color:var(--navy);margin-bottom:.15rem;}
+.uc-txt span{font-size:.8rem;color:var(--muted);line-height:1.55;}
+.btn-sky{display:inline-block;background:var(--sky);color:#fff;padding:.95rem 2.2rem;border-radius:8px;font-weight:700;font-size:.92rem;text-decoration:none;box-shadow:0 6px 24px rgba(44,123,229,.3);transition:transform .2s,box-shadow .2s,background .2s;}
+.btn-sky:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(44,123,229,.4);background:#1a6dd0;}
+
+/* ── CTA ── */
+.cta-section{background:linear-gradient(135deg,#1056bb 0%,var(--sky) 60%,#38b6ff 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px);}
+.corb{position:absolute;border-radius:50%;background:rgba(255,255,255,.06);animation:orbF linear infinite;}
+.corb:nth-child(1){width:320px;height:320px;top:-80px;left:-80px;animation-duration:18s;}
+.corb:nth-child(2){width:220px;height:220px;bottom:-60px;right:-50px;animation-duration:14s;}
+.corb:nth-child(3){width:160px;height:160px;top:40%;right:12%;animation-duration:22s;}
+@keyframes orbF{0%,100%{transform:translateY(0) rotate(0deg);}33%{transform:translateY(-30px) rotate(120deg);}66%{transform:translateY(20px) rotate(240deg);}}
+.cta-inner{position:relative;z-index:2;max-width:720px;margin:0 auto;}
+.cta-inner h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:700;color:#fff;margin-bottom:1.2rem;line-height:1.15;}
+.cta-inner p{font-size:1.05rem;color:rgba(255,255,255,.8);line-height:1.8;margin-bottom:2.8rem;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-solid{display:inline-block;background:#fff;color:var(--sky);padding:.95rem 2.4rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;box-shadow:0 6px 30px rgba(0,0,0,.2);transition:transform .2s,box-shadow .2s;}
+.btn-solid:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,.3);}
+.btn-outline{display:inline-block;background:transparent;color:#fff;padding:.95rem 2.4rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.5);transition:border-color .2s,background-color .2s,transform .2s;}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-3px);}
+
+/* ── FOOTER ── */
+.footer{background:var(--cream);border-top:1px solid rgba(0,0,0,.06);padding:4.5rem 2rem 2rem;}
+.footer-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.flogo{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.flogo img{height:50px;}
+.flogo-name{font-weight:700;font-size:.95rem;color:var(--navy);}
+.flogo-name span{color:var(--sky);}
+.fdesc{font-size:.9rem;color:var(--muted);line-height:1.8;}
+.footer h4{font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);margin-bottom:1.4rem;}
+.footer ul{list-style:none;}
+.footer ul li{margin-bottom:.75rem;}
+.footer ul a{font-size:.9rem;color:var(--muted);text-decoration:none;transition:color .2s,padding-left .2s;}
+.footer ul a:hover{color:var(--sky);padding-left:4px;}
+.fcopy{border-top:1px solid rgba(0,0,0,.08);padding-top:1.5rem;font-size:.85rem;color:var(--muted);text-align:center;}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.rv.l{transform:translateX(-40px);}
+.rv.r{transform:translateX(40px);}
+.rv.sc{transform:scale(.92);}
+.rv.on{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){.gallery-grid{columns:3;}}
+@media(max-width:900px){
+  .gallery-grid{columns:2;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .upload-inner{grid-template-columns:1fr;gap:3rem;}
+  .hero-strip-wrap{display:none;}
+}
+@media(max-width:600px){
+  .nav-links{display:none;}
+  .gallery-grid{columns:1;}
+  .upload-cards{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+  .cta-btns{flex-direction:column;align-items:center;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .lb-nav{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-text">Blue Sky <span>Siding</span></div>
+  <div class="ld-track"><div class="ld-bar"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.jpg" alt="BlueSky Siding">
+      <span class="logo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="quote.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
+
+  <!-- Decorative right-side strip (replace src with real images) -->
+  <div class="hero-strip-wrap">
+    <div class="strip-grid">
+      <div class="strip-img"><img src="images/metal-siding.jpg" alt="Project"></div>
+      <div class="strip-img"><img src="images/metal-cladding.jpg" alt="Project"></div>
+      <div class="strip-img"><img src="images/acm-panels.jpg" alt="Project"></div>
+      <div class="strip-img"><img src="images/flat-roof.jpg" alt="Project"></div>
+    </div>
+  </div>
+
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Our Work</p>
+    <h1>Projects &amp;<br><em>Portfolio Gallery.</em></h1>
+    <p class="hero-desc">Browse our completed projects and equipment. From custom metal cladding to standing seam roofs — see the quality and craftsmanship that sets BlueSky apart.</p>
+    <div class="hero-stats">
+      <div class="h-stat"><h3>100+</h3><p>Projects Completed</p></div>
+      <div class="h-stat"><h3>8+</h3><p>Product Lines</p></div>
+      <div class="h-stat"><h3>GTA</h3><p>Coverage Area</p></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-mouse"><div class="scroll-wheel"></div></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item">Completed Projects <span class="mdot"></span></div>
+    <div class="marquee-item">Metal Siding <span class="mdot"></span></div>
+    <div class="marquee-item">Metal Cladding <span class="mdot"></span></div>
+    <div class="marquee-item">ACM Panels <span class="mdot"></span></div>
+    <div class="marquee-item">Standing Seam Roof <span class="mdot"></span></div>
+    <div class="marquee-item">Custom Copper Work <span class="mdot"></span></div>
+    <div class="marquee-item">Eavestrough &amp; Downspout <span class="mdot"></span></div>
+    <div class="marquee-item">Equipment &amp; Machinery <span class="mdot"></span></div>
+    <div class="marquee-item">Completed Projects <span class="mdot"></span></div>
+    <div class="marquee-item">Metal Siding <span class="mdot"></span></div>
+    <div class="marquee-item">Metal Cladding <span class="mdot"></span></div>
+    <div class="marquee-item">ACM Panels <span class="mdot"></span></div>
+    <div class="marquee-item">Standing Seam Roof <span class="mdot"></span></div>
+    <div class="marquee-item">Custom Copper Work <span class="mdot"></span></div>
+    <div class="marquee-item">Eavestrough &amp; Downspout <span class="mdot"></span></div>
+    <div class="marquee-item">Equipment &amp; Machinery <span class="mdot"></span></div>
+  </div>
+</div>
+
+<!-- GALLERY SECTION -->
+<section class="gallery-wrap">
+  <div class="gallery-inner">
+
+    <!-- Header -->
+    <div class="sec-hdr rv l">
+      <div>
+        <p class="sec-label">Portfolio</p>
+        <h2 class="sec-heading">Our Work, <em>Documented.</em></h2>
+      </div>
+      <div class="sec-hdr-right"><p>Every project tells a story. Browse our completed installations, custom fabrications, and the equipment that makes it all possible.</p></div>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="filter-row rv">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="siding">Metal Siding</button>
+      <button class="filter-btn" data-filter="cladding">Cladding</button>
+      <button class="filter-btn" data-filter="roofing">Roofing</button>
+      <button class="filter-btn" data-filter="trim">Trim &amp; Details</button>
+      <button class="filter-btn" data-filter="copper">Copper Work</button>
+      <button class="filter-btn" data-filter="machinery">Machinery</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         MASONRY GALLERY GRID
+         To add your images:
+           1. Place image files in your /images/ folder
+           2. Set src="images/your-photo.jpg" on each <img>
+           3. Remove or keep the .g-placeholder div as needed
+           4. Update data-title and data-desc for the lightbox
+         To add MORE items: copy any .g-item block and paste it in.
+    ═══════════════════════════════════════ -->
+    <div class="gallery-grid" id="galleryGrid">
+
+      <!-- ── PROJECT 1: Metal Siding – Residential ── -->
+      <div class="g-item" data-category="siding"
+           data-title="Residential Metal Siding — Mississauga"
+           data-cat="Metal Siding"
+           data-desc="Full exterior metal siding installation on a custom two-storey home in Mississauga. Charcoal steel panel system with concealed fasteners and factory-matched trim.">
+        <div class="g-img" style="--ar:4/5;">
+          <!-- Replace with: <img src="images/project-01.jpg" alt="Residential Metal Siding"> -->
+          <div class="g-placeholder" style="--c1:#1e3a5f;--c2:#0b1f3a;aspect-ratio:4/5;">
+            <span class="g-placeholder-ico">🏠</span>
+            <span class="g-placeholder-lbl">project-01.jpg</span>
+          </div>
+        </div>
+        <span class="g-badge">Residential</span>
+        <div class="g-overlay">
+          <div class="g-title">Metal Siding — Mississauga</div>
+          <div class="g-meta">Charcoal Steel · 1,800 sq ft</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 2: ACM Panels – Commercial ── -->
+      <div class="g-item" data-category="cladding"
+           data-title="ACM Cladding — Commercial Office, Brampton"
+           data-cat="Metal Cladding / ACM"
+           data-desc="Aluminum composite panel (ACM) cladding system installed on a four-storey commercial office building. Dual-tone silver and charcoal finish with routed panel joints.">
+        <div class="g-img" style="--ar:3/4;">
+          <div class="g-placeholder" style="--c1:#203a5c;--c2:#0f2540;aspect-ratio:3/4;">
+            <span class="g-placeholder-ico">🏢</span>
+            <span class="g-placeholder-lbl">project-02.jpg</span>
+          </div>
+        </div>
+        <span class="g-badge">Commercial</span>
+        <div class="g-overlay">
+          <div class="g-title">ACM Cladding — Brampton</div>
+          <div class="g-meta">ACM Panels · 4,200 sq ft</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 3: Standing Seam Roof ── -->
+      <div class="g-item" data-category="roofing"
+           data-title="Standing Seam Metal Roof — Oakville"
+           data-cat="Roofing"
+           data-desc="Continuous standing seam roof installation over a large residential addition. Galvanized steel with concealed clip fastener system for thermal movement. Zero leak guarantee.">
+        <div class="g-img" style="--ar:16/10;">
+          <div class="g-placeholder" style="--c1:#1a3a52;--c2:#0a1f35;aspect-ratio:16/10;">
+            <span class="g-placeholder-ico">🏠</span>
+            <span class="g-placeholder-lbl">project-03.jpg</span>
+          </div>
+        </div>
+        <span class="g-badge">Roofing</span>
+        <div class="g-overlay">
+          <div class="g-title">Standing Seam Roof — Oakville</div>
+          <div class="g-meta">Galvanized Steel · 2,600 sq ft</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 4: Eavestrough & Downspout ── -->
+      <div class="g-item" data-category="trim"
+           data-title="Seamless Eavestrough — North York"
+           data-cat="Eavestrough &amp; Downspout"
+           data-desc="Full perimeter seamless aluminum eavestrough replacement with colour-matched downspouts and leaf guard system on a semi-detached home in North York.">
+        <div class="g-img" style="--ar:4/3;">
+          <div class="g-placeholder" style="--c1:#162e4a;--c2:#091b30;aspect-ratio:4/3;">
+            <span class="g-placeholder-ico">💧</span>
+            <span class="g-placeholder-lbl">project-04.jpg</span>
+          </div>
+        </div>
+        <div class="g-overlay">
+          <div class="g-title">Eavestrough — North York</div>
+          <div class="g-meta">Seamless Aluminum · Full Perimeter</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 5: Machinery / Roll Former ── -->
+      <div class="g-item" data-category="machinery"
+           data-title="Standing Seam Roll Former"
+           data-cat="Equipment &amp; Machinery"
+           data-desc="Our on-site portable standing seam roll former allows us to fabricate continuous panels to any length — right at your job site. No seams, no limits.">
+        <div class="g-img" style="--ar:4/5;">
+          <div class="g-placeholder" style="--c1:#263350;--c2:#101e35;aspect-ratio:4/5;">
+            <span class="g-placeholder-ico">⚙️</span>
+            <span class="g-placeholder-lbl">machinery-01.jpg</span>
+          </div>
+        </div>
+        <span class="g-badge">Machinery</span>
+        <div class="g-overlay">
+          <div class="g-title">Standing Seam Roll Former</div>
+          <div class="g-meta">On-Site Portable Fabrication</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 6: Copper Work ── -->
+      <div class="g-item" data-category="copper"
+           data-title="Custom Copper Bay Window Cap — Etobicoke"
+           data-cat="Custom Copper Work"
+           data-desc="Hand-formed copper capping over a Victorian bay window. Includes mitered corners, soldered seams, and drip edge flashing. Will patina beautifully over time.">
+        <div class="g-img" style="--ar:4/3;">
+          <div class="g-placeholder" style="--c1:#3d2e1a;--c2:#1e1508;aspect-ratio:4/3;">
+            <span class="g-placeholder-ico">✨</span>
+            <span class="g-placeholder-lbl">project-06.jpg</span>
+          </div>
+        </div>
+        <span class="g-badge">Specialty</span>
+        <div class="g-overlay">
+          <div class="g-title">Copper Bay Window Cap — Etobicoke</div>
+          <div class="g-meta">Custom Copper · Hand-Formed</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 7: Metal Cladding – Retail ── -->
+      <div class="g-item" data-category="cladding"
+           data-title="Corrugated Metal Cladding — Retail Strip, Vaughan"
+           data-cat="Metal Cladding"
+           data-desc="Corrugated galvanized steel cladding on a retail strip plaza renovation in Vaughan. Rust-proof coating with a modern industrial aesthetic. Installed in under two weeks.">
+        <div class="g-img" style="--ar:3/4;">
+          <div class="g-placeholder" style="--c1:#1e3650;--c2:#0e2038;aspect-ratio:3/4;">
+            <span class="g-placeholder-ico">🏗️</span>
+            <span class="g-placeholder-lbl">project-07.jpg</span>
+          </div>
+        </div>
+        <div class="g-overlay">
+          <div class="g-title">Corrugated Cladding — Vaughan</div>
+          <div class="g-meta">Galvanized Steel · Retail</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 8: Machinery / Brake Press ── -->
+      <div class="g-item" data-category="machinery"
+           data-title="Sheet Metal Brake Press"
+           data-cat="Equipment &amp; Machinery"
+           data-desc="Our precision sheet metal brake allows us to custom-form coping, flashing, fascia, and trim pieces to exact specifications — in-house, on demand.">
+        <div class="g-img" style="--ar:1/1;">
+          <div class="g-placeholder" style="--c1:#1f2f4a;--c2:#0d1a2e;aspect-ratio:1/1;">
+            <span class="g-placeholder-ico">🔩</span>
+            <span class="g-placeholder-lbl">machinery-02.jpg</span>
+          </div>
+        </div>
+        <span class="g-badge">Machinery</span>
+        <div class="g-overlay">
+          <div class="g-title">Sheet Metal Brake Press</div>
+          <div class="g-meta">In-House Custom Fabrication</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 9: Soffit & Fascia ── -->
+      <div class="g-item" data-category="trim"
+           data-title="Soffit &amp; Fascia Replacement — Scarborough"
+           data-cat="Soffit &amp; Fascia"
+           data-desc="Full soffit and fascia replacement using ventilated aluminum soffit and pre-painted steel fascia. Color-matched to existing trim for a seamless finished look.">
+        <div class="g-img" style="--ar:16/10;">
+          <div class="g-placeholder" style="--c1:#172a40;--c2:#09172a;aspect-ratio:16/10;">
+            <span class="g-placeholder-ico">🔲</span>
+            <span class="g-placeholder-lbl">project-09.jpg</span>
+          </div>
+        </div>
+        <div class="g-overlay">
+          <div class="g-title">Soffit &amp; Fascia — Scarborough</div>
+          <div class="g-meta">Ventilated Aluminum · Full House</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 10: Metal Siding – Multi-Res ── -->
+      <div class="g-item" data-category="siding"
+           data-title="Multi-Res Metal Siding — Mississauga Condo"
+           data-cat="Metal Siding"
+           data-desc="Eight-storey condominium exterior reclad with horizontal aluminum panel siding. Engineered rain-screen system with continuous insulation. Project completed over 14 weeks.">
+        <div class="g-img" style="--ar:4/5;">
+          <div class="g-placeholder" style="--c1:#193348;--c2:#0b1f33;aspect-ratio:4/5;">
+            <span class="g-placeholder-ico">🏢</span>
+            <span class="g-placeholder-lbl">project-10.jpg</span>
+          </div>
+        </div>
+        <span class="g-badge">Multi-Residential</span>
+        <div class="g-overlay">
+          <div class="g-title">Condo Re-Clad — Mississauga</div>
+          <div class="g-meta">Aluminum Panel · 8 Storeys</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 11: Coping & Flashing ── -->
+      <div class="g-item" data-category="trim"
+           data-title="Counter Coping &amp; Parapet Flashing"
+           data-cat="Coping &amp; Flashing"
+           data-desc="Custom-formed aluminum coping caps and parapet wall flashing on a flat-roof commercial building. Fully waterproofed with standing seam flashing and sealant.">
+        <div class="g-img" style="--ar:4/3;">
+          <div class="g-placeholder" style="--c1:#1c3050;--c2:#0e1e36;aspect-ratio:4/3;">
+            <span class="g-placeholder-ico">🛡️</span>
+            <span class="g-placeholder-lbl">project-11.jpg</span>
+          </div>
+        </div>
+        <div class="g-overlay">
+          <div class="g-title">Coping &amp; Flashing — Commercial</div>
+          <div class="g-meta">Custom Aluminum · Parapet Wall</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+      <!-- ── PROJECT 12: Machinery / Truck & Equipment ── -->
+      <div class="g-item" data-category="machinery"
+           data-title="BlueSky Fleet &amp; Equipment"
+           data-cat="Equipment &amp; Machinery"
+           data-desc="Our fully equipped service fleet carries all tools, materials, and safety gear needed for any project size — from a single house to a multi-storey commercial build.">
+        <div class="g-img" style="--ar:16/9;">
+          <div class="g-placeholder" style="--c1:#1a2e48;--c2:#0c1b2e;aspect-ratio:16/9;">
+            <span class="g-placeholder-ico">🚛</span>
+            <span class="g-placeholder-lbl">machinery-03.jpg</span>
+          </div>
+        </div>
+        <span class="g-badge">Machinery</span>
+        <div class="g-overlay">
+          <div class="g-title">Fleet &amp; Equipment</div>
+          <div class="g-meta">Fully Equipped · GTA-Ready</div>
+        </div>
+        <div class="g-zoom" onclick="openLightbox(this.closest('.g-item'))">&#x26F6;</div>
+      </div>
+
+    </div><!-- /gallery-grid -->
+  </div>
+</section>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+    <div class="lb-img-wrap" id="lbImgWrap">
+      <!-- Image or placeholder injected by JS -->
+    </div>
+    <div class="lb-info">
+      <p class="lb-cat" id="lbCat"></p>
+      <h3 class="lb-title" id="lbTitle"></h3>
+      <p class="lb-desc" id="lbDesc"></p>
+      <div class="lb-nav">
+        <button class="lb-btn" onclick="shiftLightbox(-1)">&#8592; Prev</button>
+        <button class="lb-btn" onclick="shiftLightbox(1)">Next &#8594;</button>
+        <a href="quote.html" class="lb-btn lb-cta">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAND -->
+<section class="stats-band">
+  <div class="stats-inner rv">
+    <div class="s-item rv sc d1"><div class="s-num">100+</div><div class="s-lbl">Projects Completed</div></div>
+    <div class="s-item rv sc d2"><div class="s-num">8+</div><div class="s-lbl">Product Lines</div></div>
+    <div class="s-item rv sc d3"><div class="s-num">GTA</div><div class="s-lbl">Service Coverage</div></div>
+    <div class="s-item rv sc d4"><div class="s-num">4+</div><div class="s-lbl">Years Experience</div></div>
+  </div>
+</section>
+
+<!-- UPLOAD CTA BAND -->
+<section class="upload-band">
+  <div class="upload-inner">
+    <div class="upload-text rv l">
+      <p class="sec-label">Share Your Project</p>
+      <h2>Want to see your project<br><em>featured here?</em></h2>
+      <p>We photograph every completed project. If you're a past client and want to see your building in our gallery, or if you have plans ready for a new project, reach out to us.</p>
+      <a href="contact.html" class="btn-sky">Contact Our Team</a>
+    </div>
+    <div class="upload-cards rv r d2">
+      <div class="uc">
+        <div class="uc-ico">📸</div>
+        <div class="uc-txt">
+          <strong>Professional Photos</strong>
+          <span>We document every project with high-quality photography</span>
+        </div>
+      </div>
+      <div class="uc">
+        <div class="uc-ico">🏗️</div>
+        <div class="uc-txt">
+          <strong>Before &amp; After</strong>
+          <span>See the transformation from start to finished install</span>
+        </div>
+      </div>
+      <div class="uc">
+        <div class="uc-ico">📐</div>
+        <div class="uc-txt">
+          <strong>Share Your Plans</strong>
+          <span>Upload drawings or site photos for an accurate quote</span>
+        </div>
+      </div>
+      <div class="uc">
+        <div class="uc-ico">🤝</div>
+        <div class="uc-txt">
+          <strong>Client Partnerships</strong>
+          <span>Long-term relationships with builders and architects</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="corb"></div><div class="corb"></div><div class="corb"></div>
+  <div class="cta-inner rv sc">
+    <h2>Ready to Start Your Project?</h2>
+    <p>Let's transform your building's exterior with premium materials and expert craftsmanship. Get a free, no-obligation quote today.</p>
+    <div class="cta-btns">
+      <a href="quote.html" class="btn-solid">Request a Quote</a>
+      <a href="tel:+14167415140" class="btn-outline">Call (416) 741-5140</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="flogo"><img src="images/logo.jpg" alt="BlueSky Siding"><span class="flogo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></div>
+      <p class="fdesc">Leading provider of premium metal siding and cladding solutions. Quality materials, expert craftsmanship, outstanding results.</p>
+    </div>
+    <div><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+    <div><h4>Services</h4><ul><li><a href="services.html">Metal Cladding</a></li><li><a href="services.html">Aluminum Siding</a></li><li><a href="services.html">Custom Fabrication</a></li><li><a href="services.html">Installation</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="tel:+14167415140">(416) 741-5140</a></li><li><a href="mailto:info@blueskysiding.ca">info@blueskysiding.ca</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+  </div>
+  <div class="fcopy">&copy; 2022 BlueSky Siding &amp; Cladding Inc. All rights reserved.</div>
+</footer>
+
+<script>
+/* ── LOADER ── */
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    var l = document.getElementById('loader');
+    l.classList.add('out');
+    setTimeout(function(){ l.style.display = 'none'; }, 700);
+  }, 2100);
+});
+
+/* ── SCROLL REVEAL ── */
+var ro = new IntersectionObserver(function(entries){
+  entries.forEach(function(e, i){
+    if(e.isIntersecting){ setTimeout(function(){ e.target.classList.add('on'); }, i * 70); ro.unobserve(e.target); }
+  });
+}, { threshold: .1 });
+document.querySelectorAll('.rv').forEach(function(el){ ro.observe(el); });
+
+/* ── GALLERY STAGGER ── */
+var go = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.g-item:not([style*="display: none"])'));
+      var idx = cards.indexOf(entry.target);
+      setTimeout(function(){ entry.target.classList.add('on'); }, idx * 75);
+      go.unobserve(entry.target);
+    }
+  });
+}, { threshold: .06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.g-item').forEach(function(c){ go.observe(c); });
+
+/* ── FILTER ── */
+var filterBtns = document.querySelectorAll('.filter-btn');
+var allItems   = document.querySelectorAll('.g-item');
+
+filterBtns.forEach(function(btn){
+  btn.addEventListener('click', function(){
+    filterBtns.forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    var filter = btn.dataset.filter;
+
+    allItems.forEach(function(item, i){
+      var show = filter === 'all' || item.dataset.category === filter;
+      if(show){
+        item.style.display = '';
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px) scale(.97)';
+        setTimeout(function(){
+          item.style.transition = 'opacity .45s ease, transform .45s ease';
+          item.style.opacity = '1';
+          item.style.transform = 'translateY(0) scale(1)';
+        }, i * 60 + 20);
+      } else {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(10px) scale(.96)';
+        setTimeout(function(){ item.style.display = 'none'; }, 350);
+      }
+    });
+  });
+});
+
+/* ── LIGHTBOX ── */
+var currentItems = [];
+var currentIdx   = 0;
+
+function getVisibleItems(){
+  return Array.prototype.slice.call(document.querySelectorAll('.g-item')).filter(function(i){
+    return i.style.display !== 'none';
+  });
+}
+
+function openLightbox(item){
+  currentItems = getVisibleItems();
+  currentIdx   = currentItems.indexOf(item);
+  renderLightbox(currentIdx);
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function shiftLightbox(dir){
+  currentIdx = (currentIdx + dir + currentItems.length) % currentItems.length;
+  renderLightbox(currentIdx);
+}
+
+function renderLightbox(idx){
+  var item   = currentItems[idx];
+  var title  = item.dataset.title  || '';
+  var cat    = item.dataset.cat    || '';
+  var desc   = item.dataset.desc   || '';
+  var imgEl  = item.querySelector('.g-img img');
+  var wrap   = document.getElementById('lbImgWrap');
+
+  document.getElementById('lbTitle').textContent = title;
+  document.getElementById('lbCat').textContent   = cat;
+  document.getElementById('lbDesc').textContent  = desc;
+
+  if(imgEl && imgEl.src && !imgEl.src.endsWith('/')){
+    wrap.innerHTML = '<img class="lb-img" src="' + imgEl.src + '" alt="' + title + '">';
+  } else {
+    var ico = item.querySelector('.g-placeholder-ico');
+    wrap.innerHTML = '<div class="lb-placeholder"><span class="lb-placeholder-ico">' +
+      (ico ? ico.textContent : '📷') +
+      '</span><span class="lb-placeholder-txt">Add your image here</span></div>';
+  }
+}
+
+/* Close lightbox on backdrop click */
+document.getElementById('lightbox').addEventListener('click', function(e){
+  if(e.target === this) closeLightbox();
+});
+
+/* Keyboard nav */
+document.addEventListener('keydown', function(e){
+  if(!document.getElementById('lightbox').classList.contains('open')) return;
+  if(e.key === 'Escape')     closeLightbox();
+  if(e.key === 'ArrowRight') shiftLightbox(1);
+  if(e.key === 'ArrowLeft')  shiftLightbox(-1);
+});
+
+/* ── NAVBAR SHADOW ── */
+window.addEventListener('scroll', function(){
+  document.querySelector('.navbar').style.boxShadow = scrollY >= 40
+    ? '0 4px 20px rgba(0,0,0,.1)' : '0 1px 20px rgba(0,0,0,.06)';
+});
+
+/* ── MAGNETIC BUTTONS ── */
+document.querySelectorAll('.btn-solid, .btn-outline, .btn-sky, .nav-cta').forEach(function(btn){
+  btn.addEventListener('mousemove', function(e){
+    var r = btn.getBoundingClientRect();
+    btn.style.transform = 'translate(' + (e.clientX-(r.left+r.width/2))*.28 + 'px,' + (e.clientY-(r.top+r.height/2))*.28 + 'px)';
+  });
+  btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+});
+</script>
+</body>
+</html>
