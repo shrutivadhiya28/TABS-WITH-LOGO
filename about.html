@@ -82,9 +82,6 @@ body {
 .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--skyL); line-height: 1; }
 .stat-lbl { font-size: .8rem; color: rgba(255,255,255,.5); margin-top: .4rem; font-weight: 500; }
 
-/* ══════════════════════════════════════════════════
-   HERO IMAGE + ANIMATED LABELS
-══════════════════════════════════════════════════ */
 .hero-image-wrap {
   position: relative;
   opacity: 0; transform: translateX(50px);
@@ -106,22 +103,18 @@ body {
 }
 @keyframes framePulse { 0%,100%{opacity:.4;} 50%{opacity:1;} }
 
-/* Label container sits on top of the image */
 .img-labels {
   position: absolute; inset: 0; z-index: 10; pointer-events: none;
   border-radius: 14px; overflow: hidden;
 }
 
-/* ── Individual label chip ── */
 .img-label {
   position: absolute;
   display: flex; align-items: center; gap: 7px;
   pointer-events: auto;
   opacity: 0;
-  /* Each label animates in via JS-assigned class */
 }
 
-/* The pill itself */
 .img-label .pill {
   display: flex; align-items: center; gap: 6px;
   background: rgba(11, 31, 58, 0.82);
@@ -140,7 +133,6 @@ body {
   box-shadow: 0 8px 32px rgba(44,123,229,.4), 0 0 0 3px rgba(44,123,229,.15);
 }
 
-/* Glowing dot */
 .img-label .dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--skyL);
@@ -158,7 +150,6 @@ body {
   text-transform: uppercase; color: #fff; line-height: 1;
 }
 
-/* Leader line from pill to point on image */
 .img-label .line {
   position: absolute;
   background: linear-gradient(to right, rgba(79,158,248,.7), rgba(79,158,248,.15));
@@ -167,9 +158,6 @@ body {
   border-radius: 2px;
 }
 
-/* ── ENTRY ANIMATIONS ── */
-
-/* Pop in from nothing with bounce */
 @keyframes labelPopIn {
   0%   { opacity: 0; transform: scale(0.4) translateY(10px); }
   60%  { opacity: 1; transform: scale(1.08) translateY(-2px); }
@@ -177,40 +165,34 @@ body {
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Slide in from left */
 @keyframes labelSlideRight {
   0%   { opacity: 0; transform: translateX(-40px); }
   60%  { opacity: 1; transform: translateX(6px); }
   100% { opacity: 1; transform: translateX(0); }
 }
 
-/* Slide in from right */
 @keyframes labelSlideLeft {
   0%   { opacity: 0; transform: translateX(40px); }
   60%  { opacity: 1; transform: translateX(-6px); }
   100% { opacity: 1; transform: translateX(0); }
 }
 
-/* Fly up from below */
 @keyframes labelFlyUp {
   0%   { opacity: 0; transform: translateY(30px) scale(0.8); }
   65%  { opacity: 1; transform: translateY(-4px) scale(1.03); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Gentle float after appearing */
 @keyframes labelFloat {
   0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-5px); }
 }
 
-/* Line draw from 0 to full width */
 @keyframes lineDraw {
   from { width: 0; opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* ── SCAN LINE EFFECT ── */
 .scan-line {
   position: absolute; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, transparent, rgba(79,158,248,.6), transparent);
@@ -225,7 +207,6 @@ body {
   100% { top: 100%; opacity: 0; }
 }
 
-/* ── CORNER BRACKETS ── */
 .corner { position: absolute; width: 18px; height: 18px; z-index: 15; pointer-events: none; }
 .corner.tl { top: 8px; left: 8px; border-top: 2px solid var(--skyL); border-left: 2px solid var(--skyL); border-radius: 2px 0 0 0; animation: cornerFade .5s 2.9s ease forwards; opacity: 0; }
 .corner.tr { top: 8px; right: 8px; border-top: 2px solid var(--skyL); border-right: 2px solid var(--skyL); border-radius: 0 2px 0 0; animation: cornerFade .5s 3.0s ease forwards; opacity: 0; }
@@ -233,7 +214,6 @@ body {
 .corner.br { bottom: 8px; right: 8px; border-bottom: 2px solid var(--skyL); border-right: 2px solid var(--skyL); border-radius: 0 0 2px 0; animation: cornerFade .5s 3.2s ease forwards; opacity: 0; }
 @keyframes cornerFade { to { opacity: 1; } }
 
-/* scroll hint */
 .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s 3.4s ease forwards; }
 .scroll-hint span { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.4); }
 .scroll-mouse { width: 22px; height: 34px; border: 1.5px solid rgba(255,255,255,.25); border-radius: 11px; display: flex; align-items: flex-start; justify-content: center; padding-top: 6px; }
@@ -295,12 +275,50 @@ body {
 .team-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .tfeat { display: flex; align-items: center; gap: 10px; font-size: .9rem; color: rgba(255,255,255,.7); font-weight: 500; }
 .tfeat::before { content: ''; width: 8px; height: 8px; min-width: 8px; background: var(--sky); border-radius: 50%; }
-.team-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.tcard { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: 12px; padding: 2rem 1.6rem; text-align: center; transition: background .3s, border-color .3s, transform .3s; }
+
+/* ── TEAM PHOTO ── */
+.team-photo-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+.team-photo-img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.team-photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.2rem 1.4rem;
+  background: linear-gradient(transparent, rgba(11,31,58,.88));
+}
+.team-photo-title {
+  font-size: .76rem;
+  font-weight: 600;
+  color: var(--skyL);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: .3rem;
+}
+.team-photo-sub {
+  font-size: .88rem;
+  color: rgba(255,255,255,.8);
+}
+.team-stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .8rem;
+  margin-top: 1rem;
+}
+.tcard { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: 12px; padding: 1.4rem 1rem; text-align: center; transition: background .3s, border-color .3s, transform .3s; }
 .tcard:hover { background: rgba(44,123,229,.1); border-color: rgba(44,123,229,.3); transform: translateY(-4px); }
-.tcard:first-child { grid-column: span 2; background: rgba(44,123,229,.1); border-color: rgba(44,123,229,.22); }
-.tc-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--skyL); line-height: 1; }
-.tc-lbl { font-size: .82rem; color: rgba(255,255,255,.45); margin-top: .5rem; font-weight: 500; }
+.tc-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--skyL); line-height: 1; }
+.tc-lbl { font-size: .78rem; color: rgba(255,255,255,.45); margin-top: .5rem; font-weight: 500; }
 
 /* ── CTA ── */
 .cta { background: linear-gradient(135deg,#1056bb 0%,var(--sky) 60%,#38b6ff 100%); padding: 7rem 2rem; text-align: center; position: relative; overflow: hidden; }
@@ -377,7 +395,6 @@ body {
   <div class="hero-grid"></div>
   <div class="hero-inner">
 
-    <!-- LEFT TEXT -->
     <div>
       <p class="hero-eyebrow">About BlueSky</p>
       <h1>Built on Craft.<br><em>Driven by Excellence.</em></h1>
@@ -390,26 +407,14 @@ body {
       </div>
     </div>
 
-    <!-- RIGHT: IMAGE + ANIMATED LABELS -->
     <div class="hero-image-wrap" id="heroWrap">
       <img src="images/hero image.png" alt="BlueSky building project" id="heroImg">
-
-      <!-- Scan line sweep effect -->
       <div class="scan-line"></div>
-
-      <!-- Corner brackets -->
       <div class="corner tl"></div>
       <div class="corner tr"></div>
       <div class="corner bl"></div>
       <div class="corner br"></div>
-
-      <!-- Label container -->
-      <div class="img-labels" id="imgLabels">
-
-        <!-- Labels are injected by JS with precise positions -->
-        <!-- Each label: position (%), text, animation type, delay -->
-
-      </div>
+      <div class="img-labels" id="imgLabels"></div>
     </div>
 
   </div>
@@ -512,11 +517,22 @@ body {
         <div class="tfeat">Licensed &amp; Insured</div>
       </div>
     </div>
-    <div class="team-cards rv r d2">
-      <div class="tcard"><div class="tc-num">100+</div><div class="tc-lbl">Projects Successfully Completed</div></div>
-      <div class="tcard"><div class="tc-num">GTA</div><div class="tc-lbl">Regional Service Area</div></div>
-      <div class="tcard"><div class="tc-num">A–Z</div><div class="tc-lbl">Full Project Management</div></div>
+
+    <div class="rv r d2">
+      <div class="team-photo-wrap">
+        <img src="images/team-photo.jpg" alt="The BlueSky Siding and Cladding team" class="team-photo-img">
+        <div class="team-photo-caption">
+          <div class="team-photo-title">The BlueSky Team</div>
+          <div class="team-photo-sub">Dedicated professionals, exceptional results</div>
+        </div>
+      </div>
+      <div class="team-stat-strip">
+        <div class="tcard"><div class="tc-num">100+</div><div class="tc-lbl">Projects Completed</div></div>
+        <div class="tcard"><div class="tc-num">GTA</div><div class="tc-lbl">Regional Service Area</div></div>
+        <div class="tcard"><div class="tc-num">A&#8211;Z</div><div class="tc-lbl">Full Project Management</div></div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -583,6 +599,7 @@ body {
   </div>
   <div class="fcopy">&copy; 2022 BlueSky Siding &amp; Cladding Inc. All rights reserved.</div>
 </footer>
+
 <script>
 /* ── LOADER ── */
 window.addEventListener('load', () => {
@@ -647,133 +664,52 @@ window.addEventListener('scroll', () => {
   document.querySelector('.navbar').style.boxShadow = scrollY > 40 ? '0 4px 20px rgba(0,0,0,.1)' : '0 1px 20px rgba(0,0,0,.06)';
 });
 
-/* ════════════════════════════════════════════════════
-   HERO IMAGE — ANIMATED FLOATING LABELS
-   ════════════════════════════════════════════════════
-
-   Each label definition:
-   {
-     text:    string          — label text
-     top:     '30%'          — % from top of image container
-     left:    '10%'          — % from left  (pill position)
-     anim:    'popIn' | 'slideRight' | 'slideLeft' | 'flyUp'
-     delay:   ms after page load when label appears
-     float:   true/false     — gentle float animation after entry
-     floatDelay: ms          — stagger for float
-   }
-*/
-
+/* ── HERO IMAGE LABELS ── */
 const LABELS = [
-  {
-    text: 'Metal Siding',
-    top: '18%', left: '5%',
-    anim: 'slideRight', delay: 3400,
-    float: true, floatDelay: 0,
-    dotColor: '#4F9EF8'
-  },
-  {
-    text: 'Metal Cladding',
-    top: '6%', left: '38%',
-    anim: 'flyUp', delay: 3700,
-    float: true, floatDelay: 200,
-    dotColor: '#38d9a9'
-  },
-  {
-    text: 'ACM Panels',
-    top: '8%', left: '68%',
-    anim: 'slideLeft', delay: 4000,
-    float: true, floatDelay: 400,
-    dotColor: '#ffa94d'
-  },
-  {
-    text: 'Eavestrough',
-    top: '40%', left: '2%',
-    anim: 'slideRight', delay: 4300,
-    float: true, floatDelay: 600,
-    dotColor: '#74c0fc'
-  },
-  {
-    text: 'Soffit & Fascia',
-    top: '52%', left: '3%',
-    anim: 'slideRight', delay: 4600,
-    float: true, floatDelay: 800,
-    dotColor: '#a9e34b'
-  },
-  {
-    text: 'Standing Seam Roof',
-    top: '28%', left: '55%',
-    anim: 'slideLeft', delay: 5200,
-    float: true, floatDelay: 1200,
-    dotColor: '#ff8787'
-  },
-  {
-    text: 'Downspout',
-    top: '62%', left: '68%',
-    anim: 'slideLeft', delay: 5500,
-    float: true, floatDelay: 1400,
-    dotColor: '#4F9EF8'
-  },
-  {
-    text: 'Coping & Flashing',
-    top: '44%', left: '60%',
-    anim: 'popIn', delay: 5800,
-    float: true, floatDelay: 1600,
-    dotColor: '#ffd43b'
-  },
+  { text: 'Metal Siding', top: '18%', left: '5%', anim: 'slideRight', delay: 3400, float: true, floatDelay: 0, dotColor: '#4F9EF8' },
+  { text: 'Metal Cladding', top: '6%', left: '38%', anim: 'flyUp', delay: 3700, float: true, floatDelay: 200, dotColor: '#38d9a9' },
+  { text: 'ACM Panels', top: '8%', left: '68%', anim: 'slideLeft', delay: 4000, float: true, floatDelay: 400, dotColor: '#ffa94d' },
+  { text: 'Eavestrough', top: '40%', left: '2%', anim: 'slideRight', delay: 4300, float: true, floatDelay: 600, dotColor: '#74c0fc' },
+  { text: 'Soffit & Fascia', top: '52%', left: '3%', anim: 'slideRight', delay: 4600, float: true, floatDelay: 800, dotColor: '#a9e34b' },
+  { text: 'Standing Seam Roof', top: '28%', left: '55%', anim: 'slideLeft', delay: 5200, float: true, floatDelay: 1200, dotColor: '#ff8787' },
+  { text: 'Downspout', top: '62%', left: '68%', anim: 'slideLeft', delay: 5500, float: true, floatDelay: 1400, dotColor: '#4F9EF8' },
+  { text: 'Coping & Flashing', top: '44%', left: '60%', anim: 'popIn', delay: 5800, float: true, floatDelay: 1600, dotColor: '#ffd43b' },
 ];
 
 function buildLabels() {
   const container = document.getElementById('imgLabels');
   if (!container) return;
-
   LABELS.forEach((cfg, i) => {
     const el = document.createElement('div');
     el.className = 'img-label';
     el.style.top  = cfg.top;
     el.style.left = cfg.left;
-
     el.innerHTML = `
       <div class="pill">
         <span class="dot" style="background:${cfg.dotColor};box-shadow:0 0 0 3px ${cfg.dotColor}33;"></span>
         <span class="label-text">${cfg.text}</span>
       </div>
     `;
-
     container.appendChild(el);
-
-    // Animate dot color pulsing to match the custom color
     const dot = el.querySelector('.dot');
     dot.style.animation = 'none';
     setInterval(() => {
       dot.style.boxShadow = `0 0 0 6px ${cfg.dotColor}00`;
       setTimeout(() => { dot.style.boxShadow = `0 0 0 3px ${cfg.dotColor}44`; }, 500);
     }, 2000 + i * 200);
-
-    // Trigger entry animation after delay
     setTimeout(() => {
-      const animName = {
-        popIn:       'labelPopIn',
-        slideRight:  'labelSlideRight',
-        slideLeft:   'labelSlideLeft',
-        flyUp:       'labelFlyUp',
-      }[cfg.anim] || 'labelPopIn';
-
+      const animName = { popIn: 'labelPopIn', slideRight: 'labelSlideRight', slideLeft: 'labelSlideLeft', flyUp: 'labelFlyUp' }[cfg.anim] || 'labelPopIn';
       el.style.animation = `${animName} 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`;
       el.style.opacity = '1';
-
-      // After entry, start gentle float
       if (cfg.float) {
         setTimeout(() => {
           el.style.animation = `labelFloat ${3.5 + (i % 3) * 0.8}s ease-in-out ${cfg.floatDelay}ms infinite`;
           el.style.opacity = '1';
         }, 700);
       }
-
     }, cfg.delay);
   });
 }
-
-// Build after loader disappears
 setTimeout(buildLabels, 2200);
 
 /* ── PARALLAX HERO IMAGE ── */
