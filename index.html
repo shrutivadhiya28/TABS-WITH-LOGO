@@ -39,7 +39,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .nav-cta::after{display:none!important;}
 .nav-cta:hover{background:#1a6dd0!important;transform:translateY(-2px)!important;box-shadow:0 6px 20px rgba(44,123,229,.35)!important;}
 
-/* HERO — completely unchanged from original */
+/* HERO */
 .hero{margin-top:80px;min-height:90vh;width:100%;display:flex;align-items:center;justify-content:center;color:white;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('images/siding-work.jpg');background-size:cover;background-position:center center;background-repeat:no-repeat;animation:kenBurns 20s ease-in-out infinite alternate;z-index:1;}
 @keyframes kenBurns{0%{transform:scale(1) translate(0,0);}100%{transform:scale(1.1) translate(-2%,0);}}
@@ -113,6 +113,44 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .stat-item h3{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:var(--skyL);margin-bottom:.5rem;line-height:1;}
 .stat-item p{font-size:.95rem;color:rgba(255,255,255,.55);font-weight:500;}
 
+/* ===== TESTIMONIALS ===== */
+.testimonials{padding:8rem 2rem;background:#fff;position:relative;overflow:hidden;}
+.testimonials::before{content:'';position:absolute;top:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(44,123,229,.04),transparent 70%);border-radius:50%;}
+.testimonials-inner{max-width:820px;margin:0 auto;position:relative;z-index:1;}
+.testimonials-header{text-align:center;margin-bottom:4rem;}
+.testimonials-header p.sec-label{justify-content:center;}
+.testimonials-header p.sec-label::after{display:none;}
+
+.tslider-wrap{position:relative;overflow:hidden;}
+.tslider-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+.tslide{min-width:100%;padding:0 .5rem;}
+
+.t-card{background:var(--cream);border-radius:18px;padding:3rem 3rem 2.4rem;border:1px solid rgba(11,31,58,.06);position:relative;text-align:center;}
+.t-card::before{content:'\201C';position:absolute;top:1.2rem;left:2rem;font-family:'Playfair Display',serif;font-size:5rem;line-height:1;color:var(--sky);opacity:.15;font-weight:700;}
+
+.t-avatar-wrap{margin:0 auto 1.4rem;position:relative;width:72px;height:72px;}
+.t-avatar{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem;color:#fff;letter-spacing:.03em;border:3px solid #fff;box-shadow:0 4px 16px rgba(44,123,229,.25);}
+.t-avatar.av-1{background:linear-gradient(135deg,var(--sky),var(--skyL));}
+.t-avatar.av-2{background:linear-gradient(135deg,#0B1F3A,#2C7BE5);}
+.t-avatar.av-3{background:linear-gradient(135deg,#185fa5,#4F9EF8);}
+.t-avatar.av-4{background:linear-gradient(135deg,#1a6dd0,#38b6ff);}
+
+.t-stars{display:flex;gap:4px;justify-content:center;margin-bottom:1.4rem;}
+.t-star{width:18px;height:18px;}
+.t-star svg{width:100%;height:100%;fill:var(--sky);}
+
+.t-body{font-size:1.05rem;color:var(--steel);line-height:1.9;margin-bottom:1.8rem;font-style:italic;max-width:640px;margin-left:auto;margin-right:auto;}
+
+.t-name{font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:.25rem;}
+.t-role{font-size:.85rem;color:var(--muted);font-style:italic;}
+
+.tslider-controls{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2.5rem;}
+.tslider-btn{width:46px;height:46px;border-radius:50%;border:2px solid rgba(44,123,229,.25);background:#fff;color:var(--sky);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:1.1rem;}
+.tslider-btn:hover{background:var(--sky);color:#fff;border-color:var(--sky);transform:scale(1.08);}
+.tslider-dots{display:flex;gap:8px;}
+.tslider-dot{width:8px;height:8px;border-radius:50%;background:rgba(44,123,229,.2);cursor:pointer;transition:all .3s;}
+.tslider-dot.active{background:var(--sky);width:24px;border-radius:4px;}
+
 /* CTA */
 .cta-section{background:linear-gradient(135deg,#1056bb 0%,var(--sky) 60%,#38b6ff 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;}
 .cta-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px);}
@@ -162,7 +200,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 
 <nav class="navbar"><div class="nav-inner"><a href="index.html" class="logo"><img src="images/logo.jpg" alt="BlueSky Siding"><span class="logo-name">Blue Sky Siding <span>&amp; Cladding Inc.</span></span></a><ul class="nav-links"><li><a href="index.html" class="active">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="services.html">Services</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li><li><a href="quote.html" class="nav-cta">Get a Quote</a></li></ul></div></nav>
 
-<!-- HERO — 100% original, untouched -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-overlay"></div>
   <div class="floating-shape shape-1"></div>
@@ -184,7 +222,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
   <div class="scroll-indicator"></div>
 </section>
 
-<!-- MARQUEE — added to match other pages -->
+<!-- MARQUEE -->
 <div class="marquee"><div class="marquee-track"><div class="marquee-item">Siding Installation <span class="mdot"></span></div><div class="marquee-item">Exterior Cladding <span class="mdot"></span></div><div class="marquee-item">Custom Metal Work <span class="mdot"></span></div><div class="marquee-item">Residential Projects <span class="mdot"></span></div><div class="marquee-item">Commercial Projects <span class="mdot"></span></div><div class="marquee-item">Architectural Drawings <span class="mdot"></span></div><div class="marquee-item">Repairs &amp; Maintenance <span class="mdot"></span></div><div class="marquee-item">Free Consultations <span class="mdot"></span></div><div class="marquee-item">Siding Installation <span class="mdot"></span></div><div class="marquee-item">Exterior Cladding <span class="mdot"></span></div><div class="marquee-item">Custom Metal Work <span class="mdot"></span></div><div class="marquee-item">Residential Projects <span class="mdot"></span></div><div class="marquee-item">Commercial Projects <span class="mdot"></span></div><div class="marquee-item">Architectural Drawings <span class="mdot"></span></div><div class="marquee-item">Repairs &amp; Maintenance <span class="mdot"></span></div><div class="marquee-item">Free Consultations <span class="mdot"></span></div></div></div>
 
 <!-- FEATURES -->
@@ -192,6 +230,74 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 
 <!-- STATS -->
 <section class="stats"><div class="stats-inner rv"><div class="stat-item"><h3>4+</h3><p>Years of Experience</p></div><div class="stat-item"><h3>100+</h3><p>Projects Completed</p></div><div class="stat-item"><h3>100%</h3><p>Client Satisfaction</p></div><div class="stat-item"><h3>GTA</h3><p>Regional Coverage</p></div></div></section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header rv">
+      <p class="sec-label">Client Reviews</p>
+      <h2 class="sec-heading">What Our <em>Clients Say</em></h2>
+      <p style="font-size:1.05rem;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.8;">Real words from real clients across the Greater Toronto Area who trusted us with their projects.</p>
+    </div>
+
+    <div class="tslider-wrap rv">
+      <div class="tslider-track" id="ttrack">
+
+        <div class="tslide">
+          <div class="t-card">
+            <div class="t-avatar-wrap"><div class="t-avatar av-1">LS</div></div>
+            <div class="t-stars"><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span></div>
+            <p class="t-body">"Blue Sky did an outstanding job on our commercial property in Mississauga. The aluminum cladding looks incredible and the team was incredibly professional from quote to final inspection. Would absolutely hire them again."</p>
+            <p class="t-name">Luis S.</p>
+            <p class="t-role">Commercial Property Owner, Mississauga</p>
+          </div>
+        </div>
+
+        <div class="tslide">
+          <div class="t-card">
+            <div class="t-avatar-wrap"><div class="t-avatar av-2">TM</div></div>
+            <div class="t-stars"><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span></div>
+            <p class="t-body">"We hired Blue Sky Siding for a full exterior re-clad on our home in Brampton. The quality of work is top notch clean lines, perfect finish, no mess left behind. Our neighbours keep asking who did the work!"</p>
+            <p class="t-name">Teresa M.</p>
+            <p class="t-role">Homeowner, Brampton</p>
+          </div>
+        </div>
+
+        <div class="tslide">
+          <div class="t-card">
+            <div class="t-avatar-wrap"><div class="t-avatar av-3">DK</div></div>
+            <div class="t-stars"><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span></div>
+            <p class="t-body">"As a general contractor, I've worked with many siding companies across the GTA. Blue Sky consistently delivers on time and on budget. Their attention to detail on architectural cladding specs makes them my go to subcontractor."</p>
+            <p class="t-name">David K.</p>
+            <p class="t-role">General Contractor, Toronto</p>
+          </div>
+        </div>
+
+        <div class="tslide">
+          <div class="t-card">
+            <div class="t-avatar-wrap"><div class="t-avatar av-4">AL</div></div>
+            <div class="t-stars"><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span><span class="t-star"><svg viewBox="0 0 20 20"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"/></svg></span></div>
+            <p class="t-body">"Fantastic experience from start to finish. The team at Blue Sky took the time to walk me through all the material options and delivered a stunning metal cladding finish on our new build in Vaughan. The project came in on schedule and the craftsmanship truly exceeded our expectations."</p>
+            <p class="t-name">Amanda L.</p>
+            <p class="t-role">New Build Owner, Vaughan</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tslider-controls">
+      <button class="tslider-btn" id="tprev" aria-label="Previous">&#8592;</button>
+      <div class="tslider-dots" id="tdots">
+        <div class="tslider-dot active" data-idx="0"></div>
+        <div class="tslider-dot" data-idx="1"></div>
+        <div class="tslider-dot" data-idx="2"></div>
+        <div class="tslider-dot" data-idx="3"></div>
+      </div>
+      <button class="tslider-btn" id="tnext" aria-label="Next">&#8594;</button>
+    </div>
+  </div>
+</section>
 
 <!-- CTA -->
 <section class="cta-section"><div class="corb"></div><div class="corb"></div><div class="corb"></div><div class="cta-inner rv"><h2>Ready to Transform Your Building?</h2><p>Get a free consultation and quote for your next siding or cladding project. Our team is ready to bring your vision to life.</p><div class="cta-btns"><a href="quote.html" class="btn-solid">Request a Quote</a><a href="tel:+14167415140" class="btn-outline">Call (416) 741-5140</a></div></div></section>
@@ -217,24 +323,12 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
     <div>
       <h4>Project Gallery</h4>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:.2rem;">
-        <a href="images/gallery-1.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-2.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/ " target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-3.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-4.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-4.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-5.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-5.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-6.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-6.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
+        <a href="images/gallery-1.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-2.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-3.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-3.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-4.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-4.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-5.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-5.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-6.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-6.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
       </div>
     </div>
     <div>
@@ -249,15 +343,52 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
   </div>
   <div class="fcopy">&copy; 2022 BlueSky Siding &amp; Cladding Inc. All rights reserved.</div>
 </footer>
+
 <script>
+/* LOADER */
 window.addEventListener('load',function(){setTimeout(function(){var l=document.getElementById('loader');l.classList.add('out');setTimeout(function(){l.style.display='none';},700);},2100);});
+
+/* REVEAL */
 var ro=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('on');},i*70);ro.unobserve(e.target);}});},{threshold:.1});
 document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+
+/* FEATURE CARDS */
 var fo=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var cards=Array.prototype.slice.call(document.querySelectorAll('.f-card'));var idx=cards.indexOf(entry.target);setTimeout(function(){entry.target.classList.add('on');},idx*80);fo.unobserve(entry.target);}});},{threshold:.1});
 document.querySelectorAll('.f-card').forEach(function(c){fo.observe(c);});
+
+/* FEATURE CARD TILT */
 document.querySelectorAll('.f-card').forEach(function(card){card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var rx=((e.clientY-r.top-r.height/2)/(r.height/2))*4;var ry=((e.clientX-r.left-r.width/2)/(r.width/2))*-4;card.style.transition='transform .08s ease,box-shadow .3s,border-color .3s';card.style.transform='translateY(-6px) rotateX('+rx+'deg) rotateY('+ry+'deg)';});card.addEventListener('mouseleave',function(){card.style.transition='transform .5s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s';card.style.transform='';});});
+
+/* MAGNETIC BUTTONS */
 document.querySelectorAll('.btn-solid,.btn-outline,.nav-cta').forEach(function(btn){btn.addEventListener('mousemove',function(e){var r=btn.getBoundingClientRect();btn.style.transform='translate('+(e.clientX-(r.left+r.width/2))*.28+'px,'+(e.clientY-(r.top+r.height/2))*.28+'px)';});btn.addEventListener('mouseleave',function(){btn.style.transform='';});});
+
+/* NAVBAR SCROLL SHADOW */
 window.addEventListener('scroll',function(){document.querySelector('.navbar').style.boxShadow=window.scrollY>=40?'0 4px 20px rgba(0,0,0,.1)':'0 1px 20px rgba(0,0,0,.06)';});
+
+/* TESTIMONIAL SLIDER */
+(function(){
+  var track=document.getElementById('ttrack');
+  var dots=document.querySelectorAll('.tslider-dot');
+  var total=4;
+  var current=0;
+  var autoTimer;
+
+  function goTo(idx){
+    current=idx;
+    track.style.transform='translateX(-'+current*100+'%)';
+    dots.forEach(function(d,i){d.classList.toggle('active',i===current);});
+  }
+
+  function next(){goTo((current+1)%total);}
+  function prev(){goTo((current-1+total)%total);}
+
+  document.getElementById('tnext').addEventListener('click',function(){clearInterval(autoTimer);next();startAuto();});
+  document.getElementById('tprev').addEventListener('click',function(){clearInterval(autoTimer);prev();startAuto();});
+  dots.forEach(function(d){d.addEventListener('click',function(){clearInterval(autoTimer);goTo(parseInt(d.dataset.idx));startAuto();});});
+
+  function startAuto(){autoTimer=setInterval(next,5000);}
+  startAuto();
+})();
 </script>
 </body>
 </html>

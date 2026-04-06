@@ -10,18 +10,9 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-:root{
-  --navy:#0B1F3A;
-  --sky:#2C7BE5;
-  --skyL:#4F9EF8;
-  --steel:#4A5D72;
-  --cream:#F5F7FA;
-  --muted:#6B7E92;
-  --error:#e05252;
-  --success:#22c55e;
-}
+:root{--navy:#0B1F3A;--sky:#2C7BE5;--skyL:#4F9EF8;--steel:#4A5D72;--cream:#F5F7FA;--muted:#6B7E92;}
 
-/* ── LOADER ── */
+/* LOADER */
 #loader{position:fixed;inset:0;background:var(--navy);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .7s ease,transform .7s ease;}
 #loader.out{opacity:0;transform:translateY(-100%);pointer-events:none;}
 .ld-text{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#fff;opacity:0;animation:fadeIn .6s .2s ease forwards;}
@@ -31,7 +22,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 @keyframes ldBar{to{width:100%;}}
 @keyframes fadeIn{to{opacity:1;}}
 
-/* ── NAVBAR ── */
+/* NAVBAR */
 .navbar{position:fixed;top:0;width:100%;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(11,31,58,.08);box-shadow:0 1px 20px rgba(0,0,0,.06);z-index:500;transform:translateY(-100%);animation:navIn .6s 2.1s ease forwards;}
 @keyframes navIn{to{transform:translateY(0);}}
 .nav-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;}
@@ -48,7 +39,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .nav-cta::after{display:none!important;}
 .nav-cta:hover{background:#1a6dd0!important;box-shadow:0 6px 20px rgba(44,123,229,.35)!important;}
 
-/* ── HERO ── */
+/* HERO */
 .hero{margin-top:80px;min-height:72vh;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:center;}
 .hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 70% at 65% 45%,rgba(44,123,229,.22) 0%,transparent 65%),radial-gradient(ellipse 50% 60% at 5% 85%,rgba(79,158,248,.12) 0%,transparent 55%);animation:meshShift 12s ease-in-out infinite alternate;}
 @keyframes meshShift{0%{filter:hue-rotate(0deg) brightness(1);}100%{filter:hue-rotate(15deg) brightness(1.08);}}
@@ -85,28 +76,14 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .scroll-wheel{width:3px;height:8px;background:var(--skyL);border-radius:2px;animation:wheel 1.5s ease-in-out infinite;}
 @keyframes wheel{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(12px);opacity:0;}}
 
-/* ── MARQUEE ── */
+/* MARQUEE */
 .marquee{background:var(--sky);padding:.9rem 0;overflow:hidden;}
 .marquee-track{display:flex;gap:3rem;width:max-content;animation:mroll 25s linear infinite;}
 @keyframes mroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .marquee-item{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.9);white-space:nowrap;display:flex;align-items:center;gap:1.5rem;}
 .mdot{width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%;display:inline-block;}
 
-/* ── PROGRESS BAR ── */
-.progress-wrap{background:#fff;padding:3rem 2rem 0;border-bottom:1px solid rgba(11,31,58,.06);}
-.progress-inner{max-width:900px;margin:0 auto;}
-.steps-progress{display:flex;align-items:center;justify-content:center;margin-bottom:2rem;}
-.sp-step{display:flex;flex-direction:column;align-items:center;position:relative;flex:1;}
-.sp-step:not(:last-child)::after{content:'';position:absolute;top:18px;left:calc(50% + 20px);right:calc(-50% + 20px);height:2px;background:rgba(11,31,58,.1);z-index:0;transition:background .4s;}
-.sp-step.done:not(:last-child)::after{background:var(--sky);}
-.sp-dot{width:36px;height:36px;border-radius:50%;border:2px solid rgba(11,31,58,.12);background:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:var(--muted);position:relative;z-index:1;transition:all .35s cubic-bezier(.34,1.56,.64,1);}
-.sp-step.active .sp-dot{border-color:var(--sky);background:var(--sky);color:#fff;box-shadow:0 0 0 5px rgba(44,123,229,.15),0 6px 18px rgba(44,123,229,.3);transform:scale(1.12);}
-.sp-step.done .sp-dot{border-color:var(--sky);background:var(--sky);color:#fff;}
-.sp-lbl{font-size:.72rem;font-weight:600;color:var(--muted);margin-top:.55rem;letter-spacing:.04em;text-align:center;transition:color .3s;}
-.sp-step.active .sp-lbl{color:var(--sky);}
-.sp-step.done .sp-lbl{color:var(--navy);}
-
-/* ── QUOTE SECTION ── */
+/* QUOTE SECTION */
 .quote-wrap{background:#fff;padding:5rem 2rem 8rem;position:relative;overflow:hidden;}
 .quote-wrap::after{content:'';position:absolute;top:-100px;right:-100px;width:450px;height:450px;background:radial-gradient(circle,rgba(44,123,229,.04),transparent 70%);border-radius:50%;pointer-events:none;}
 .quote-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1.55fr;gap:6rem;align-items:start;position:relative;z-index:1;}
@@ -128,97 +105,40 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .qcs-txt a{font-size:.82rem;color:var(--skyL);text-decoration:none;transition:color .2s;}
 .qcs-txt a:hover{color:#fff;}
 
-/* ── FORM CARD ── */
+/* EMAIL CARD */
 .form-card{background:#fff;border-radius:20px;padding:2.8rem;box-shadow:0 24px 70px rgba(44,123,229,.09);border:1px solid rgba(11,31,58,.07);position:relative;overflow:hidden;}
 .form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1056bb,var(--sky),var(--skyL),#38b6ff);}
 
-/* Step panels */
-.step-panel{display:none;}
-.step-panel.active{display:block;animation:panelIn .4s ease;}
-@keyframes panelIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
-.step-header{margin-bottom:2rem;}
-.step-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);margin-bottom:.4rem;}
-.step-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--navy);line-height:1.2;}
-.step-sub{font-size:.84rem;color:var(--muted);margin-top:.35rem;}
+.email-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);margin-bottom:.5rem;}
+.email-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:.4rem;}
+.email-sub{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:1.8rem;}
 
-/* Form fields */
-.fg{margin-bottom:1.2rem;}
-.fg label{display:block;font-size:.79rem;font-weight:600;color:var(--navy);margin-bottom:.42rem;letter-spacing:.03em;}
-.fg .req{color:var(--error);margin-left:2px;}
-.fg input,.fg select,.fg textarea{width:100%;padding:.78rem 1rem;border:1.5px solid rgba(11,31,58,.1);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:#1A2D42;background:#fafbfc;transition:border-color .25s,box-shadow .25s,background-color .25s;outline:none;-webkit-appearance:none;appearance:none;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(44,123,229,.1);background:#fff;}
-.fg input.error,.fg select.error,.fg textarea.error{border-color:var(--error);box-shadow:0 0 0 3px rgba(224,82,82,.1);}
-.fg textarea{resize:vertical;min-height:110px;}
-.fg input::placeholder,.fg textarea::placeholder{color:#b8c8d8;}
-.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
-.error-msg{font-size:.74rem;color:var(--error);margin-top:.3rem;display:none;}
-.error-msg.show{display:block;}
+.email-address-box{background:var(--cream);border:2px dashed rgba(44,123,229,.3);border-radius:12px;padding:1.3rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.4rem;transition:border-color .3s;}
+.email-address-box:hover{border-color:var(--sky);}
+.email-addr-text{font-size:1.05rem;font-weight:700;color:var(--sky);}
+.copy-btn{background:var(--navy);color:#fff;border:none;border-radius:7px;padding:.5rem 1.1rem;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:'DM Sans',sans-serif;}
+.copy-btn:hover{background:var(--sky);transform:translateY(-1px);}
+.copy-btn.copied{background:#16a34a;}
 
-/* Tiles */
-.tile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:1.2rem;}
-.tile-grid.three-col{grid-template-columns:repeat(3,1fr);}
-.tile{border:1.5px solid rgba(11,31,58,.1);border-radius:11px;padding:1rem .9rem;cursor:pointer;transition:border-color .25s,background-color .25s,transform .2s;background:#fafbfc;position:relative;overflow:hidden;text-align:center;user-select:none;}
-.tile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sky),var(--skyL));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
-.tile:hover{border-color:rgba(44,123,229,.3);background:rgba(44,123,229,.03);transform:translateY(-2px);}
-.tile.selected{border-color:var(--sky);background:rgba(44,123,229,.06);}
-.tile.selected::before{transform:scaleX(1);}
-.tile-ico{font-size:1.5rem;display:block;margin-bottom:.4rem;pointer-events:none;}
-.tile-lbl{font-size:.82rem;font-weight:600;color:var(--navy);pointer-events:none;}
-.tile-sub{font-size:.72rem;color:var(--muted);margin-top:.15rem;line-height:1.4;pointer-events:none;}
-.tile-hidden{display:none;}
-.tiles-error{font-size:.74rem;color:var(--error);margin-bottom:.8rem;display:none;}
-.tiles-error.show{display:block;}
+.email-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:linear-gradient(90deg,#1056bb,var(--sky));color:#fff;border:none;border-radius:10px;padding:1.05rem 1.6rem;font-size:.95rem;font-weight:700;text-decoration:none;transition:all .3s;font-family:'DM Sans',sans-serif;margin-bottom:2rem;}
+.email-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(44,123,229,.35);}
+.email-btn svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
 
-/* Budget slider */
-.slider-wrap{padding:.5rem 0;}
-.budget-val{text-align:center;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--sky);margin-bottom:.5rem;}
-.budget-slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--sky) 0%,var(--sky) var(--pct,4%),rgba(11,31,58,.1) var(--pct,4%));outline:none;cursor:pointer;}
-.budget-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--sky);box-shadow:0 4px 12px rgba(44,123,229,.35);cursor:pointer;transition:transform .2s,box-shadow .2s;}
-.budget-slider::-webkit-slider-thumb:hover{transform:scale(1.2);box-shadow:0 6px 18px rgba(44,123,229,.45);}
-.budget-labels{display:flex;justify-content:space-between;font-size:.74rem;color:var(--muted);margin-top:.5rem;}
+.include-label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem;}
+.include-list{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem;}
+.include-list li{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--steel);}
+.check-circle{width:20px;height:20px;border-radius:50%;background:rgba(44,123,229,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.check-circle svg{width:10px;height:10px;stroke:var(--sky);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 
-/* File upload */
-.file-zone{border:2px dashed rgba(44,123,229,.25);border-radius:11px;background:rgba(44,123,229,.02);padding:1.8rem;text-align:center;cursor:pointer;transition:border-color .3s,background-color .3s;display:block;}
-.file-zone:hover,.file-zone.drag{border-color:var(--sky);background:rgba(44,123,229,.05);}
-.fz-ico{font-size:2rem;display:block;margin-bottom:.4rem;}
-.fz-lbl{font-size:.88rem;font-weight:600;color:var(--navy);}
-.fz-sub{font-size:.76rem;color:var(--muted);margin-top:.2rem;}
-.fz-files{margin-top:.8rem;display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;}
-.fz-chip{background:rgba(44,123,229,.1);border:1px solid rgba(44,123,229,.2);color:var(--sky);font-size:.74rem;font-weight:600;padding:.2rem .65rem;border-radius:50px;}
+.divider-line{height:1px;background:rgba(11,31,58,.07);margin:0 0 1.5rem;}
 
-/* Review */
-.review-card{background:var(--cream);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:1rem;border:1px solid rgba(11,31,58,.06);}
-.review-card h4{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:.9rem;}
-.review-row{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:.45rem 0;border-bottom:1px solid rgba(11,31,58,.06);}
-.review-row:last-child{border-bottom:none;}
-.rr-key{font-size:.82rem;color:var(--muted);font-weight:500;}
-.rr-val{font-size:.84rem;color:var(--navy);font-weight:600;text-align:right;max-width:60%;}
-.privacy-note{font-size:.76rem;color:var(--muted);text-align:center;margin-top:.9rem;padding:.6rem;background:var(--cream);border-radius:7px;line-height:1.6;}
+.alt-contact{display:flex;align-items:center;gap:14px;background:var(--cream);border-radius:12px;padding:1.2rem 1.4rem;}
+.alt-icon{width:42px;height:42px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.alt-text p{font-size:.78rem;color:var(--muted);margin-bottom:2px;}
+.alt-text a{font-size:1rem;font-weight:700;color:var(--navy);text-decoration:none;transition:color .2s;}
+.alt-text a:hover{color:var(--sky);}
 
-/* Nav buttons */
-.form-nav{display:flex;gap:1rem;margin-top:1.8rem;align-items:center;}
-.btn-prev{background:transparent;border:1.5px solid rgba(11,31,58,.14);color:var(--steel);padding:.85rem 1.6rem;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s,background-color .2s;}
-.btn-prev:hover{border-color:var(--sky);color:var(--sky);background:rgba(44,123,229,.04);}
-.btn-next,.btn-submit{flex:1;padding:1rem;background:linear-gradient(90deg,#1056bb,var(--sky));color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:transform .2s,box-shadow .2s,opacity .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;}
-.btn-next:hover:not(:disabled),.btn-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 28px rgba(44,123,229,.35);}
-.btn-next:disabled{opacity:.45;cursor:not-allowed;}
-.btn-arrow{font-size:1rem;transition:transform .3s;}
-.btn-next:hover:not(:disabled) .btn-arrow{transform:translateX(4px);}
-.skip-note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:.7rem;}
-
-/* Success */
-.success-screen{display:none;text-align:center;padding:2rem 1rem;animation:panelIn .5s ease;}
-.ss-badge{width:72px;height:72px;background:linear-gradient(135deg,var(--sky),var(--skyL));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2rem;box-shadow:0 12px 35px rgba(44,123,229,.35);animation:popIn .6s cubic-bezier(.34,1.56,.64,1) forwards;}
-@keyframes popIn{from{transform:scale(0);}to{transform:scale(1);}}
-.ss-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:.6rem;}
-.ss-sub{font-size:.95rem;color:var(--muted);line-height:1.8;max-width:380px;margin:0 auto 1.6rem;}
-.ss-steps{background:var(--cream);border-radius:12px;padding:1.4rem;text-align:left;margin-bottom:1.5rem;}
-.ss-step{display:flex;align-items:center;gap:.8rem;padding:.5rem 0;font-size:.85rem;color:var(--navy);}
-.ss-step-num{width:24px;height:24px;border-radius:50%;background:var(--sky);color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.ss-home{display:inline-block;background:var(--sky);color:#fff;padding:.85rem 2rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.9rem;transition:transform .2s,box-shadow .2s;}
-.ss-home:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(44,123,229,.35);}
-
-/* ── STATS BAND ── */
+/* STATS BAND */
 .stats-band{background:var(--navy);padding:5rem 2rem;position:relative;overflow:hidden;}
 .stats-band::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(44,123,229,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(44,123,229,.06) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;}
 .stats-band::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(44,123,229,.14) 0%,transparent 60%);pointer-events:none;}
@@ -228,7 +148,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .s-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:var(--skyL);line-height:1;margin-bottom:.4rem;}
 .s-lbl{font-size:.82rem;color:rgba(255,255,255,.5);font-weight:500;text-transform:uppercase;letter-spacing:.08em;}
 
-/* ── CTA ── */
+/* CTA */
 .cta-section{background:linear-gradient(135deg,#1056bb 0%,var(--sky) 60%,#38b6ff 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;}
 .cta-section::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(255,255,255,.04) 28px,rgba(255,255,255,.04) 29px);pointer-events:none;}
 .corb{position:absolute;border-radius:50%;background:rgba(255,255,255,.06);animation:orbF linear infinite;pointer-events:none;}
@@ -245,7 +165,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .btn-outline{display:inline-block;background:transparent;color:#fff;padding:.95rem 2.4rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.5);transition:border-color .2s,background-color .2s,transform .2s;}
 .btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-3px);}
 
-/* ── FOOTER ── */
+/* FOOTER */
 .footer{background:var(--cream);border-top:1px solid rgba(0,0,0,.06);padding:4.5rem 2rem 2rem;}
 .footer-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
 .flogo{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
@@ -260,7 +180,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .footer ul a:hover{color:var(--sky);padding-left:4px;}
 .fcopy{border-top:1px solid rgba(0,0,0,.08);padding-top:1.5rem;font-size:.85rem;color:var(--muted);text-align:center;}
 
-/* ── REVEAL ── */
+/* REVEAL */
 .rv{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
 .rv.l{transform:translateX(-40px);}
 .rv.r{transform:translateX(40px);}
@@ -268,7 +188,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 .rv.on{opacity:1;transform:none;}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media(max-width:1024px){
   .quote-inner{grid-template-columns:1fr;gap:3rem;}
   .q-side{position:static;}
@@ -278,17 +198,14 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 }
 @media(max-width:768px){
   .nav-links{display:none;}
-  .form-row2{grid-template-columns:1fr;}
-  .tile-grid{grid-template-columns:1fr 1fr;}
-  .tile-grid.three-col{grid-template-columns:1fr 1fr;}
   .footer-inner{grid-template-columns:1fr 1fr;}
   .cta-btns{flex-direction:column;align-items:center;}
+  .email-address-box{flex-direction:column;align-items:flex-start;gap:.8rem;}
+  .copy-btn{width:100%;}
 }
 @media(max-width:480px){
-  .tile-grid,.tile-grid.three-col{grid-template-columns:1fr;}
-  .steps-progress .sp-lbl{display:none;}
-  .form-card{padding:1.8rem;}
   .stats-inner{grid-template-columns:1fr 1fr;}
+  .form-card{padding:1.8rem;}
 }
 </style>
 </head>
@@ -327,7 +244,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
     <div>
       <p class="hero-eyebrow">Free Estimate</p>
       <h1>Request Your<br><em>Project Quote.</em></h1>
-      <p class="hero-desc">Tell us about your siding or cladding project and we'll get back to you with a detailed, transparent estimate  no obligations, no hidden fees.</p>
+      <p class="hero-desc">Tell us about your siding or cladding project and we'll get back to you with a detailed, transparent estimate no obligations, no hidden fees.</p>
       <div class="hero-badges">
         <span class="badge">No Obligation</span>
         <span class="badge">Response Within 24 Hours</span>
@@ -339,22 +256,10 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
       <div class="visual-panel">
         <p class="vp-title">Why Request a Quote</p>
         <div class="vp-stats">
-          <div class="vp-stat">
-            <div class="vp-stat-num">24h</div>
-            <div class="vp-stat-lbl">Response Time</div>
-          </div>
-          <div class="vp-stat">
-            <div class="vp-stat-num">100%</div>
-            <div class="vp-stat-lbl">Free &amp; No Obligation</div>
-          </div>
-          <div class="vp-stat">
-            <div class="vp-stat-num">4+</div>
-            <div class="vp-stat-lbl">Years Experience</div>
-          </div>
-          <div class="vp-stat">
-            <div class="vp-stat-num">100+</div>
-            <div class="vp-stat-lbl">Projects Completed</div>
-          </div>
+          <div class="vp-stat"><div class="vp-stat-num">24h</div><div class="vp-stat-lbl">Response Time</div></div>
+          <div class="vp-stat"><div class="vp-stat-num">100%</div><div class="vp-stat-lbl">Free &amp; No Obligation</div></div>
+          <div class="vp-stat"><div class="vp-stat-num">4+</div><div class="vp-stat-lbl">Years Experience</div></div>
+          <div class="vp-stat"><div class="vp-stat-num">100+</div><div class="vp-stat-lbl">Projects Completed</div></div>
         </div>
         <div class="vp-divider"></div>
         <div class="vp-list">
@@ -394,34 +299,6 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
   </div>
 </div>
 
-<!-- PROGRESS BAR -->
-<div class="progress-wrap" id="progressWrap">
-  <div class="progress-inner">
-    <div class="steps-progress" id="stepsProgress" role="list" aria-label="Form steps">
-      <div class="sp-step active" data-step="1" role="listitem">
-        <div class="sp-dot" aria-label="Step 1">1</div>
-        <span class="sp-lbl">Project Type</span>
-      </div>
-      <div class="sp-step" data-step="2" role="listitem">
-        <div class="sp-dot" aria-label="Step 2">2</div>
-        <span class="sp-lbl">Product &amp; Scope</span>
-      </div>
-      <div class="sp-step" data-step="3" role="listitem">
-        <div class="sp-dot" aria-label="Step 3">3</div>
-        <span class="sp-lbl">Details</span>
-      </div>
-      <div class="sp-step" data-step="4" role="listitem">
-        <div class="sp-dot" aria-label="Step 4">4</div>
-        <span class="sp-lbl">Your Info</span>
-      </div>
-      <div class="sp-step" data-step="5" role="listitem">
-        <div class="sp-dot" aria-label="Step 5">5</div>
-        <span class="sp-lbl">Review</span>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- QUOTE SECTION -->
 <section class="quote-wrap">
   <div class="quote-inner">
@@ -430,42 +307,27 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
     <div class="q-side rv l">
       <p class="sec-label">Get a Quote</p>
       <h2>Tell us about<br><em>your project.</em></h2>
-      <p class="q-side-desc">Complete the short form and one of our technical advisors will prepare a detailed, itemized quote for your review usually within 24 hours.</p>
+      <p class="q-side-desc">Send us a quick email with your project details and one of our technical advisors will prepare a detailed, itemized quote for your review — usually within 24 hours.</p>
       <div class="why-list">
         <div class="why-item">
           <div class="wi-ico">⚡</div>
-          <div class="wi-txt">
-            <strong>Fast Turnaround</strong>
-            <span>Quotes prepared and delivered within 1 business day</span>
-          </div>
+          <div class="wi-txt"><strong>Fast Turnaround</strong><span>Quotes prepared and delivered within 1 business day</span></div>
         </div>
         <div class="why-item">
           <div class="wi-ico">📋</div>
-          <div class="wi-txt">
-            <strong>Itemized Breakdown</strong>
-            <span>Clear line-by-line pricing with no surprises</span>
-          </div>
+          <div class="wi-txt"><strong>Itemized Breakdown</strong><span>Clear line-by-line pricing with no surprises</span></div>
         </div>
         <div class="why-item">
           <div class="wi-ico">👷</div>
-          <div class="wi-txt">
-            <strong>Expert Review</strong>
-            <span>Your request is reviewed by a certified installer</span>
-          </div>
+          <div class="wi-txt"><strong>Expert Review</strong><span>Your request is reviewed by a certified installer</span></div>
         </div>
         <div class="why-item">
           <div class="wi-ico">🔒</div>
-          <div class="wi-txt">
-            <strong>No Obligation</strong>
-            <span>Completely free — accept only if you're happy</span>
-          </div>
+          <div class="wi-txt"><strong>No Obligation</strong><span>Completely free — accept only if you're happy</span></div>
         </div>
         <div class="why-item">
           <div class="wi-ico">📸</div>
-          <div class="wi-txt">
-            <strong>Share Plans or Photos</strong>
-            <span>Upload drawings or site photos for a more accurate quote</span>
-          </div>
+          <div class="wi-txt"><strong>Share Plans or Photos</strong><span>Attach drawings or site photos for a more accurate quote</span></div>
         </div>
       </div>
       <div class="q-contact-strip">
@@ -477,297 +339,41 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
       </div>
     </div>
 
-    <!-- FORM CARD -->
-    <div class="form-card rv r d2" id="formCard">
+    <!-- EMAIL CARD — replaces the 5-step form -->
+    <div class="form-card rv r d2">
 
-      <!-- ── STEP 1: Project Type ── -->
-      <div class="step-panel active" id="step1">
-        <div class="step-header">
-          <p class="step-eyebrow">Step 1 of 5</p>
-          <h3 class="step-title">What type of project is this?</h3>
-          <p class="step-sub">Select the option that best describes your building type.</p>
-        </div>
-        <p class="tiles-error" id="err-step1">Please select a project type to continue.</p>
-        <div class="tile-grid" role="radiogroup" aria-label="Project type">
-          <div class="tile" data-name="projectType" data-val="Custom House / Townhouse" role="radio" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🏠</span>
-            <span class="tile-lbl">Custom House / Townhouse</span>
-            <span class="tile-sub">Residential single or semi-detached</span>
-          </div>
-          <div class="tile" data-name="projectType" data-val="Multi-Residential / Condo" role="radio" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🏢</span>
-            <span class="tile-lbl">Multi-Residential / Condo</span>
-            <span class="tile-sub">Apartments, stacked units</span>
-          </div>
-          <div class="tile" data-name="projectType" data-val="Retail / Restaurant / Commercial" role="radio" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🏪</span>
-            <span class="tile-lbl">Retail / Restaurant / Commercial</span>
-            <span class="tile-sub">Storefronts &amp; service businesses</span>
-          </div>
-          <div class="tile" data-name="projectType" data-val="Office / Medical / Institutional" role="radio" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🏦</span>
-            <span class="tile-lbl">Office / Medical / Institutional</span>
-            <span class="tile-sub">Professional buildings</span>
-          </div>
-          <div class="tile" data-name="projectType" data-val="Industrial / Warehouse" role="radio" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🏭</span>
-            <span class="tile-lbl">Industrial / Warehouse</span>
-            <span class="tile-sub">Manufacturing &amp; storage facilities</span>
-          </div>
-          <div class="tile" data-name="projectType" data-val="Other / Not Sure" role="radio" aria-checked="false" tabindex="0">
-            <span class="tile-ico">❓</span>
-            <span class="tile-lbl">Other / Not Sure</span>
-            <span class="tile-sub">Tell us more in the next steps</span>
-          </div>
-        </div>
-        <div class="form-nav">
-          <button class="btn-next" id="next1" type="button" onclick="goNext(1)">
-            Continue <span class="btn-arrow">→</span>
-          </button>
-        </div>
+      <p class="email-eyebrow">Simple &amp; Fast</p>
+      <h3 class="email-title">Send Us an Email</h3>
+      <p class="email-sub">No lengthy forms. Just email us with a few details about your project and we'll take it from there — usually back to you within 1 business day.</p>
+
+      <div class="email-address-box">
+        <span class="email-addr-text">info@blueskysiding.ca</span>
+        <button class="copy-btn" id="copyBtn" onclick="copyEmail()">Copy</button>
       </div>
 
-      <!-- ── STEP 2: Product & Scope ── -->
-      <div class="step-panel" id="step2">
-        <div class="step-header">
-          <p class="step-eyebrow">Step 2 of 5</p>
-          <h3 class="step-title">What product are you interested in?</h3>
-          <p class="step-sub">Select one or more products.</p>
-        </div>
-        <p class="tiles-error" id="err-step2">Please select at least one product to continue.</p>
-        <div class="tile-grid three-col" role="group" aria-label="Products">
-          <div class="tile" data-name="products" data-val="Metal Siding" data-multi="true" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🔩</span>
-            <span class="tile-lbl">Metal Siding</span>
-          </div>
-          <div class="tile" data-name="products" data-val="Metal Cladding" data-multi="true" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🏗️</span>
-            <span class="tile-lbl">Metal Cladding</span>
-          </div>
-          <div class="tile" data-name="products" data-val="ACM Panels" data-multi="true" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="tile-ico">⬜</span>
-            <span class="tile-lbl">ACM Panels</span>
-          </div>
-          <div class="tile" data-name="products" data-val="Coping &amp; Flashing" data-multi="true" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🛡️</span>
-            <span class="tile-lbl">Coping &amp; Flashing</span>
-          </div>
-          <div class="tile" data-name="products" data-val="Flat Metal Roof" data-multi="true" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🏠</span>
-            <span class="tile-lbl">Flat Metal Roof</span>
-          </div>
-          <div class="tile" data-name="products" data-val="Custom Copper Work" data-multi="true" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="tile-ico">✨</span>
-            <span class="tile-lbl">Custom Copper Work</span>
-          </div>
-          <div class="tile" data-name="products" data-val="Eavestrough &amp; Downspout" data-multi="true" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="tile-ico">💧</span>
-            <span class="tile-lbl">Eavestrough &amp; Downspout</span>
-          </div>
-          <div class="tile" data-name="products" data-val="Soffit &amp; Fascia" data-multi="true" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="tile-ico">🔲</span>
-            <span class="tile-lbl">Soffit &amp; Fascia</span>
-          </div>
-          <div class="tile" data-name="products" data-val="Not Sure" data-multi="true" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="tile-ico">❓</span>
-            <span class="tile-lbl">Not Sure</span>
-          </div>
-        </div>
-        <div class="form-nav">
-          <button class="btn-prev" type="button" onclick="goPrev(2)">← Back</button>
-          <button class="btn-next" id="next2" type="button" onclick="goNext(2)">
-            Continue <span class="btn-arrow">→</span>
-          </button>
-        </div>
-      </div>
+      <a href="mailto:info@blueskysiding.ca?subject=Quote%20Request%20%E2%80%94%20BlueSky%20Siding&body=Hi%20Blue%20Sky%20Siding%20team%2C%0A%0AI%20would%20like%20to%20request%20a%20free%20quote%20for%20the%20following%20project%3A%0A%0AName%3A%20%0APhone%3A%20%0AProject%20Type%20(Residential%20%2F%20Commercial%20%2F%20Industrial%20%2F%20etc.)%3A%20%0AProject%20Address%20%2F%20Location%3A%20%0ADescription%20of%20Work%3A%20%0AApproximate%20Size%3A%20%0ADesired%20Timeline%3A%20%0A%0AThank%20you!" class="email-btn">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        Open Email App — info@blueskysiding.ca
+      </a>
 
-      <!-- ── STEP 3: Project Details ── -->
-      <div class="step-panel" id="step3">
-        <div class="step-header">
-          <p class="step-eyebrow">Step 3 of 5</p>
-          <h3 class="step-title">Project details &amp; scope</h3>
-          <p class="step-sub">Help us understand the size and timeline of your project.</p>
-        </div>
+      <p class="include-label">What to include in your email</p>
+      <ul class="include-list">
+        <li><div class="check-circle"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Your name and best contact number</li>
+        <li><div class="check-circle"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Project address or general location (city / area)</li>
+        <li><div class="check-circle"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Type of project — residential, commercial, industrial, etc.</li>
+        <li><div class="check-circle"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Description of work needed (siding, cladding, repairs, etc.)</li>
+        <li><div class="check-circle"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Any photos, drawings, or plans <em style="color:var(--muted);">(optional but helpful)</em></li>
+        <li><div class="check-circle"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>Preferred timeline or start date</li>
+      </ul>
 
-        <!-- FIX: Use <div> not <p> to wrap block-level children -->
-        <div class="fg">
-          <label>Service Required <span class="req">*</span></label>
-          <p class="tiles-error" id="err-step3">Please select a service type to continue.</p>
-          <div class="tile-grid" role="radiogroup" aria-label="Service type" style="margin-bottom:0;">
-            <div class="tile" data-name="serviceType" data-val="New Installation" role="radio" aria-checked="false" tabindex="0">
-              <span class="tile-ico">🆕</span>
-              <span class="tile-lbl">New Installation</span>
-            </div>
-            <div class="tile" data-name="serviceType" data-val="Replacement" role="radio" aria-checked="false" tabindex="0">
-              <span class="tile-ico">🔄</span>
-              <span class="tile-lbl">Replacement</span>
-            </div>
-            <div class="tile" data-name="serviceType" data-val="Repair / Maintenance" role="radio" aria-checked="false" tabindex="0">
-              <span class="tile-ico">🔧</span>
-              <span class="tile-lbl">Repair / Maintenance</span>
-            </div>
-            <div class="tile" data-name="serviceType" data-val="Consulting / Not Sure" role="radio" aria-checked="false" tabindex="0">
-              <span class="tile-ico">💬</span>
-              <span class="tile-lbl">Consulting / Not Sure</span>
-            </div>
-          </div>
-        </div>
+      <div class="divider-line"></div>
 
-        <div class="form-row2" style="margin-top:1.2rem;">
-          <div class="fg">
-            <label for="s-sqft">Approximate Square Footage</label>
-            <select id="s-sqft" name="sqft">
-              <option value="" disabled selected>Select range...</option>
-              <option>Under 500 sq ft</option>
-              <option>500 – 1,000 sq ft</option>
-              <option>1,000 – 2,500 sq ft</option>
-              <option>2,500 – 5,000 sq ft</option>
-              <option>5,000 – 10,000 sq ft</option>
-              <option>10,000+ sq ft</option>
-              <option>Not sure</option>
-            </select>
-          </div>
-          <div class="fg">
-            <label for="s-timeline">Desired Timeline</label>
-            <select id="s-timeline" name="timeline">
-              <option value="" disabled selected>Select timeline...</option>
-              <option>ASAP / Urgent</option>
-              <option>Within 1 month</option>
-              <option>1 – 3 months</option>
-              <option>3 – 6 months</option>
-              <option>6+ months / Planning stage</option>
-              <option>No fixed timeline</option>
-            </select>
-          </div>
+      <div class="alt-contact">
+        <div class="alt-icon">📞</div>
+        <div class="alt-text">
+          <p>Prefer to call us directly?</p>
+          <a href="tel:+14167415140">(416) 741-5140</a>
         </div>
-
-        <div class="fg">
-          <label>Approximate Budget</label>
-          <div class="slider-wrap">
-            <div class="budget-val" id="budgetVal">$25,000</div>
-            <input type="range" class="budget-slider" id="budgetSlider" min="5000" max="500000" step="5000" value="25000" aria-label="Budget amount">
-            <div class="budget-labels"><span>$5K</span><span>$250K</span><span>$500K+</span></div>
-          </div>
-        </div>
-
-        <div class="fg">
-          <label>Upload Plans, Drawings, or Photos <span style="color:var(--muted);font-weight:400;">(Optional)</span></label>
-          <label for="projectFiles" class="file-zone" id="fileZone">
-            <span class="fz-ico">📁</span>
-            <span class="fz-lbl">Click to upload or drag &amp; drop</span>
-            <span class="fz-sub">PDF, JPG, PNG, DWG max 20 MB each</span>
-            <div class="fz-files" id="fzFiles"></div>
-            <input type="file" id="projectFiles" name="files" multiple accept=".pdf,.jpg,.jpeg,.png,.dwg" style="display:none;">
-          </label>
-        </div>
-
-        <div class="form-nav">
-          <button class="btn-prev" type="button" onclick="goPrev(3)">← Back</button>
-          <button class="btn-next" id="next3" type="button" onclick="goNext(3)">
-            Continue <span class="btn-arrow">→</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- ── STEP 4: Contact Info ── -->
-      <div class="step-panel" id="step4">
-        <div class="step-header">
-          <p class="step-eyebrow">Step 4 of 5</p>
-          <h3 class="step-title">Your contact information</h3>
-          <p class="step-sub">We'll use these details to send your quote and follow up with you.</p>
-        </div>
-        <div class="form-row2">
-          <div class="fg">
-            <label for="f-name">Full Name <span class="req">*</span></label>
-            <input type="text" id="f-name" placeholder="John Smith" autocomplete="name">
-            <p class="error-msg" id="err-name">Please enter your full name.</p>
-          </div>
-          <div class="fg">
-            <label for="f-phone">Phone Number <span class="req">*</span></label>
-            <input type="tel" id="f-phone" placeholder="(416) 000-0000" autocomplete="tel">
-            <p class="error-msg" id="err-phone">Please enter a valid phone number.</p>
-          </div>
-        </div>
-        <div class="fg">
-          <label for="f-email">Email Address <span class="req">*</span></label>
-          <input type="email" id="f-email" placeholder="your@email.com" autocomplete="email">
-          <p class="error-msg" id="err-email">Please enter a valid email address.</p>
-        </div>
-        <div class="fg">
-          <label for="f-company">Company Name <span style="color:var(--muted);font-weight:400;">(Optional)</span></label>
-          <input type="text" id="f-company" placeholder="Your company or organization" autocomplete="organization">
-        </div>
-        <div class="fg">
-          <label for="f-address">Project Address / Location</label>
-          <input type="text" id="f-address" placeholder="Street address, city, or general area" autocomplete="street-address">
-        </div>
-        <div class="fg">
-          <label for="f-notes">Additional Notes or Requests</label>
-          <textarea id="f-notes" placeholder="Any other details, special requirements, or questions for our team..."></textarea>
-        </div>
-        <div class="fg">
-          <label style="display:flex;align-items:flex-start;gap:.6rem;cursor:pointer;font-size:.82rem;font-weight:500;color:var(--steel);">
-            <input type="checkbox" id="f-consent" style="width:16px;height:16px;min-width:16px;margin-top:2px;accent-color:var(--sky);">
-            I agree to be contacted by BlueSky Siding &amp; Cladding Inc. regarding my quote request. My information will not be shared with third parties.
-          </label>
-          <p class="error-msg" id="err-consent">Please accept the consent to continue.</p>
-        </div>
-        <div class="form-nav">
-          <button class="btn-prev" type="button" onclick="goPrev(4)">← Back</button>
-          <button class="btn-next" id="next4" type="button" onclick="goNext(4)">
-            Review Quote <span class="btn-arrow">→</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- ── STEP 5: Review ── -->
-      <div class="step-panel" id="step5">
-        <div class="step-header">
-          <p class="step-eyebrow">Step 5 of 5</p>
-          <h3 class="step-title">Review your request</h3>
-          <p class="step-sub">Please confirm the details before submitting your quote request.</p>
-        </div>
-        <div class="review-card">
-          <h4>Project Info</h4>
-          <div class="review-row"><span class="rr-key">Project Type</span><span class="rr-val" id="rv-type">—</span></div>
-          <div class="review-row"><span class="rr-key">Products</span><span class="rr-val" id="rv-products">—</span></div>
-          <div class="review-row"><span class="rr-key">Service</span><span class="rr-val" id="rv-service">—</span></div>
-          <div class="review-row"><span class="rr-key">Square Footage</span><span class="rr-val" id="rv-sqft">—</span></div>
-          <div class="review-row"><span class="rr-key">Timeline</span><span class="rr-val" id="rv-timeline">—</span></div>
-          <div class="review-row"><span class="rr-key">Budget</span><span class="rr-val" id="rv-budget">—</span></div>
-        </div>
-        <div class="review-card">
-          <h4>Your Contact Details</h4>
-          <div class="review-row"><span class="rr-key">Name</span><span class="rr-val" id="rv-name">—</span></div>
-          <div class="review-row"><span class="rr-key">Phone</span><span class="rr-val" id="rv-phone">—</span></div>
-          <div class="review-row"><span class="rr-key">Email</span><span class="rr-val" id="rv-email">—</span></div>
-          <div class="review-row"><span class="rr-key">Company</span><span class="rr-val" id="rv-company">—</span></div>
-          <div class="review-row"><span class="rr-key">Address</span><span class="rr-val" id="rv-address">—</span></div>
-          <div class="review-row"><span class="rr-key">Notes</span><span class="rr-val" id="rv-notes">—</span></div>
-        </div>
-        <p class="privacy-note">🔒 Your information is private and used only for preparing your quote. We never share it with third parties.</p>
-        <div class="form-nav">
-          <button class="btn-prev" type="button" onclick="goPrev(5)">← Back</button>
-          <button class="btn-submit" id="submitBtn" type="button" onclick="submitForm()">
-            Submit Quote Request ✓
-          </button>
-        </div>
-        <p class="skip-note">By submitting, you agree to be contacted by our team regarding this estimate.</p>
-      </div>
-
-      <!-- ── SUCCESS SCREEN ── -->
-      <div class="success-screen" id="successScreen">
-        <div class="ss-badge">✓</div>
-        <h3 class="ss-title">Quote Request Sent!</h3>
-        <p class="ss-sub">Thank you! Our team has received your request and will prepare a detailed estimate for you typically within 1 business day.</p>
-        <div class="ss-steps">
-          <div class="ss-step"><div class="ss-step-num">1</div><span>We review your project details &amp; requirements</span></div>
-          <div class="ss-step"><div class="ss-step-num">2</div><span>Our estimator prepares a detailed, itemized quote</span></div>
-          <div class="ss-step"><div class="ss-step-num">3</div><span>We
-            
-            contact you to walk through the estimate</span></div>
-        </div>
-        <a href="index.html" class="ss-home">Back to Home</a>
       </div>
 
     </div><!-- /form-card -->
@@ -818,24 +424,12 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
     <div>
       <h4>Project Gallery</h4>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:.2rem;">
-        <a href="images/gallery-1.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-2.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-3.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-3.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-4.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-4.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-5.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-5.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-6.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-6.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
+        <a href="images/gallery-1.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-2.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-3.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-3.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-4.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-4.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-5.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-5.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-6.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-6.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
       </div>
     </div>
     <div>
@@ -852,9 +446,7 @@ body{font-family:'DM Sans',Georgia,sans-serif;color:#1A2D42;background:#fff;-web
 </footer>
 
 <script>
-/* ════════════════════════════════════════
-   LOADER
-════════════════════════════════════════ */
+/* LOADER */
 window.addEventListener('load', function () {
   setTimeout(function () {
     var loader = document.getElementById('loader');
@@ -863,9 +455,7 @@ window.addEventListener('load', function () {
   }, 2100);
 });
 
-/* ════════════════════════════════════════
-   SCROLL REVEAL
-════════════════════════════════════════ */
+/* SCROLL REVEAL */
 var revealObserver = new IntersectionObserver(function (entries) {
   entries.forEach(function (entry, i) {
     if (entry.isIntersecting) {
@@ -876,330 +466,22 @@ var revealObserver = new IntersectionObserver(function (entries) {
 }, { threshold: 0.1 });
 document.querySelectorAll('.rv').forEach(function (el) { revealObserver.observe(el); });
 
-/* ════════════════════════════════════════
-   NAVBAR SCROLL SHADOW
-════════════════════════════════════════ */
+/* NAVBAR SCROLL SHADOW */
 window.addEventListener('scroll', function () {
   document.querySelector('.navbar').style.boxShadow =
     window.scrollY >= 40 ? '0 4px 20px rgba(0,0,0,.1)' : '0 1px 20px rgba(0,0,0,.06)';
 });
 
-/* ════════════════════════════════════════
-   STATE
-════════════════════════════════════════ */
-var state = {
-  projectType: '',
-  products: [],
-  serviceType: '',
-  sqft: '',
-  timeline: '',
-  budget: '$25,000',
-  files: [],
-  name: '',
-  phone: '',
-  email: '',
-  company: '',
-  address: '',
-  notes: ''
-};
-
-/* ════════════════════════════════════════
-   TILE SYSTEM — pure JS, no hidden inputs
-════════════════════════════════════════ */
-document.querySelectorAll('.tile').forEach(function (tile) {
-  tile.addEventListener('click', handleTileClick);
-  tile.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleTileClick.call(tile, e);
-    }
-  });
-});
-
-function handleTileClick() {
-  var name = this.dataset.name;
-  var val  = this.dataset.val;
-  var isMulti = this.dataset.multi === 'true';
-
-  if (isMulti) {
-    /* Checkbox behaviour */
-    var isSelected = this.classList.contains('selected');
-    if (isSelected) {
-      this.classList.remove('selected');
-      this.setAttribute('aria-checked', 'false');
-      state.products = state.products.filter(function (v) { return v !== val; });
-    } else {
-      this.classList.add('selected');
-      this.setAttribute('aria-checked', 'true');
-      state.products.push(val);
-    }
-  } else {
-    /* Radio behaviour */
-    document.querySelectorAll('.tile[data-name="' + name + '"]').forEach(function (t) {
-      t.classList.remove('selected');
-      t.setAttribute('aria-checked', 'false');
-    });
-    this.classList.add('selected');
-    this.setAttribute('aria-checked', 'true');
-
-    if (name === 'projectType') state.projectType = val;
-    if (name === 'serviceType')  state.serviceType  = val;
-  }
-}
-
-/* ════════════════════════════════════════
-   BUDGET SLIDER
-════════════════════════════════════════ */
-var slider    = document.getElementById('budgetSlider');
-var budgetVal = document.getElementById('budgetVal');
-
-function updateSlider() {
-  var v   = parseInt(slider.value, 10);
-  var pct = ((v - 5000) / (500000 - 5000)) * 100;
-  slider.style.setProperty('--pct', pct + '%');
-  var label = v >= 500000 ? '$500,000+' : '$' + v.toLocaleString();
-  budgetVal.textContent = label;
-  state.budget = label;
-}
-slider.addEventListener('input', updateSlider);
-updateSlider();
-
-/* ════════════════════════════════════════
-   FILE UPLOAD — cross-browser drag & drop fix
-════════════════════════════════════════ */
-var fileInput = document.getElementById('projectFiles');
-var fileZone  = document.getElementById('fileZone');
-var fzFiles   = document.getElementById('fzFiles');
-
-function renderFileChips(fileList) {
-  fzFiles.innerHTML = '';
-  Array.from(fileList).forEach(function (f) {
-    var chip = document.createElement('span');
-    chip.className = 'fz-chip';
-    chip.textContent = f.name;
-    fzFiles.appendChild(chip);
-  });
-  state.files = Array.from(fileList).map(function (f) { return f.name; });
-}
-
-fileInput.addEventListener('change', function () {
-  renderFileChips(this.files);
-});
-
-fileZone.addEventListener('dragover', function (e) {
-  e.preventDefault();
-  fileZone.classList.add('drag');
-});
-fileZone.addEventListener('dragleave', function () {
-  fileZone.classList.remove('drag');
-});
-fileZone.addEventListener('drop', function (e) {
-  e.preventDefault();
-  fileZone.classList.remove('drag');
-  /* FIX: Use DataTransfer API for cross-browser compatibility */
-  var dt = new DataTransfer();
-  Array.from(e.dataTransfer.files).forEach(function (f) { dt.items.add(f); });
-  fileInput.files = dt.files;
-  renderFileChips(dt.files);
-});
-
-/* ════════════════════════════════════════
-   VALIDATION HELPERS
-════════════════════════════════════════ */
-function showErr(id, show) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  if (show) el.classList.add('show');
-  else el.classList.remove('show');
-}
-
-function validateStep1() {
-  if (!state.projectType) { showErr('err-step1', true);  return false; }
-  showErr('err-step1', false); return true;
-}
-
-function validateStep2() {
-  if (state.products.length === 0) { showErr('err-step2', true);  return false; }
-  showErr('err-step2', false); return true;
-}
-
-function validateStep3() {
-  if (!state.serviceType) { showErr('err-step3', true); return false; }
-  showErr('err-step3', false); return true;
-}
-
-function validateStep4() {
-  var name    = document.getElementById('f-name').value.trim();
-  var phone   = document.getElementById('f-phone').value.trim();
-  var email   = document.getElementById('f-email').value.trim();
-  var consent = document.getElementById('f-consent').checked;
-  var ok = true;
-
-  if (name.length < 2) {
-    document.getElementById('f-name').classList.add('error');
-    showErr('err-name', true); ok = false;
-  } else {
-    document.getElementById('f-name').classList.remove('error');
-    showErr('err-name', false);
-  }
-
-  if (phone.replace(/\D/g, '').length < 7) {
-    document.getElementById('f-phone').classList.add('error');
-    showErr('err-phone', true); ok = false;
-  } else {
-    document.getElementById('f-phone').classList.remove('error');
-    showErr('err-phone', false);
-  }
-
-  var emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRx.test(email)) {
-    document.getElementById('f-email').classList.add('error');
-    showErr('err-email', true); ok = false;
-  } else {
-    document.getElementById('f-email').classList.remove('error');
-    showErr('err-email', false);
-  }
-
-  if (!consent) {
-    showErr('err-consent', true); ok = false;
-  } else {
-    showErr('err-consent', false);
-  }
-
-  return ok;
-}
-
-/* ════════════════════════════════════════
-   STEP NAVIGATION
-════════════════════════════════════════ */
-var currentStep = 1;
-
-function goNext(from) {
-  /* Validate each step before advancing */
-  if (from === 1 && !validateStep1()) return;
-  if (from === 2 && !validateStep2()) return;
-  if (from === 3 && !validateStep3()) return;
-  if (from === 4) {
-    if (!validateStep4()) return;
-    /* Capture contact fields into state */
-    state.name    = document.getElementById('f-name').value.trim();
-    state.phone   = document.getElementById('f-phone').value.trim();
-    state.email   = document.getElementById('f-email').value.trim();
-    state.company = document.getElementById('f-company').value.trim();
-    state.address = document.getElementById('f-address').value.trim();
-    state.notes   = document.getElementById('f-notes').value.trim();
-    state.sqft    = document.getElementById('s-sqft').value;
-    state.timeline = document.getElementById('s-timeline').value;
-    buildReview();
-  }
-  showStep(from + 1);
-}
-
-function goPrev(from) {
-  showStep(from - 1);
-}
-
-function showStep(n) {
-  currentStep = n;
-  document.querySelectorAll('.step-panel').forEach(function (p) {
-    p.classList.remove('active');
-  });
-  var panel = document.getElementById('step' + n);
-  if (panel) panel.classList.add('active');
-  updateProgress(n);
-  window.scrollTo({
-    top: document.getElementById('progressWrap').offsetTop - 90,
-    behavior: 'smooth'
-  });
-}
-
-function updateProgress(n) {
-  document.querySelectorAll('.sp-step').forEach(function (s) {
-    var sn = parseInt(s.dataset.step, 10);
-    s.classList.remove('active', 'done');
-    if (sn === n)      s.classList.add('active');
-    else if (sn < n)   s.classList.add('done');
-  });
-}
-
-/* ════════════════════════════════════════
-   BUILD REVIEW SUMMARY
-════════════════════════════════════════ */
-function buildReview() {
-  document.getElementById('rv-type').textContent     = state.projectType || '—';
-  document.getElementById('rv-products').textContent = state.products.length ? state.products.join(', ') : '—';
-  document.getElementById('rv-service').textContent  = state.serviceType || '—';
-  document.getElementById('rv-sqft').textContent     = state.sqft || '—';
-  document.getElementById('rv-timeline').textContent = state.timeline || '—';
-  document.getElementById('rv-budget').textContent   = state.budget;
-  document.getElementById('rv-name').textContent     = state.name || '—';
-  document.getElementById('rv-phone').textContent    = state.phone || '—';
-  document.getElementById('rv-email').textContent    = state.email || '—';
-  document.getElementById('rv-company').textContent  = state.company || '—';
-  document.getElementById('rv-address').textContent  = state.address || '—';
-  document.getElementById('rv-notes').textContent    = state.notes   || '—';
-}
-
-/* ════════════════════════════════════════
-   SUBMIT
-   NOTE: Replace the fetch() body below with
-   your real backend endpoint or email service
-   (e.g. Formspree, EmailJS, your own API).
-════════════════════════════════════════ */
-function submitForm() {
-  var btn = document.getElementById('submitBtn');
-  btn.textContent = 'Submitting…';
-  btn.disabled    = true;
-
-  var payload = {
-    projectType:  state.projectType,
-    products:     state.products,
-    serviceType:  state.serviceType,
-    sqft:         state.sqft,
-    timeline:     state.timeline,
-    budget:       state.budget,
-    files:        state.files,
-    name:         state.name,
-    phone:        state.phone,
-    email:        state.email,
-    company:      state.company,
-    address:      state.address,
-    notes:        state.notes
-  };
-
-  /*
-   * ── OPTION A: Formspree (simplest) ──────────────────────────
-   * 1. Sign up at https://formspree.io
-   * 2. Create a form and copy your form ID
-   * 3. Replace the URL below:
-   *
-   * fetch('https://formspree.io/f/YOUR_FORM_ID', {
-   *   method: 'POST',
-   *   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-   *   body: JSON.stringify(payload)
-   * })
-   * .then(function(r){ if(!r.ok) throw new Error('Network error'); return r.json(); })
-   * .then(function(){ showSuccess(); })
-   * .catch(function(){ btn.textContent='Submit Quote Request ✓'; btn.disabled=false; alert('Something went wrong. Please try again or call us directly.'); });
-   *
-   * ── OPTION B: EmailJS ────────────────────────────────────────
-   * See https://emailjs.com for setup.
-   * ────────────────────────────────────────────────────────────
-   *
-   * For now, we simulate a successful submission after 1.4s:
-   */
-  setTimeout(function () {
-    showSuccess();
-  }, 1400);
-}
-
-function showSuccess() {
-  document.getElementById('step5').style.display = 'none';
-  document.getElementById('successScreen').style.display = 'block';
-  updateProgress(6);
-  window.scrollTo({
-    top: document.getElementById('formCard').offsetTop - 100,
-    behavior: 'smooth'
+/* COPY EMAIL */
+function copyEmail() {
+  navigator.clipboard.writeText('info@blueskysiding.ca').then(function () {
+    var btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
   });
 }
 </script>
