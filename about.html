@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -107,14 +106,12 @@ body {
   position: absolute; inset: 0; z-index: 10; pointer-events: none;
   border-radius: 14px; overflow: hidden;
 }
-
 .img-label {
   position: absolute;
   display: flex; align-items: center; gap: 7px;
   pointer-events: auto;
   opacity: 0;
 }
-
 .img-label .pill {
   display: flex; align-items: center; gap: 6px;
   background: rgba(11, 31, 58, 0.82);
@@ -132,7 +129,6 @@ body {
   border-color: rgba(79,158,248,.9);
   box-shadow: 0 8px 32px rgba(44,123,229,.4), 0 0 0 3px rgba(44,123,229,.15);
 }
-
 .img-label .dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--skyL);
@@ -144,69 +140,18 @@ body {
   0%,100% { box-shadow: 0 0 0 3px rgba(79,158,248,.25); }
   50%      { box-shadow: 0 0 0 6px rgba(79,158,248,.0); }
 }
-
 .img-label .label-text {
   font-size: .72rem; font-weight: 600; letter-spacing: .08em;
   text-transform: uppercase; color: #fff; line-height: 1;
 }
+@keyframes labelPopIn { 0%{opacity:0;transform:scale(0.4) translateY(10px);} 60%{opacity:1;transform:scale(1.08) translateY(-2px);} 80%{transform:scale(0.96);} 100%{opacity:1;transform:scale(1) translateY(0);} }
+@keyframes labelSlideRight { 0%{opacity:0;transform:translateX(-40px);} 60%{opacity:1;transform:translateX(6px);} 100%{opacity:1;transform:translateX(0);} }
+@keyframes labelSlideLeft { 0%{opacity:0;transform:translateX(40px);} 60%{opacity:1;transform:translateX(-6px);} 100%{opacity:1;transform:translateX(0);} }
+@keyframes labelFlyUp { 0%{opacity:0;transform:translateY(30px) scale(0.8);} 65%{opacity:1;transform:translateY(-4px) scale(1.03);} 100%{opacity:1;transform:translateY(0) scale(1);} }
+@keyframes labelFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
 
-.img-label .line {
-  position: absolute;
-  background: linear-gradient(to right, rgba(79,158,248,.7), rgba(79,158,248,.15));
-  height: 1.5px;
-  transform-origin: left center;
-  border-radius: 2px;
-}
-
-@keyframes labelPopIn {
-  0%   { opacity: 0; transform: scale(0.4) translateY(10px); }
-  60%  { opacity: 1; transform: scale(1.08) translateY(-2px); }
-  80%  { transform: scale(0.96); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-@keyframes labelSlideRight {
-  0%   { opacity: 0; transform: translateX(-40px); }
-  60%  { opacity: 1; transform: translateX(6px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes labelSlideLeft {
-  0%   { opacity: 0; transform: translateX(40px); }
-  60%  { opacity: 1; transform: translateX(-6px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes labelFlyUp {
-  0%   { opacity: 0; transform: translateY(30px) scale(0.8); }
-  65%  { opacity: 1; transform: translateY(-4px) scale(1.03); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes labelFloat {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-5px); }
-}
-
-@keyframes lineDraw {
-  from { width: 0; opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.scan-line {
-  position: absolute; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(79,158,248,.6), transparent);
-  z-index: 20; pointer-events: none;
-  animation: scanDown 3.5s 2.8s ease forwards;
-  top: 0; opacity: 0;
-}
-@keyframes scanDown {
-  0%   { top: 0%;   opacity: 0; }
-  5%   { opacity: 1; }
-  95%  { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
-}
-
+.scan-line { position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(79,158,248,.6), transparent); z-index: 20; pointer-events: none; animation: scanDown 3.5s 2.8s ease forwards; top: 0; opacity: 0; }
+@keyframes scanDown { 0%{top:0%;opacity:0;} 5%{opacity:1;} 95%{opacity:1;} 100%{top:100%;opacity:0;} }
 .corner { position: absolute; width: 18px; height: 18px; z-index: 15; pointer-events: none; }
 .corner.tl { top: 8px; left: 8px; border-top: 2px solid var(--skyL); border-left: 2px solid var(--skyL); border-radius: 2px 0 0 0; animation: cornerFade .5s 2.9s ease forwards; opacity: 0; }
 .corner.tr { top: 8px; right: 8px; border-top: 2px solid var(--skyL); border-right: 2px solid var(--skyL); border-radius: 0 2px 0 0; animation: cornerFade .5s 3.0s ease forwards; opacity: 0; }
@@ -265,60 +210,98 @@ body {
 .vcard h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: .8rem; }
 .vcard p { font-size: .92rem; color: var(--muted); line-height: 1.8; }
 
-/* ── TEAM ── */
-.team { background: var(--navy); padding: 8rem 2rem; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,.06); }
+/* ── TEAM — new 3-member grid ── */
+.team {
+  background: var(--navy); padding: 8rem 2rem;
+  position: relative; overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
 .team::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 90% 30%, rgba(44,123,229,.13) 0%, transparent 55%); }
-.team-inner { max-width: 1320px; margin: 0 auto; position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.team-inner { max-width: 1320px; margin: 0 auto; position: relative; z-index: 2; }
+.team-header { text-align: center; margin-bottom: 4rem; }
 .team-label { font-size: .76rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--skyL); margin-bottom: 1rem; }
-.team h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,2.8vw,3rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 1.5rem; }
-.team-desc { font-size: 1rem; color: rgba(255,255,255,.6); line-height: 1.9; margin-bottom: 2.5rem; }
-.team-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.tfeat { display: flex; align-items: center; gap: 10px; font-size: .9rem; color: rgba(255,255,255,.7); font-weight: 500; }
-.tfeat::before { content: ''; width: 8px; height: 8px; min-width: 8px; background: var(--sky); border-radius: 50%; }
-
-/* ── TEAM PHOTO ── */
-.team-photo-wrap {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+.team h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,2.8vw,3rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 1rem; }
+.team-tagline { font-size: 1rem; color: rgba(255,255,255,.55); max-width: 520px; margin: 0 auto; line-height: 1.8; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+.member-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 20px;
+  padding: 2.4rem 2rem;
+  position: relative; overflow: hidden;
+  transition: background .3s, border-color .3s, transform .3s, box-shadow .3s;
+  text-align: center;
 }
-.team-photo-img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 4/3;
-  object-fit: cover;
+.member-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--sky), var(--skyL));
+  transform: scaleX(0); transform-origin: left; transition: transform .4s;
 }
-.team-photo-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.2rem 1.4rem;
-  background: linear-gradient(transparent, rgba(11,31,58,.88));
+.member-card:hover {
+  background: rgba(44,123,229,.1);
+  border-color: rgba(44,123,229,.3);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.3);
 }
-.team-photo-title {
-  font-size: .76rem;
-  font-weight: 600;
-  color: var(--skyL);
-  letter-spacing: .12em;
-  text-transform: uppercase;
+.member-card:hover::before { transform: scaleX(1); }
+.member-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sky), var(--skyL));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700; color: #fff;
+  margin: 0 auto 1.4rem;
+  box-shadow: 0 8px 24px rgba(44,123,229,.4);
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+}
+.member-card:hover .member-avatar {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 14px 36px rgba(44,123,229,.6);
+}
+.member-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; font-weight: 700; color: #fff;
   margin-bottom: .3rem;
 }
-.team-photo-sub {
-  font-size: .88rem;
-  color: rgba(255,255,255,.8);
+.member-role {
+  font-size: .8rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--skyL); margin-bottom: 1.5rem;
 }
-.team-stat-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: .8rem;
-  margin-top: 1rem;
+.member-divider {
+  width: 32px; height: 1.5px;
+  background: rgba(44,123,229,.4);
+  margin: 0 auto 1.4rem; border-radius: 1px;
+  transition: width .3s, background .3s;
 }
-.tcard { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: 12px; padding: 1.4rem 1rem; text-align: center; transition: background .3s, border-color .3s, transform .3s; }
-.tcard:hover { background: rgba(44,123,229,.1); border-color: rgba(44,123,229,.3); transform: translateY(-4px); }
-.tc-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--skyL); line-height: 1; }
-.tc-lbl { font-size: .78rem; color: rgba(255,255,255,.45); margin-top: .5rem; font-weight: 500; }
+.member-card:hover .member-divider { width: 56px; background: var(--skyL); }
+.member-email {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: .85rem; font-weight: 500;
+  color: rgba(255,255,255,.65);
+  text-decoration: none;
+  padding: .55rem 1.1rem;
+  background: rgba(44,123,229,.12);
+  border: 1px solid rgba(44,123,229,.25);
+  border-radius: 50px;
+  transition: background .25s, border-color .25s, color .25s, transform .2s;
+  word-break: break-all;
+}
+.member-email:hover {
+  background: rgba(44,123,229,.25);
+  border-color: rgba(79,158,248,.6);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.member-email svg {
+  width: 14px; height: 14px;
+  stroke: var(--skyL); fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+  transition: stroke .25s;
+}
+.member-email:hover svg { stroke: #fff; }
 
 /* ── CTA ── */
 .cta { background: linear-gradient(135deg,#1056bb 0%,var(--sky) 60%,#38b6ff 100%); padding: 7rem 2rem; text-align: center; position: relative; overflow: hidden; }
@@ -358,8 +341,8 @@ body {
 .d1{transition-delay:.1s;} .d2{transition-delay:.2s;} .d3{transition-delay:.3s;} .d4{transition-delay:.4s;}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1024px){ .values-grid{grid-template-columns:repeat(2,1fr);} .counters-inner{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:768px){ .nav-links{display:none;} .hero-inner,.story-inner,.team-inner,.values-header,.footer-inner{grid-template-columns:1fr;} .hero-image-wrap{display:none;} .values-grid{grid-template-columns:1fr;} .footer-inner{grid-template-columns:1fr 1fr;} }
+@media(max-width:1024px){ .values-grid{grid-template-columns:repeat(2,1fr);} .counters-inner{grid-template-columns:repeat(2,1fr);} .team-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:768px){ .nav-links{display:none;} .hero-inner,.story-inner,.values-header,.footer-inner{grid-template-columns:1fr;} .hero-image-wrap{display:none;} .values-grid{grid-template-columns:1fr;} .footer-inner{grid-template-columns:1fr 1fr;} .team-grid{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -379,7 +362,7 @@ body {
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.html" class="active">About</a></li>
       <li><a href="products.html">Products</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="careers.html">Careers</a></li>
@@ -394,7 +377,6 @@ body {
   <div class="hero-mesh"></div>
   <div class="hero-grid"></div>
   <div class="hero-inner">
-
     <div>
       <p class="hero-eyebrow">About BlueSky</p>
       <h1>Built on Craft.<br><em>Driven by Excellence.</em></h1>
@@ -406,7 +388,6 @@ body {
         <div class="stat-box"><div class="stat-num">GTA</div><div class="stat-lbl">&amp; surrounding regions</div></div>
       </div>
     </div>
-
     <div class="hero-image-wrap" id="heroWrap">
       <img src="images/hero image.png" alt="BlueSky building project" id="heroImg">
       <div class="scan-line"></div>
@@ -416,7 +397,6 @@ body {
       <div class="corner br"></div>
       <div class="img-labels" id="imgLabels"></div>
     </div>
-
   </div>
   <div class="scroll-hint">
     <span>Scroll</span>
@@ -455,7 +435,7 @@ body {
     </div>
     <div class="story-body rv d2">
       <p>At BlueSky Siding &amp; Cladding, we were founded on a simple belief: <strong>your building's exterior should be as impressive as what's inside.</strong> We bring together certified installers, skilled craftsmen, and dedicated project managers who are passionate about quality in every detail.</p>
-      <p>From initial consultation and design to material sourcing and professional installation, we manage every stage of your project with precision. Our deep knowledge of building envelope systems including metal cladding, aluminum siding, and custom-fabricated panels means we deliver solutions that are durable, beautiful, and built to last.</p>
+      <p>From initial consultation and design to material sourcing and professional installation, we manage every stage of your project with precision. Our deep knowledge of building envelope systems — including metal cladding, aluminum siding, and custom-fabricated panels — means we deliver solutions that are durable, beautiful, and built to last.</p>
       <p>We don't just install siding. We help architects, contractors, and property owners realise their vision with materials and workmanship they can be proud of for decades to come.</p>
       <div class="divider"></div>
       <p style="font-size:.95rem;color:#4A5D72;">Proudly serving the Greater Toronto Area, BlueSky is committed to raising the standard of exterior building solutions one project at a time.</p>
@@ -478,7 +458,7 @@ body {
   <div class="values-inner">
     <div class="values-header">
       <div class="rv l"><p class="sec-label">What We Stand For</p><h2>Our Core Values</h2></div>
-      <p class="rv r d2">These principles shape every decision we make from how we select materials to how we communicate with clients and complete every installation.</p>
+      <p class="rv r d2">These principles shape every decision we make — from how we select materials to how we communicate with clients and complete every installation.</p>
     </div>
     <div class="values-grid">
       <div class="vcard rv d1">
@@ -501,38 +481,50 @@ body {
   </div>
 </section>
 
-<!-- TEAM -->
+<!-- TEAM — 3 individual member cards -->
 <section class="team">
   <div class="team-inner">
-    <div class="rv l">
+    <div class="team-header rv">
       <p class="team-label">Our People</p>
-      <h2>Expert Team,<br>Exceptional Results</h2>
-      <p class="team-desc">Behind every BlueSky project is a dedicated team of certified professionals, project managers, skilled tradespeople, and support staff who take pride in their craft.</p>
-      <div class="team-feats">
-        <div class="tfeat">Certified Installers</div>
-        <div class="tfeat">Project Managers</div>
-        <div class="tfeat">Custom Fabricators</div>
-        <div class="tfeat">Design Consultants</div>
-        <div class="tfeat">Safety Trained</div>
-        <div class="tfeat">Licensed &amp; Insured</div>
-      </div>
+      <h2>Meet the BlueSky Team</h2>
+      <p class="team-tagline">The people behind every project — experienced, dedicated, and always ready to help.</p>
     </div>
+    <div class="team-grid">
 
-    <div class="rv r d2">
-      <div class="team-photo-wrap">
-        <img src="images/team-photo.jpg" alt="The BlueSky Siding and Cladding team" class="team-photo-img">
-        <div class="team-photo-caption">
-          <div class="team-photo-title">The BlueSky Team</div>
-          <div class="team-photo-sub">Dedicated professionals, exceptional results</div>
-        </div>
+      <div class="member-card rv d1">
+        <div class="member-avatar">DV</div>
+        <div class="member-name">Daniel V.</div>
+        <div class="member-role">President</div>
+        <div class="member-divider"></div>
+        <a href="mailto:daniel@blueskysiding.ca" class="member-email">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          daniel@blueskysiding.ca
+        </a>
       </div>
-      <div class="team-stat-strip">
-        <div class="tcard"><div class="tc-num">100+</div><div class="tc-lbl">Projects Completed</div></div>
-        <div class="tcard"><div class="tc-num">GTA</div><div class="tc-lbl">Regional Service Area</div></div>
-        <div class="tcard"><div class="tc-num">A&#8211;Z</div><div class="tc-lbl">Full Project Management</div></div>
+
+      <div class="member-card rv d2">
+        <div class="member-avatar">MP</div>
+        <div class="member-name">Mohit P.</div>
+        <div class="member-role">Project Estimator</div>
+        <div class="member-divider"></div>
+        <a href="mailto:mohit@blueskysiding.ca" class="member-email">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          mohit@blueskysiding.ca
+        </a>
       </div>
+
+      <div class="member-card rv d3">
+        <div class="member-avatar">SV</div>
+        <div class="member-name">Shruti V.</div>
+        <div class="member-role">Coordinator</div>
+        <div class="member-divider"></div>
+        <a href="mailto:shruti@blueskysiding.ca" class="member-email">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          shruti@blueskysiding.ca
+        </a>
+      </div>
+
     </div>
-
   </div>
 </section>
 
@@ -567,24 +559,12 @@ body {
     <div>
       <h4>Project Gallery</h4>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:.2rem;">
-        <a href="images/gallery-1.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-2.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-3.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-3.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-4.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-4.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-5.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-5.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
-        <a href="images/gallery-6.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;">
-          <img src="images/gallery-6.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-        </a>
+        <a href="images/gallery-1.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-2.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-3.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-3.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-4.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-4.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-5.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-5.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="images/gallery-6.jpg" target="_blank" style="display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;"><img src="images/gallery-6.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></a>
       </div>
     </div>
     <div>
